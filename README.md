@@ -1,7 +1,7 @@
 <hr>
 <div align="center">
   <h1 align="center">
-    @accessible/popover
+    &lt;Popover&gt;
   </h1>
 </div>
 

@@ -20,19 +20,6 @@ import clsx from 'clsx'
 const __DEV__ =
   typeof process !== 'undefined' && process.env.NODE_ENV !== 'production'
 
-const objectWithoutProps = (
-  obj: Record<any, any>,
-  props: Record<any, any>
-): Record<any, any> => {
-  const next = {},
-    keys = Object.keys(obj),
-    len = keys.length
-  let i = 0
-  for (; i < len; i++)
-    if (props[keys[i]] === void 0) next[keys[i]] = obj[keys[i]]
-  return next
-}
-
 const windowWidth = (): number =>
   window.innerWidth || document.documentElement.clientWidth
 
@@ -656,8 +643,8 @@ export const setPlacementStyle = (
   popoverRect.width = popover.offsetWidth
   popoverRect.height = popover.offsetHeight
 
-  if (typeof placement === 'function') {
-    result = placement(triggerRect, popoverRect, containPolicy)
+  if (typeof requestedPlacement === 'function') {
+    result = requestedPlacement(triggerRect, popoverRect, containPolicy)
 
     if (typeof result === 'string') {
       placement = result
@@ -709,14 +696,19 @@ export const PopoverContext = React.createContext<PopoverContextValue>({
     style: {},
     ref: {current: null},
     triggerRef: {current: null},
-    placement: 'center',
+    placement: 'bottom',
     reposition: () => {},
   }),
   {Consumer: PopoverConsumer} = PopoverContext,
   usePopoverContext = () => useContext<PopoverContextValue>(PopoverContext)
 
-const defaultStyles: CSSProperties = {position: 'fixed'}
-const withoutPop = {ref: 0, triggerRef: 0, style: 0}
+const isClosedStyles: CSSProperties = {
+  position: 'fixed',
+  visibility: 'hidden',
+}
+const isOpenStyles: CSSProperties = Object.assign({}, isClosedStyles, {
+  visibility: 'visible',
+})
 
 const portalize = (
   Component,
@@ -730,25 +722,17 @@ const portalize = (
 }
 
 export interface PopoverBoxProps {
-  as?: any
-  placement: Placement
+  placement?: Placement
   portal?: boolean | undefined | null | string | Record<any, any>
-  className?: string
   openClassName?: string
-  style?: CSSProperties
+  children: React.ReactElement
 }
+
+let isServer
 
 export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
   (
-    {
-      as = 'div',
-      placement = 'bottom',
-      portal,
-      className,
-      openClassName = 'popover--open',
-      style,
-      children,
-    },
+    {placement = 'bottom', portal, openClassName = 'popover--open', children},
     ref: MutableRefObject<HTMLElement>
   ) => {
     const popover = usePopoverContext()
@@ -756,7 +740,8 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
     // Yes this is correct, it's useEffect, not useLayoutEffect
     // Just move on .
     useEffect(() => {
-      if (typeof placement === 'function') popover.reposition(placement)
+      popover.reposition(placement as Placement)
+      isServer = false
     }, [placement])
     // handles closing the popover when the ESC key is pressed
     useLayoutEffect(() => {
@@ -772,24 +757,31 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
       return
     }, [popover.ref.current, popover.isOpen])
 
+    const defaultStyles = popover.isOpen ? isOpenStyles : isClosedStyles
+
     return portalize(
-      React.createElement(
-        as,
-        {
-          ref: useMergedRef(popover.ref, ref),
-          className: clsx(className, popover.isOpen && openClassName),
-          style: style ? Object.assign({}, defaultStyles) : defaultStyles,
-        },
-        typeof children === 'function'
-          ? children(objectWithoutProps(popover, withoutPop))
-          : children
-      ),
+      React.cloneElement(children, {
+        key: String(isServer),
+        ref: useMergedRef(popover.ref, ref),
+        className: clsx(
+          children.props.className,
+          popover.isOpen && openClassName
+        ),
+        style: children.props.style
+          ? Object.assign(
+              {},
+              children.props.style,
+              defaultStyles,
+              popover.style
+            )
+          : Object.assign({}, defaultStyles, popover.style),
+      }),
       portal
     )
   }
 )
 
-export interface PopoverContainerProps {
+interface PopoverContainerProps {
   id?: string
   open: () => void
   close: () => void
@@ -819,14 +811,14 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
     children,
   }) => {
     id = String(useId(id))
-    const triggerRef = useRef(null),
-      popoverRef = useRef(null),
+    const triggerRef = useRef<HTMLElement | null>(null),
+      popoverRef = useRef<HTMLElement | null>(null),
       [{style, requestedPlacement, placement}, setState] = useState<
         PlacementState
       >({
         style: {top: 0, right: 0, bottom: 0, left: 0},
-        placement: 'center',
-        requestedPlacement: null,
+        placement: 'bottom',
+        requestedPlacement: 'bottom',
       }),
       reposition = useCallback(
         nextPlacement => {
@@ -840,26 +832,27 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
           )
         },
         [containPolicy]
-      ),
-      childContext = useMemo(
-        () => ({
-          isOpen,
-          open,
-          close,
-          toggle,
-          id: id as string,
-          style,
-          ref: popoverRef,
-          placement,
-          reposition,
-          triggerRef,
-        }),
-        [isOpen, open, close, toggle, placement, reposition, style]
       )
 
     useEffect(() => {
       isOpen && reposition(requestedPlacement)
     }, [isOpen, reposition, scrollY, windowSize[0], windowSize[1]])
+
+    const childContext = useMemo(
+      () => ({
+        isOpen,
+        open,
+        close,
+        toggle,
+        id: id as string,
+        style,
+        ref: popoverRef,
+        placement,
+        reposition,
+        triggerRef,
+      }),
+      [isOpen, open, close, toggle, placement, reposition, style]
+    )
 
     return (
       <PopoverContext.Provider
@@ -885,12 +878,18 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
       prev.containPolicy === next.containPolicy)
 )
 
-export const PopoverMe = props => {
+export interface PopoverMeProps {
+  on: string
+  tabIndex?: string | number
+  children: React.ReactElement
+}
+
+export const PopoverMe: React.FC<PopoverMeProps> = props => {
   const {children, on, tabIndex} = props
   const {isOpen, open, close, toggle, id} = usePopoverContext(),
     elementRef = useRef<HTMLElement>(null),
     ref = useMergedRef(usePopoverContext().triggerRef, elementRef),
-    seen = useRef(false)
+    seen = useRef<boolean>(false)
 
   // returns the focus to the trigger when the popover box closes if focus is
   // not an event that triggers opening the popover
@@ -956,7 +955,7 @@ export const PopoverMe = props => {
   return React.cloneElement(children, {
     tabIndex:
       children.props.tabIndex ||
-      (typeof tabIndex === 'string' ? tabIndex : undefined),
+      (typeof tabIndex === 'string' ? tabIndex : void 0),
     'aria-controls': props['aria-controls'] || id,
     'aria-haspopup': 'true',
     'aria-expanded': String(isOpen),
@@ -994,6 +993,8 @@ const ResizePositioner: React.FC<PopoverContainerProps> = props => {
   )
 }
 
+const defaultWindowSize: [number, number] = [0, 0]
+
 export interface PopoverProps {
   open?: boolean
   initialOpen?: boolean
@@ -1023,7 +1024,7 @@ export const Popover = ({
       toggle,
       isOpen: open === void 0 || open === null ? isOpen_ : open,
       containPolicy: containPolicy as ContainPolicy,
-      windowSize: [0, 0],
+      windowSize: defaultWindowSize,
       repositionOnResize,
       repositionOnScroll,
     },
@@ -1031,7 +1032,8 @@ export const Popover = ({
   )
 }
 
-if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production') {
+if (__DEV__) {
   Popover.displayName = 'Popover'
   PopoverBox.displayName = 'PopoverBox'
+  PopoverMe.displayName = 'PopoverMe'
 }
