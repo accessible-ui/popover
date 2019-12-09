@@ -724,7 +724,10 @@ const portalize = (
 export interface PopoverBoxProps {
   placement?: Placement
   portal?: boolean | undefined | null | string | Record<any, any>
+  closedClassName?: string
   openClassName?: string
+  closedStyle?: CSSProperties
+  openStyle?: CSSProperties
   children: React.ReactElement
 }
 
@@ -732,7 +735,15 @@ let isServer
 
 export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
   (
-    {placement = 'bottom', portal, openClassName = 'popover--open', children},
+    {
+      placement = 'bottom',
+      portal,
+      openStyle,
+      closedStyle,
+      closedClassName,
+      openClassName = 'popover--open',
+      children,
+    },
     ref: MutableRefObject<HTMLElement>
   ) => {
     const popover = usePopoverContext()
@@ -763,18 +774,18 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
       React.cloneElement(children, {
         key: String(isServer),
         ref: useMergedRef(popover.ref, ref),
+        id: popover.id,
         className: clsx(
           children.props.className,
-          popover.isOpen && openClassName
+          popover.isOpen ? openClassName : closedClassName
         ),
-        style: children.props.style
-          ? Object.assign(
-              {},
-              children.props.style,
-              defaultStyles,
-              popover.style
-            )
-          : Object.assign({}, defaultStyles, popover.style),
+        style: Object.assign(
+          {},
+          children.props.style,
+          defaultStyles,
+          popover.style,
+          popover.isOpen ? openStyle : closedStyle
+        ),
       }),
       portal
     )
@@ -834,7 +845,7 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
         [containPolicy]
       )
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       isOpen && reposition(requestedPlacement)
     }, [isOpen, reposition, scrollY, windowSize[0], windowSize[1]])
 
@@ -970,7 +981,7 @@ const ScrollPositioner: React.FC<PopoverContainerProps> = props =>
       {
         scrollY: useWindowScroll(
           props.repositionOnScroll === true
-            ? 30
+            ? 60
             : (props.repositionOnScroll as number)
         ),
       },
@@ -983,7 +994,7 @@ const ResizePositioner: React.FC<PopoverContainerProps> = props => {
   props.windowSize = useWindowSize(1280, 720, {
     fps:
       props.repositionOnResize === true
-        ? 30
+        ? 60
         : (props.repositionOnResize as number),
   })
 
