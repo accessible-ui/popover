@@ -9,6 +9,9 @@
   <a href="https://bundlephobia.com/result?p=@accessible/popover">
     <img alt="Bundlephobia" src="https://img.shields.io/bundlephobia/minzip/@accessible/popover?style=for-the-badge&labelColor=24292e">
   </a>
+  <a aria-label="Types" href="https://www.npmjs.com/package/@accessible/popover">
+    <img alt="Types" src="https://img.shields.io/npm/types/@accessible/popover?style=for-the-badge&labelColor=24292e">
+  </a>
   <a aria-label="Code coverage report" href="https://codecov.io/gh/accessible-ui/accessible">
     <img alt="Code coverage" src="https://img.shields.io/codecov/c/gh/accessible-ui/accessible?style=for-the-badge&labelColor=24292e">
   </a>

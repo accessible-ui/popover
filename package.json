@@ -1,16 +1,21 @@
 {
   "name": "@accessible/popover",
   "version": "1.0.0",
-  "homepage": "https://github.com/accessible-ui/accessible#readme",
-  "repository": "github:accessible-ui/accessible",
-  "bugs": "https://github.com/accessible-ui/accessible/issues",
-  "author": "Jared Lunde <jared@BeStellar.co> (https://jaredLunde.com)",
+  "homepage": "https://github.com/accessible-ui/popover#readme",
+  "repository": "github:accessible-ui/popover",
+  "bugs": "https://github.com/accessible-ui/popover/issues",
+  "author": "Jared Lunde <jared.lunde@gmail.com> (https://jaredLunde.com)",
   "license": "MIT",
   "description": "",
   "keywords": [
     "react",
     "react component",
-    "popover"
+    "popover",
+    "popover component",
+    "accessibility",
+    "accessible popover",
+    "a11y",
+    "a11y popover"
   ],
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
@@ -55,6 +60,8 @@
     "@types/react-dom": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
+    "babel-plugin-optimize-react": "^0.0.4",
+    "babel-plugin-typescript-to-proptypes": "^1.1.0",
     "cross-env": "latest",
     "eslint": "latest",
     "eslint-import-resolver-jest": "latest",
@@ -72,6 +79,15 @@
     "ts-jest": "latest",
     "typescript": "latest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@reach/auto-id": "^0.6.1",
+    "@react-hook/merged-ref": "^1.0.6",
+    "@react-hook/passive-layout-effect": "^1.0.2",
+    "@react-hook/switch": "^1.0.4",
+    "@react-hook/window-scroll": "^1.0.6",
+    "@react-hook/window-size": "^1.0.11",
+    "clsx": "^1.0.4",
+    "react-portalize": "^2.0.1"
+  },
   "peerDependencies": {}
 }
