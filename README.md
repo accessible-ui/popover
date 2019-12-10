@@ -12,11 +12,11 @@
   <a aria-label="Types" href="https://www.npmjs.com/package/@accessible/popover">
     <img alt="Types" src="https://img.shields.io/npm/types/@accessible/popover?style=for-the-badge&labelColor=24292e">
   </a>
-  <a aria-label="Code coverage report" href="https://codecov.io/gh/accessible-ui/accessible">
-    <img alt="Code coverage" src="https://img.shields.io/codecov/c/gh/accessible-ui/accessible?style=for-the-badge&labelColor=24292e">
+  <a aria-label="Code coverage report" href="https://codecov.io/gh/accessible-ui/popover">
+    <img alt="Code coverage" src="https://img.shields.io/codecov/c/gh/accessible-ui/popover?style=for-the-badge&labelColor=24292e">
   </a>
-  <a aria-label="Build status" href="https://travis-ci.org/accessible-ui/accessible">
-    <img alt="Build status" src="https://img.shields.io/travis/accessible-ui/accessible?style=for-the-badge&labelColor=24292e">
+  <a aria-label="Build status" href="https://travis-ci.org/accessible-ui/popover">
+    <img alt="Build status" src="https://img.shields.io/travis/accessible-ui/popover?style=for-the-badge&labelColor=24292e">
   </a>
   <a aria-label="NPM version" href="https://www.npmjs.com/package/@accessible/popover">
     <img alt="NPM Version" src="https://img.shields.io/npm/v/@accessible/popover?style=for-the-badge&labelColor=24292e">

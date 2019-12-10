@@ -64,12 +64,10 @@ const endXOuterPos = triggerRect => ({
   right: 'auto',
 })
 
-const endXInnerPos = triggerRect => {
-  return {
-    left: 'auto',
-    right: windowWidth() - triggerRect.right,
-  }
-}
+const endXInnerPos = triggerRect => ({
+  left: 'auto',
+  right: windowWidth() - triggerRect.right,
+})
 
 const startYInnerPos = triggerRect => ({
   top: triggerRect.top,
@@ -311,7 +309,6 @@ export type Placement =
   | 'left'
   | 'leftTop'
   | 'leftBottom'
-  | 'inner'
   | 'innerTop'
   | 'innerTopLeft'
   | 'innerTopRight'
