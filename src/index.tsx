@@ -453,7 +453,11 @@ export const PopoverContext = React.createContext<PopoverContextValue>({
     setTriggeredBy: noop,
   }),
   {Consumer: PopoverConsumer} = PopoverContext,
-  usePopover = () => useContext<PopoverContextValue>(PopoverContext)
+  usePopover = () => useContext<PopoverContextValue>(PopoverContext),
+  usePlacement = () => usePopover().placement,
+  useControls = () =>
+    Object.values(usePopover()).filter(value => typeof value === 'function'),
+  useIsOpen = () => usePopover().isOpen
 
 const isClosedStyles: React.CSSProperties = {
   position: 'fixed',

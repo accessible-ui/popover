@@ -48,6 +48,8 @@ An accessible, "batteries included", popover component for React.
 
 ## Quick Start
 
+[Check out the example on CodeSandbox](https://codesandbox.io/s/accessiblepopover-example-6l3u0)
+
 ```jsx harmony
 import {Popover, PopoverBox, PopoverMe} from '@accessible/popover'
 
@@ -101,7 +103,19 @@ This component wraps any React element and turns it into a popover trigger.
 
 ### `usePopover()`
 
-This hook gives you access to the popover's context object
+This hook provides access to the popover's context object
+
+### `usePlacement()`
+
+This hook provides access to the popover's rendered placement
+
+### `useControls()`
+
+This hook provides access to the popover's `open`, `close`, and `toggle` functions
+
+### `useIsOpen()`
+
+This hook provides access to the popover's `isOpen` value
 
 ## LICENSE
 
