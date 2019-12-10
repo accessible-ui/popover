@@ -288,8 +288,7 @@ const contain = (placement: string) => (
       }
     }
   } else if (typeof containPolicy === 'function') {
-    placement = containPolicy(triggerRect, popoverRect)
-
+    placement = containPolicy(placement, triggerRect, popoverRect)
     if (typeof placement !== 'string') return placement
   }
 
@@ -367,7 +366,7 @@ export type ContainPolicy =
   | 'flipX'
   | 'flipY'
   | null
-  | ((triggerRect: ClientRect, popoverRect: ClientRect) => string)
+  | ((placement: string, triggerRect: ClientRect, popoverRect: ClientRect) => Placement | PlacementResult)
 
 const setPlacementStyle = (
   requestedPlacement:
