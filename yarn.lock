@@ -5077,10 +5077,10 @@ react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
-react-portalize@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/react-portalize/-/react-portalize-2.0.1.tgz#75d23e4c154a8ce5d71f7d9e2ccc421cfae2e34c"
-  integrity sha512-buA6HyA4xUDLDKSzxUJZ+7RdXbhjsygFNNlu2geoOlK/4w9MORGNvjTKjrHsPGTLKTr17RJXVPy/vFkmCFKx+g==
+react-portalize@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-portalize/-/react-portalize-2.0.2.tgz#8e9884d6075c81ea0caedc71e3b83690baf127e6"
+  integrity sha512-iUWBeFPcpMkfVrIg0Hlr39JZKr/REDWAxpD/WOxc9/KtCJcPLau6MFqtNfSkD+XVs8lVy0Z67LiccqnhAtbrDA==
   dependencies:
     cheerio "^1.0.0-rc.3"
 

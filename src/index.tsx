@@ -366,7 +366,11 @@ export type ContainPolicy =
   | 'flipX'
   | 'flipY'
   | null
-  | ((placement: string, triggerRect: ClientRect, popoverRect: ClientRect) => Placement | PlacementResult)
+  | ((
+      placement: string,
+      triggerRect: ClientRect,
+      popoverRect: ClientRect
+    ) => Placement | PlacementResult)
 
 const setPlacementStyle = (
   requestedPlacement:
