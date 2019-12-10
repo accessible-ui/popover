@@ -155,139 +155,37 @@ const assignY = (a, b) => {
   return a
 }
 
-const calcIdealRect = (
-  placement: string,
-  triggerRect: ClientRect,
-  popoverRect: ClientRect
-): StyleRect => {
-  switch (placement) {
-    case 'top':
-      return assignY(
-        centerXRect(triggerRect, popoverRect),
-        startYOuterRect(triggerRect, popoverRect)
-      )
-
-    case 'topleft':
-      return assignY(
-        startXInnerRect(triggerRect, popoverRect),
-        startYOuterRect(triggerRect, popoverRect)
-      )
-
-    case 'topright':
-      return assignY(
-        endXInnerRect(triggerRect, popoverRect),
-        startYOuterRect(triggerRect, popoverRect)
-      )
-
-    case 'right':
-      return assignY(
-        endXOuterRect(triggerRect, popoverRect),
-        centerYRect(triggerRect, popoverRect)
-      )
-
-    case 'righttop':
-      return assignY(
-        endXOuterRect(triggerRect, popoverRect),
-        startYInnerRect(triggerRect, popoverRect)
-      )
-
-    case 'rightbottom':
-      return assignY(
-        endXOuterRect(triggerRect, popoverRect),
-        endYInnerRect(triggerRect, popoverRect)
-      )
-
-    case 'bottom':
-      return assignY(
-        centerXRect(triggerRect, popoverRect),
-        endYOuterRect(triggerRect, popoverRect)
-      )
-
-    case 'bottomleft':
-      return assignY(
-        startXInnerRect(triggerRect, popoverRect),
-        endYOuterRect(triggerRect, popoverRect)
-      )
-
-    case 'bottomright':
-      return assignY(
-        endXInnerRect(triggerRect, popoverRect),
-        endYOuterRect(triggerRect, popoverRect)
-      )
-
-    case 'left':
-      return assignY(
-        startXOuterRect(triggerRect, popoverRect),
-        centerYRect(triggerRect, popoverRect)
-      )
-
-    case 'lefttop':
-      return assignY(
-        startXOuterRect(triggerRect, popoverRect),
-        startYInnerRect(triggerRect, popoverRect)
-      )
-
-    case 'leftbottom':
-      return assignY(
-        startXOuterRect(triggerRect, popoverRect),
-        endYInnerRect(triggerRect, popoverRect)
-      )
-
-    case 'innerleft':
-      return assignY(
-        startXInnerRect(triggerRect, popoverRect),
-        centerYRect(triggerRect, popoverRect)
-      )
-
-    case 'innerright':
-      return assignY(
-        endXInnerRect(triggerRect, popoverRect),
-        centerYRect(triggerRect, popoverRect)
-      )
-
-    case 'innertop':
-      return assignY(
-        centerXRect(triggerRect, popoverRect),
-        startYInnerRect(triggerRect, popoverRect)
-      )
-
-    case 'innertopleft':
-      return assignY(
-        startXInnerRect(triggerRect, popoverRect),
-        startYInnerRect(triggerRect, popoverRect)
-      )
-
-    case 'innertopright':
-      return assignY(
-        endXInnerRect(triggerRect, popoverRect),
-        startYInnerRect(triggerRect, popoverRect)
-      )
-
-    case 'innerbottom':
-      return assignY(
-        centerXRect(triggerRect, popoverRect),
-        endYInnerRect(triggerRect, popoverRect)
-      )
-
-    case 'innerbottomleft':
-      return assignY(
-        startXInnerRect(triggerRect, popoverRect),
-        endYInnerRect(triggerRect, popoverRect)
-      )
-
-    case 'innerbottomright':
-      return assignY(
-        endXInnerRect(triggerRect, popoverRect),
-        endYInnerRect(triggerRect, popoverRect)
-      )
-
-    default:
-      return assignY(
-        centerXRect(triggerRect, popoverRect),
-        centerYRect(triggerRect, popoverRect)
-      )
-  }
+const idealFn = (placement, xFn, yFn) => {
+  idealRects[placement.toLowerCase()] = (
+    triggerRect: ClientRect,
+    popoverRect: ClientRect
+  ) => assignY(xFn(triggerRect, popoverRect), yFn(triggerRect, popoverRect))
 }
+const idealRects: Record<
+  string,
+  (triggerRect: ClientRect, popoverRect: ClientRect) => StyleRect
+> = {}
+idealFn('top', centerXRect, startYOuterRect)
+idealFn('topLeft', startXInnerRect, startYOuterRect)
+idealFn('topRight', endXInnerRect, startYOuterRect)
+idealFn('right', endXOuterRect, centerYRect)
+idealFn('rightTop', endXOuterRect, startYInnerRect)
+idealFn('rightBottom', endXOuterRect, endYInnerRect)
+idealFn('bottom', centerXRect, endYOuterRect)
+idealFn('bottomLeft', startXInnerRect, endYOuterRect)
+idealFn('bottomRight', endXInnerRect, endYOuterRect)
+idealFn('left', startXOuterRect, centerYRect)
+idealFn('leftTop', startXOuterRect, startYInnerRect)
+idealFn('leftBottom', startXOuterRect, endYInnerRect)
+idealFn('innerLeft', startXInnerRect, centerYRect)
+idealFn('innerRight', endXInnerRect, centerYRect)
+idealFn('innerTop', centerXRect, startYInnerRect)
+idealFn('innerTopLeft', startXInnerRect, startYInnerRect)
+idealFn('innerTopRight', endXInnerRect, startYInnerRect)
+idealFn('innerBottom', centerXRect, endYInnerRect)
+idealFn('innerBottomLeft', startXInnerRect, endYInnerRect)
+idealFn('innerBottomRight', endXInnerRect, endYInnerRect)
+idealFn('center', centerXRect, centerYRect)
 
 const contain = (placement: string) => (
   triggerRect: ClientRect,
@@ -299,7 +197,10 @@ const contain = (placement: string) => (
     flipY = containPolicy === 'flipY'
 
   if (flip || flipX || flipY) {
-    const idealRect = calcIdealRect(placement, triggerRect, popoverRect)
+    const idealRect = (idealRects[placement] || idealRects.center)(
+      triggerRect,
+      popoverRect
+    )
 
     // center checks
     if (!placement) {
@@ -394,7 +295,7 @@ const contain = (placement: string) => (
     if (typeof placement !== 'string') return placement
   }
 
-  return calcPlacement(placement, triggerRect, popoverRect)
+  return (placements[placement] || placements.center)(triggerRect, popoverRect)
 }
 
 export type Placement =
@@ -426,177 +327,43 @@ interface PlacementResult {
   style: StyleRect
 }
 
-const calcPlacement = (
-  placement: string,
-  triggerRect: ClientRect,
-  popoverRect: ClientRect
-): PlacementResult => {
-  switch (placement) {
-    case 'top':
-      return {
-        placement: 'top',
-        style: assignY(
-          centerXPos(triggerRect, popoverRect),
-          startYOuterPos(triggerRect)
-        ),
-      }
-
-    case 'topleft':
-      return {
-        placement: 'topLeft',
-        style: assignY(
-          startXInnerPos(triggerRect),
-          startYOuterPos(triggerRect)
-        ),
-      }
-
-    case 'topright':
-      return {
-        placement: 'topRight',
-        style: assignY(endXInnerPos(triggerRect), startYOuterPos(triggerRect)),
-      }
-
-    case 'right':
-      return {
-        placement: 'right',
-        style: assignY(
-          endXOuterPos(triggerRect),
-          centerYPos(triggerRect, popoverRect)
-        ),
-      }
-
-    case 'righttop':
-      return {
-        placement: 'rightTop',
-        style: assignY(endXOuterPos(triggerRect), startYInnerPos(triggerRect)),
-      }
-
-    case 'rightbottom':
-      return {
-        placement: 'rightBottom',
-        style: assignY(endXOuterPos(triggerRect), endYInnerPos(triggerRect)),
-      }
-
-    case 'bottom':
-      return {
-        placement: 'bottom',
-        style: assignY(
-          centerXPos(triggerRect, popoverRect),
-          endYOuterPos(triggerRect)
-        ),
-      }
-
-    case 'bottomleft':
-      return {
-        placement: 'bottomLeft',
-        style: assignY(startXInnerPos(triggerRect), endYOuterPos(triggerRect)),
-      }
-
-    case 'bottomright':
-      return {
-        placement: 'bottomRight',
-        style: assignY(endXInnerPos(triggerRect), endYOuterPos(triggerRect)),
-      }
-
-    case 'left':
-      return {
-        placement: 'left',
-        style: assignY(
-          startXOuterPos(triggerRect),
-          centerYPos(triggerRect, popoverRect)
-        ),
-      }
-
-    case 'lefttop':
-      return {
-        placement: 'leftTop',
-        style: assignY(
-          startXOuterPos(triggerRect),
-          startYInnerPos(triggerRect)
-        ),
-      }
-
-    case 'leftbottom':
-      return {
-        placement: 'leftBottom',
-        style: assignY(startXOuterPos(triggerRect), endYInnerPos(triggerRect)),
-      }
-
-    case 'innertop':
-      return {
-        placement: 'innerTop',
-        style: assignY(
-          centerXPos(triggerRect, popoverRect),
-          startYInnerPos(triggerRect)
-        ),
-      }
-
-    case 'innertopleft':
-      return {
-        placement: 'innerTopLeft',
-        style: assignY(
-          startXInnerPos(triggerRect),
-          startYInnerPos(triggerRect)
-        ),
-      }
-
-    case 'innertopright':
-      return {
-        placement: 'innerTopRight',
-        style: assignY(endXInnerPos(triggerRect), startYInnerPos(triggerRect)),
-      }
-
-    case 'innerright':
-      return {
-        placement: 'innerRight',
-        style: assignY(
-          endXInnerPos(triggerRect),
-          centerYPos(triggerRect, popoverRect)
-        ),
-      }
-
-    case 'innerbottom':
-      return {
-        placement: 'innerBottom',
-        style: assignY(
-          centerXPos(triggerRect, popoverRect),
-          endYInnerPos(triggerRect)
-        ),
-      }
-
-    case 'innerbottomright':
-      return {
-        placement: 'innerBottomRight',
-        style: assignY(endXInnerPos(triggerRect), endYInnerPos(triggerRect)),
-      }
-
-    case 'innerbottomleft':
-      return {
-        placement: 'innerBottomLeft',
-        style: assignY(startXInnerPos(triggerRect), endYInnerPos(triggerRect)),
-      }
-
-    case 'innerleft':
-      return {
-        placement: 'innerLeft',
-        style: assignY(
-          startXInnerPos(triggerRect),
-          centerYPos(triggerRect, popoverRect)
-        ),
-      }
-
-    default:
-      return {
-        placement: 'center',
-        style: assignY(
-          centerXPos(triggerRect, popoverRect),
-          centerYPos(triggerRect, popoverRect)
-        ),
-      }
-  }
+const placements: Record<
+  string,
+  (triggerRect: ClientRect, popoverRect: ClientRect) => PlacementResult
+> = {}
+const placementFn = (placement, xFn, yFn) => {
+  placements[placement.toLowerCase()] = (
+    triggerRect: ClientRect,
+    popoverRect: ClientRect
+  ): PlacementResult => ({
+    placement,
+    style: assignY(
+      xFn(triggerRect, popoverRect),
+      yFn(triggerRect, popoverRect)
+    ),
+  })
 }
-
-const defaultPlacements = /outer|center/g
+placementFn('top', centerXPos, startYOuterPos)
+placementFn('topLeft', startXInnerPos, startYOuterPos)
+placementFn('topRight', endXInnerPos, startYOuterPos)
+placementFn('right', endXOuterPos, centerYPos)
+placementFn('rightTop', endXOuterPos, startYInnerPos)
+placementFn('rightBottom', endXOuterPos, endYInnerPos)
+placementFn('bottom', centerXPos, endYOuterPos)
+placementFn('bottomLeft', startXInnerPos, endYOuterPos)
+placementFn('bottomRight', endXInnerPos, endYOuterPos)
+placementFn('left', startXOuterPos, centerYPos)
+placementFn('leftTop', startXOuterPos, startYInnerPos)
+placementFn('leftBottom', startXOuterPos, endYInnerPos)
+placementFn('innerTop', centerXPos, startYInnerPos)
+placementFn('innerTopLeft', startXInnerPos, startYInnerPos)
+placementFn('innerTopRight', endXInnerPos, startYInnerPos)
+placementFn('innerRight', endXInnerPos, centerYPos)
+placementFn('innerBottom', centerXPos, endYInnerPos)
+placementFn('innerBottomRight', endXInnerPos, endYInnerPos)
+placementFn('innerBottomLeft', startXInnerPos, endYInnerPos)
+placementFn('innerLeft', startXInnerPos, centerYPos)
+placementFn('center', centerXPos, centerYPos)
 
 export type ContainPolicy =
   | 'flip'
@@ -650,7 +417,7 @@ const setPlacementStyle = (
   }
 
   if (typeof placement === 'string') {
-    const fn = contain(placement.toLowerCase().replace(defaultPlacements, ''))
+    const fn = contain(placement.toLowerCase())
     result = fn(triggerRect, popoverRect, containPolicy)
   }
   // @ts-ignore
@@ -764,7 +531,12 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
       }
 
       return
-    }, [popover.ref.current, popover.isOpen, popover.triggeredBy, closeOnEscape])
+    }, [
+      popover.ref.current,
+      popover.isOpen,
+      popover.triggeredBy,
+      closeOnEscape,
+    ])
 
     const defaultStyles = popover.isOpen ? isOpenStyles : isClosedStyles
     const triggeredBy = popover.triggeredBy || 'click'
