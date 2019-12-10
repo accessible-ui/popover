@@ -7,12 +7,12 @@ import {Popover, PopoverMe, PopoverBox, Placement} from './index'
 describe('<Popover>', () => {
   it('should have a custom id', () => {
     const result = render(
-      <Popover id='foobar'>
+      <Popover id="foobar">
         <PopoverBox>
           <div>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -27,12 +27,10 @@ describe('<PopoverBox>', () => {
     const result = render(
       <Popover>
         <PopoverBox>
-          <div>
-            Hello world
-          </div>
+          <div>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -49,12 +47,10 @@ describe('<PopoverBox>', () => {
     const result = render(
       <Popover>
         <PopoverBox>
-          <div>
-            Hello world
-          </div>
+          <div>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='hover'>
+        <PopoverMe on="hover">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -67,12 +63,10 @@ describe('<PopoverBox>', () => {
     const result = render(
       <Popover>
         <PopoverBox>
-          <div>
-            Hello world
-          </div>
+          <div>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='focus'>
+        <PopoverMe on="focus">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -85,12 +79,10 @@ describe('<PopoverBox>', () => {
     const result = render(
       <Popover>
         <PopoverBox>
-          <div>
-            Hello world
-          </div>
+          <div>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='focus'>
+        <PopoverMe on="focus">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -105,12 +97,10 @@ describe('<PopoverBox>', () => {
     const result = render(
       <Popover>
         <PopoverBox>
-          <div>
-            Hello world
-          </div>
+          <div>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -119,7 +109,7 @@ describe('<PopoverBox>', () => {
     expect(result.asFragment()).toMatchSnapshot('closed initially')
     fireEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
-    fireEvent.keyUp(result.getByText('Hello world'), { key: 'Escape', code: 27 })
+    fireEvent.keyUp(result.getByText('Hello world'), {key: 'Escape', code: 27})
     expect(result.asFragment()).toMatchSnapshot('closed')
   })
 
@@ -127,12 +117,10 @@ describe('<PopoverBox>', () => {
     const result = render(
       <Popover>
         <PopoverBox closeOnEscape={false}>
-          <div>
-            Hello world
-          </div>
+          <div>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -141,7 +129,7 @@ describe('<PopoverBox>', () => {
     expect(result.asFragment()).toMatchSnapshot('closed initially')
     fireEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
-    fireEvent.keyUp(result.getByText('Hello world'), { key: 'Escape', code: 27 })
+    fireEvent.keyUp(result.getByText('Hello world'), {key: 'Escape', code: 27})
     expect(result.asFragment()).toMatchSnapshot('still open')
   })
 
@@ -149,12 +137,10 @@ describe('<PopoverBox>', () => {
     const result = render(
       <Popover>
         <PopoverBox>
-          <div style={{fontSize: '2rem'}}>
-            Hello world
-          </div>
+          <div style={{fontSize: '2rem'}}>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -169,12 +155,10 @@ describe('<PopoverBox>', () => {
     const result = render(
       <Popover>
         <PopoverBox>
-          <div className='custom'>
-            Hello world
-          </div>
+          <div className="custom">Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -188,13 +172,11 @@ describe('<PopoverBox>', () => {
   it(`should apply user defined openClassName and closedClassName`, () => {
     const result = render(
       <Popover>
-        <PopoverBox closedClassName='closed' openClassName='open'>
-          <div>
-            Hello world
-          </div>
+        <PopoverBox closedClassName="closed" openClassName="open">
+          <div>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -208,13 +190,14 @@ describe('<PopoverBox>', () => {
   it(`should apply user defined openStyle and closedStyle`, () => {
     const result = render(
       <Popover>
-        <PopoverBox closedStyle={{display: 'none'}} openStyle={{display: 'block'}}>
-          <div>
-            Hello world
-          </div>
+        <PopoverBox
+          closedStyle={{display: 'none'}}
+          openStyle={{display: 'block'}}
+        >
+          <div>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -229,12 +212,10 @@ describe('<PopoverBox>', () => {
     const result = render(
       <Popover defaultOpen>
         <PopoverBox>
-          <div style={{fontSize: '2rem'}}>
-            Hello world
-          </div>
+          <div style={{fontSize: '2rem'}}>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -249,12 +230,10 @@ describe('<PopoverBox>', () => {
     const result = render(
       <Popover open>
         <PopoverBox>
-          <div style={{fontSize: '2rem'}}>
-            Hello world
-          </div>
+          <div style={{fontSize: '2rem'}}>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -267,12 +246,10 @@ describe('<PopoverBox>', () => {
     result.rerender(
       <Popover open={false}>
         <PopoverBox>
-          <div style={{fontSize: '2rem'}}>
-            Hello world
-          </div>
+          <div style={{fontSize: '2rem'}}>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -291,12 +268,10 @@ describe('<PopoverBox>', () => {
     const result = render(
       <Popover open>
         <PopoverBox portal>
-          <div style={{fontSize: '2rem'}}>
-            Hello world
-          </div>
+          <div style={{fontSize: '2rem'}}>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -315,12 +290,10 @@ describe('<PopoverBox>', () => {
     const result = render(
       <Popover open>
         <PopoverBox portal={{container: '.portals'}}>
-          <div style={{fontSize: '2rem'}}>
-            Hello world
-          </div>
+          <div style={{fontSize: '2rem'}}>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -338,13 +311,11 @@ describe('<PopoverBox>', () => {
 
     const result = render(
       <Popover open>
-        <PopoverBox portal='.portals'>
-          <div style={{fontSize: '2rem'}}>
-            Hello world
-          </div>
+        <PopoverBox portal=".portals">
+          <div style={{fontSize: '2rem'}}>Hello world</div>
         </PopoverBox>
 
-        <PopoverMe on='click'>
+        <PopoverMe on="click">
           <button>popover me</button>
         </PopoverMe>
       </Popover>
@@ -369,7 +340,6 @@ describe('<PopoverBox>', () => {
       'left',
       'leftTop',
       'leftBottom',
-      'inner',
       'innerTop',
       'innerTopLeft',
       'innerTopRight',
@@ -385,12 +355,10 @@ describe('<PopoverBox>', () => {
       const result = render(
         <Popover open>
           <PopoverBox placement={placement as Placement}>
-            <div style={{fontSize: '2rem'}}>
-              Hello world
-            </div>
+            <div style={{fontSize: '2rem'}}>Hello world</div>
           </PopoverBox>
 
-          <PopoverMe on='click'>
+          <PopoverMe on="click">
             <button>popover me</button>
           </PopoverMe>
         </Popover>

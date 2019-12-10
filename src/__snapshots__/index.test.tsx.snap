@@ -696,129 +696,9 @@ exports[`<PopoverBox> should render to different placements: center 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--75"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--75"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: inner 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--57"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--57"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: innerBottom 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--67"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--67"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: innerBottomLeft 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--69"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--69"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: innerBottomRight 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--71"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--71"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: innerLeft 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
       id="popover--73"
       role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 768px; left: 0px;"
+      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
@@ -833,7 +713,7 @@ exports[`<PopoverBox> should render to different placements: innerLeft 1`] = `
 </body>
 `;
 
-exports[`<PopoverBox> should render to different placements: innerRight 1`] = `
+exports[`<PopoverBox> should render to different placements: innerBottom 1`] = `
 <body>
   <div>
     <div
@@ -857,6 +737,102 @@ exports[`<PopoverBox> should render to different placements: innerRight 1`] = `
 </body>
 `;
 
+exports[`<PopoverBox> should render to different placements: innerBottomLeft 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--67"
+      role="dialog"
+      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--67"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<PopoverBox> should render to different placements: innerBottomRight 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--69"
+      role="dialog"
+      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--69"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<PopoverBox> should render to different placements: innerLeft 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--71"
+      role="dialog"
+      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--71"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<PopoverBox> should render to different placements: innerRight 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--63"
+      role="dialog"
+      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--63"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
 exports[`<PopoverBox> should render to different placements: innerTop 1`] = `
 <body>
   <div>
@@ -864,14 +840,14 @@ exports[`<PopoverBox> should render to different placements: innerTop 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--59"
+      id="popover--57"
       role="dialog"
       style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--59"
+      aria-controls="popover--57"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -888,14 +864,14 @@ exports[`<PopoverBox> should render to different placements: innerTopLeft 1`] = 
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--61"
+      id="popover--59"
       role="dialog"
       style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 0px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--61"
+      aria-controls="popover--59"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -912,14 +888,14 @@ exports[`<PopoverBox> should render to different placements: innerTopRight 1`] =
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--63"
+      id="popover--61"
       role="dialog"
       style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--63"
+      aria-controls="popover--61"
       aria-expanded="true"
       aria-haspopup="dialog"
     >

@@ -99,6 +99,10 @@ This component wraps any React element and turns it into a popover trigger.
 | ---- | ---- | ------- | --------- | ----------- |
 |      |      |         |           |             |
 
+### `usePopover()`
+
+This hook gives you access to the popover's context object
+
 ## LICENSE
 
 MIT

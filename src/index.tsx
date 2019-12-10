@@ -453,7 +453,7 @@ export const PopoverContext = React.createContext<PopoverContextValue>({
     setTriggeredBy: noop,
   }),
   {Consumer: PopoverConsumer} = PopoverContext,
-  usePopoverContext = () => useContext<PopoverContextValue>(PopoverContext)
+  usePopover = () => useContext<PopoverContextValue>(PopoverContext)
 
 const isClosedStyles: React.CSSProperties = {
   position: 'fixed',
@@ -501,7 +501,7 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
     },
     ref: React.MutableRefObject<HTMLElement>
   ) => {
-    const popover = usePopoverContext()
+    const popover = usePopover()
     // handles repositioning the popover
     // Yes this is correct, it's useEffect, not useLayoutEffect
     // Just move on .
@@ -688,9 +688,9 @@ export interface PopoverMeProps {
 
 export const PopoverMe: React.FC<PopoverMeProps> = props => {
   const {children, on} = props
-  const {isOpen, open, close, toggle, id, setTriggeredBy} = usePopoverContext(),
+  const {isOpen, open, close, toggle, id, setTriggeredBy} = usePopover(),
     elementRef = useRef<HTMLElement>(null),
-    ref = useMergedRef(usePopoverContext().triggerRef, elementRef),
+    ref = useMergedRef(usePopover().triggerRef, elementRef),
     seen = useRef<boolean>(false)
 
   useEffect(() => {
