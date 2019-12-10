@@ -29,17 +29,71 @@
 <pre align="center">npm i @accessible/popover</pre>
 <hr>
 
-An accessible and versatile popover component for React
+An accessible, "batteries included", popover component for React.
+
+## Features
+
+- **Several placement options** You can render the popover anywhere! Top, top-left, bottom, center, inside, outside,
+  literally anywhere!
+- **Containment policies** The popover is configured to contain itself inside the window using
+  a containment policy. It's also optional, so you can turn it off.
+- **Auto-repositioning** Use the props `repositionOnScroll` or `repositionOnResize` to reposition
+  the popover automatically when the scroll position or size of the window changes.
+- **Style-agnostic** You can use this component with the styling library of your choice. It
+  works with CSS-in-JS, SASS, plain CSS, plain `style` objects, anything!
+- **Portal-friendly** The popover will render into React portals of your choice when configured
+  to do so.
+- **a11y/aria-compliant** This component works with screen readers out of the box and manages
+  focus for you.
 
 ## Quick Start
 
 ```jsx harmony
-import _ from '@accessible/popover'
+import {Popover, PopoverBox, PopoverMe} from '@accessible/popover'
+
+const Component = () => (
+  <Popover repositionOnScroll repositionOnResize>
+    <PopoverBox placement="bottomLeft">
+      <div className="my-popover">Hello world</div>
+    </PopoverBox>
+
+    <PopoverMe on="hover">
+      <a href="/profile/me">
+        <img src="avatar.jpg" />
+      </a>
+    </PopoverMe>
+  </Popover>
+)
 ```
 
 ## API
 
-### Props
+### `<Popover>`
+
+This component creates the context for your popover box and trigger and contains some
+configuration options.
+
+#### Props
+
+| Prop | Type | Default | Required? | Description |
+| ---- | ---- | ------- | --------- | ----------- |
+|      |      |         |           |             |
+
+### `<PopoverBox>`
+
+This component wraps any React element and turns it into a popover box.
+
+#### Props
+
+| Prop | Type | Default | Required? | Description |
+| ---- | ---- | ------- | --------- | ----------- |
+|      |      |         |           |             |
+
+### `<PopoverMe>`
+
+This component wraps any React element and turns it into a popover trigger.
+
+#### Props
 
 | Prop | Type | Default | Required? | Description |
 | ---- | ---- | ------- | --------- | ----------- |

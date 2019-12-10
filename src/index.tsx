@@ -5,8 +5,6 @@ import React, {
   useState,
   useCallback,
   useMemo,
-  CSSProperties,
-  MutableRefObject,
 } from 'react'
 import useWindowSize from '@react-hook/window-size/throttled'
 import useLayoutEffect from '@react-hook/passive-layout-effect'
@@ -15,7 +13,9 @@ import useMergedRef from '@react-hook/merged-ref'
 import useWindowScroll from '@react-hook/window-scroll'
 import {useId} from '@reach/auto-id'
 import Portalize from 'react-portalize'
+import tabbable from 'tabbable'
 import clsx from 'clsx'
+import raf from 'raf'
 
 const __DEV__ =
   typeof process !== 'undefined' && process.env.NODE_ENV !== 'production'
@@ -92,79 +92,62 @@ const endYOuterPos = triggerRect => ({
 })
 
 const centerXRect = (triggerRect, popoverRect) => {
-  const rect = {
-    right: popoverRect.width / 2 - triggerRect.width / 2 + triggerRect.right,
+  const right =
+    popoverRect.width / 2 - triggerRect.width / 2 + triggerRect.right
+  return {
+    right,
+    left: right - popoverRect.width,
   }
-  // @ts-ignore
-  rect.left = rect.right - popoverRect.width
-  return rect
 }
 
-const startXOuterRect = (triggerRect, popoverRect) => {
-  const rect = {right: triggerRect.left}
-  // @ts-ignore
-  rect.left = rect.right - popoverRect.width
-  return rect
-}
+const startXOuterRect = (triggerRect, popoverRect) => ({
+  right: triggerRect.left,
+  left: triggerRect.left - popoverRect.width,
+})
 
-const endXOuterRect = (triggerRect, popoverRect) => {
-  const rect = {left: triggerRect.right}
-  // @ts-ignore
-  rect.right = rect.left + popoverRect.width
-  return rect
-}
+const endXOuterRect = (triggerRect, popoverRect) => ({
+  left: triggerRect.right,
+  right: triggerRect.right + popoverRect.width,
+})
 
 const centerYRect = (triggerRect, popoverRect) => {
-  const rect = {
-    bottom:
-      popoverRect.height / 2 - triggerRect.height / 2 + triggerRect.bottom,
+  const bottom =
+    popoverRect.height / 2 - triggerRect.height / 2 + triggerRect.bottom
+  return {
+    bottom,
+    top: bottom - popoverRect.height,
   }
-  // @ts-ignore
-  rect.top = rect.bottom - popoverRect.height
-  return rect
 }
 
-const startYOuterRect = (triggerRect, popoverRect) => {
-  const rect = {bottom: triggerRect.top}
-  // @ts-ignore
-  rect.top = rect.bottom - popoverRect.height
-  return rect
-}
+const startYOuterRect = (triggerRect, popoverRect) => ({
+  bottom: triggerRect.top,
+  top: triggerRect.top - popoverRect.height,
+})
 
-const endYOuterRect = (triggerRect, popoverRect) => {
-  const rect = {top: triggerRect.bottom}
-  // @ts-ignore
-  rect.bottom = rect.top + popoverRect.height
-  return rect
-}
+const endYOuterRect = (triggerRect, popoverRect) => ({
+  top: triggerRect.bottom,
+  bottom: triggerRect.bottom + popoverRect.height,
+})
 
-const startXInnerRect = (triggerRect, popoverRect) => {
-  const rect = {left: triggerRect.left}
-  // @ts-ignore
-  rect.right = rect.left + popoverRect.width
-  return rect
-}
+const startXInnerRect = (triggerRect, popoverRect) => ({
+  left: triggerRect.left,
+  right: triggerRect.left + popoverRect.width,
+})
 
-const endXInnerRect = (triggerRect, popoverRect) => {
-  const rect = {right: triggerRect.right}
-  // @ts-ignore
-  rect.left = rect.right - popoverRect.width
-  return rect
-}
+const endXInnerRect = (triggerRect, popoverRect) => ({
+  right: triggerRect.right,
+  left: triggerRect.right - popoverRect.width,
+})
 
-const startYInnerRect = (triggerRect, popoverRect) => {
-  const rect = {top: triggerRect.top}
-  // @ts-ignore
-  rect.bottom = rect.top + popoverRect.height
-  return rect
-}
+const startYInnerRect = (triggerRect, popoverRect) => ({
+  top: triggerRect.top,
+  bottom: triggerRect.top + popoverRect.height,
+})
 
-const endYInnerRect = (triggerRect, popoverRect) => {
-  const rect = {bottom: triggerRect.bottom}
-  // @ts-ignore
-  rect.top = rect.bottom - popoverRect.height
-  return rect
-}
+const endYInnerRect = (triggerRect, popoverRect) => ({
+  bottom: triggerRect.bottom,
+  top: triggerRect.bottom - popoverRect.height,
+})
 
 const assignY = (a, b) => {
   a.top = b.top
@@ -619,9 +602,10 @@ export type ContainPolicy =
   | 'flip'
   | 'flipX'
   | 'flipY'
+  | null
   | ((triggerRect: ClientRect, popoverRect: ClientRect) => string)
 
-export const setPlacementStyle = (
+const setPlacementStyle = (
   requestedPlacement:
     | string
     | ((
@@ -680,33 +664,38 @@ export interface PopoverContextValue {
   close: () => void
   toggle: () => void
   id: string
-  style: CSSProperties
-  ref: MutableRefObject<HTMLElement | null>
-  triggerRef: MutableRefObject<HTMLElement | null>
+  style: React.CSSProperties
+  ref: React.MutableRefObject<HTMLElement | null>
+  triggerRef: React.MutableRefObject<HTMLElement | null>
   placement: Placement
   reposition: (nextPlacement: Placement) => void
+  triggeredBy: string | null
+  setTriggeredBy: (trigger: string) => void
 }
 
+const noop = () => {}
 export const PopoverContext = React.createContext<PopoverContextValue>({
     isOpen: false,
-    open: () => {},
-    close: () => {},
-    toggle: () => {},
+    open: noop,
+    close: noop,
+    toggle: noop,
     id: '',
     style: {},
     ref: {current: null},
     triggerRef: {current: null},
     placement: 'bottom',
-    reposition: () => {},
+    reposition: noop,
+    triggeredBy: null,
+    setTriggeredBy: noop,
   }),
   {Consumer: PopoverConsumer} = PopoverContext,
   usePopoverContext = () => useContext<PopoverContextValue>(PopoverContext)
 
-const isClosedStyles: CSSProperties = {
+const isClosedStyles: React.CSSProperties = {
   position: 'fixed',
   visibility: 'hidden',
 }
-const isOpenStyles: CSSProperties = Object.assign({}, isClosedStyles, {
+const isOpenStyles: React.CSSProperties = Object.assign({}, isClosedStyles, {
   visibility: 'visible',
 })
 
@@ -724,11 +713,12 @@ const portalize = (
 export interface PopoverBoxProps {
   placement?: Placement
   portal?: boolean | undefined | null | string | Record<any, any>
+  closeOnEscape?: boolean
   closedClassName?: string
   openClassName?: string
-  closedStyle?: CSSProperties
-  openStyle?: CSSProperties
-  children: React.ReactElement
+  closedStyle?: React.CSSProperties
+  openStyle?: React.CSSProperties
+  children: JSX.Element
 }
 
 let isServer
@@ -741,10 +731,11 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
       openStyle,
       closedStyle,
       closedClassName,
+      closeOnEscape = true,
       openClassName = 'popover--open',
       children,
     },
-    ref: MutableRefObject<HTMLElement>
+    ref: React.MutableRefObject<HTMLElement>
   ) => {
     const popover = usePopoverContext()
     // handles repositioning the popover
@@ -758,27 +749,40 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
     useLayoutEffect(() => {
       const current = popover?.ref?.current
       if (current && popover.isOpen) {
-        setTimeout(() => current.focus(), 100)
-        const callback = event =>
-          parseInt(event.keyCode) === 27 && popover.close()
-        current.addEventListener('keyup', callback)
-        return () => current.removeEventListener('keyup', callback)
+        // Focuses on the first focusable element
+        raf(() => {
+          const tabbableEls = tabbable(current)
+          if (tabbableEls.length > 0) tabbableEls[0].focus()
+        })
+        // Closes the popover when escape is pressed
+        if (closeOnEscape) {
+          const callback = event =>
+            parseInt(event.code) === 27 && popover.close()
+          current.addEventListener('keyup', callback)
+          return () => current.removeEventListener('keyup', callback)
+        }
       }
 
       return
-    }, [popover.ref.current, popover.isOpen])
+    }, [popover.ref.current, popover.isOpen, popover.triggeredBy, closeOnEscape])
 
     const defaultStyles = popover.isOpen ? isOpenStyles : isClosedStyles
+    const triggeredBy = popover.triggeredBy || 'click'
+    const isClickTrigger = triggeredBy.indexOf('click') > -1
 
     return portalize(
       React.cloneElement(children, {
         key: String(isServer),
         ref: useMergedRef(popover.ref, ref),
         id: popover.id,
-        className: clsx(
-          children.props.className,
-          popover.isOpen ? openClassName : closedClassName
-        ),
+        role: isClickTrigger ? 'dialog' : 'tooltip',
+        'aria-modal': isClickTrigger ? 'false' : void 0,
+        'aria-hidden': String(!popover.isOpen),
+        className:
+          clsx(
+            children.props.className,
+            popover.isOpen ? openClassName : closedClassName
+          ) || void 0,
         style: Object.assign(
           {},
           children.props.style,
@@ -793,7 +797,7 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
 )
 
 interface PopoverContainerProps {
-  id?: string
+  id: string
   open: () => void
   close: () => void
   toggle: () => void
@@ -803,6 +807,12 @@ interface PopoverContainerProps {
   scrollY?: number
   repositionOnResize: boolean | number
   repositionOnScroll: boolean | number
+  children:
+    | React.ReactChild
+    | React.ReactChild[]
+    | JSX.Element[]
+    | JSX.Element
+    | ((context: PopoverContextValue) => React.ReactChild)
 }
 
 interface PlacementState extends PlacementResult {
@@ -821,7 +831,6 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
     scrollY,
     children,
   }) => {
-    id = String(useId(id))
     const triggerRef = useRef<HTMLElement | null>(null),
       popoverRef = useRef<HTMLElement | null>(null),
       [{style, requestedPlacement, placement}, setState] = useState<
@@ -843,7 +852,8 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
           )
         },
         [containPolicy]
-      )
+      ),
+      [triggeredBy, setTriggeredBy] = useState<string | null>(null)
 
     useLayoutEffect(() => {
       isOpen && reposition(requestedPlacement)
@@ -855,20 +865,33 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
         open,
         close,
         toggle,
-        id: id as string,
+        id,
         style,
         ref: popoverRef,
         placement,
         reposition,
         triggerRef,
+        triggeredBy,
+        setTriggeredBy,
       }),
-      [isOpen, open, close, toggle, placement, reposition, style]
+      [
+        id,
+        isOpen,
+        open,
+        close,
+        toggle,
+        placement,
+        reposition,
+        triggeredBy,
+        style,
+      ]
     )
 
     return (
       <PopoverContext.Provider
         value={childContext}
         children={
+          // @ts-ignore
           typeof children === 'function' ? children(childContext) : children
         }
       />
@@ -891,31 +914,25 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
 
 export interface PopoverMeProps {
   on: string
-  tabIndex?: string | number
-  children: React.ReactElement
+  children: JSX.Element
 }
 
 export const PopoverMe: React.FC<PopoverMeProps> = props => {
-  const {children, on, tabIndex} = props
-  const {isOpen, open, close, toggle, id} = usePopoverContext(),
+  const {children, on} = props
+  const {isOpen, open, close, toggle, id, setTriggeredBy} = usePopoverContext(),
     elementRef = useRef<HTMLElement>(null),
     ref = useMergedRef(usePopoverContext().triggerRef, elementRef),
     seen = useRef<boolean>(false)
 
+  useEffect(() => {
+    setTriggeredBy(on)
+  }, [on])
   // returns the focus to the trigger when the popover box closes if focus is
   // not an event that triggers opening the popover
   useLayoutEffect(() => {
     if (!isOpen) {
       if (seen.current) {
-        let isTriggeredByFocus = false
-
-        for (const match of on.split(' '))
-          if (match === 'focus') {
-            isTriggeredByFocus = true
-            break
-          }
-
-        if (!isTriggeredByFocus) elementRef.current?.focus()
+        if (on.indexOf('click') > -1) raf(() => elementRef.current?.focus())
       }
 
       seen.current = true
@@ -942,7 +959,6 @@ export const PopoverMe: React.FC<PopoverMeProps> = props => {
 
           case 'focus':
             addListener('focus', open)
-            // addListener('blur', close)
             break
 
           case 'click':
@@ -964,11 +980,8 @@ export const PopoverMe: React.FC<PopoverMeProps> = props => {
   }, [elementRef.current, on, open, close, toggle])
 
   return React.cloneElement(children, {
-    tabIndex:
-      children.props.tabIndex ||
-      (typeof tabIndex === 'string' ? tabIndex : void 0),
     'aria-controls': props['aria-controls'] || id,
-    'aria-haspopup': 'true',
+    'aria-haspopup': 'dialog',
     'aria-expanded': String(isOpen),
     ref,
   })
@@ -1007,22 +1020,32 @@ const ResizePositioner: React.FC<PopoverContainerProps> = props => {
 const defaultWindowSize: [number, number] = [0, 0]
 
 export interface PopoverProps {
+  id?: string
   open?: boolean
-  initialOpen?: boolean
+  defaultOpen?: boolean
   repositionOnResize?: boolean
   repositionOnScroll?: boolean
   containPolicy?: ContainPolicy
+  children:
+    | React.ReactChild
+    | React.ReactChild[]
+    | JSX.Element[]
+    | JSX.Element
+    | ((context: PopoverContextValue) => React.ReactChild)
 }
 
-export const Popover = ({
+export const Popover: React.FC<PopoverProps> = ({
+  id,
   open,
-  initialOpen,
+  defaultOpen,
   repositionOnResize = false,
   repositionOnScroll = false,
   containPolicy = 'flip',
   children,
 }) => {
-  const [isOpen_, toggle] = useSwitch(initialOpen)
+  const [isOpen_, toggle] = useSwitch(defaultOpen)
+  id = `popover--${useId(id)}`
+
   return React.createElement(
     repositionOnResize
       ? ResizePositioner
@@ -1030,6 +1053,7 @@ export const Popover = ({
       ? ScrollPositioner
       : PopoverContainer,
     {
+      id,
       open: toggle.on,
       close: toggle.off,
       toggle,
@@ -1038,8 +1062,8 @@ export const Popover = ({
       windowSize: defaultWindowSize,
       repositionOnResize,
       repositionOnScroll,
-    },
-    children
+      children,
+    }
   )
 }
 
