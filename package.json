@@ -1,6 +1,6 @@
 {
   "name": "@accessible/popover",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/accessible-ui/popover#readme",
   "repository": "github:accessible-ui/popover",
   "bugs": "https://github.com/accessible-ui/popover/issues",
@@ -10,12 +10,18 @@
   "keywords": [
     "react",
     "react component",
+    "react popover",
     "popover",
     "popover component",
     "accessibility",
     "accessible popover",
     "a11y",
-    "a11y popover"
+    "a11y popover",
+    "tooltip",
+    "react tooltip",
+    "tooltip component",
+    "a11y tooltip",
+    "accessible tooltip"
   ],
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
