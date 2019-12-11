@@ -677,7 +677,7 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
 
 export interface PopoverMeProps {
   on: string
-  children: JSX.Element
+  children: JSX.Element | React.ReactElement
 }
 
 export const PopoverMe: React.FC<PopoverMeProps> = props => {

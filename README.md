@@ -77,9 +77,23 @@ configuration options.
 
 #### Props
 
-| Prop | Type | Default | Required? | Description |
-| ---- | ---- | ------- | --------- | ----------- |
-|      |      |         |           |             |
+| Prop               | Type            | Default     | Required? | Description                                                                                                                                                                                                                                                               |
+| ------------------ | --------------- | ----------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| defaultOpen        | `boolean`       | `true`      | No        | This sets the default open state of the popover. By default the popover is closed.                                                                                                                                                                                        |
+| open               | `boolean`       | `undefined` | No        | You can control the open/closed state of the popover with this prop. When it isn't undefined, this value will take precedence over any calls to `open()`, `close()`, or `toggle()`.                                                                                       |
+| repositionOnResize | `boolean`       | `false`     | No        | Setting this to `true` will update the position of the popover when the window's dimensions change and the popover is currently open.                                                                                                                                     |
+| repositionOnScroll | `boolean`       | `false`     | No        | Setting this to `true` will update the position of the popover when the window's scroll position changes and the popover is currently open.                                                                                                                               |
+| id                 | `string`        | `undefined` | No        | By default this component creates a unique id for you, as it is required for certain aria attributes. Supplying an id here overrides the auto id feature.                                                                                                                 |
+| containPolicy      | `ContainPolicy` | `flip`      | No        | This tells the popover what to do when it overflows outside the dimensions of the window. By default it will flip its position on both the `x` and `y` axis to attempt to remain within the bounds of the window. See [`ContainPolicy`](#containpolicy) for more options. |
+
+#### `ContainPolicy`
+
+| Policy     | Description                                                                                                                                                                                                                                                                                                                                                                        |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `flip`     | This will attempt to flip its position on both the `x` and `y` axis to attempt to remain within the bounds of the window.                                                                                                                                                                                                                                                          |
+| `flipX`    | This will attempt to flip its position on only the `x` axis to attempt to remain within the bounds of the window.                                                                                                                                                                                                                                                                  |
+| `flipY`    | This will attempt to flip its position on only the `y` axis to attempt to remain within the bounds of the window.                                                                                                                                                                                                                                                                  |
+| `function` | You can decide what to do with the popover on your own by providing a callback with the signature <code>(placement: string, triggerRect: ClientRect, popoverRect: ClientRect) => Placement &#124; PlacementResult</code> where `Placement` is a string returning an alternative placement and `PlacementResult` is an object shaped `{placement: Placement, style: CSSProperties}` |
 
 ### `<PopoverBox>`
 
@@ -97,9 +111,26 @@ This component wraps any React element and turns it into a popover trigger.
 
 #### Props
 
-| Prop | Type | Default | Required? | Description |
-| ---- | ---- | ------- | --------- | ----------- |
-|      |      |         |           |             |
+| Prop     | Type                                                | Default     | Required? | Description                                                                                                                                                                                                                                                     |
+| -------- | --------------------------------------------------- | ----------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| on       | <code>"hover" &#124; "click" &#124; "focus" </code> | `undefined` | Yes       | `"hover"` causes the popover to open on `mouseenter` and close on `mouseleave`. `"click"` causes the popover to toggle its visibility each `click` event. `"focus"` causes the popover to open when the child element is focused while nothing happens on blur. |
+| children | `React.ReactElement`                                | `undefined` | Yes       | The child is cloned by this component and has aria attributes injected into its props as well as the events defined above.                                                                                                                                      |
+
+#### Example
+```jsx harmony
+<PopoverMe on='click'>
+  <button className='my-button'>Popover me!</button>
+</PopoverMe>
+
+// <button 
+//   class="my-button" 
+//   aria-controls="popover--12" 
+//   aria-haspopup="dialog" 
+//   aria-expanded="false"
+// >
+//   Popover me!
+// </button>
+```
 
 ### `usePopover()`
 
