@@ -70,15 +70,22 @@ const Component = () => (
 
 ## API
 
-### Jump to
+### Components
 
-- [`<Popover>`](#popover)
-- [`<PopoverBox>`](#popoverbox)
-- [`<PopoverMe>`](#popoverme)
-- [`usePopover`](#usepopover)
-- [`useControls`](#usecontrols)
-- [`usePlacement`](#useplacement)
-- [`useIsOpen`](#useisopen)
+| Component                     | Description                                                                                                  |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| [`<Popover>`](#popover)       | This component creates the context for your popover box and trigger and contains some configuration options. |
+| [`<PopoverBox>`](#popoverbox) | This component wraps any React element and turns it into a popover box.                                      |
+| [`<PopoverMe>`](#popoverme)   | This component wraps any React element and turns it into a popover trigger.                                  |
+
+### Hooks
+
+| Hook                              | Description                                                                                      |
+| --------------------------------- | ------------------------------------------------------------------------------------------------ |
+| [`usePopover()`](#usepopover)     | This hook provides the value of the popover's [PopoverContextValue object](#popovercontextvalue) |
+| [`useControls()`](#usecontrols)   | This hook provides access to the popover's `open`, `close`, and `toggle` functions               |
+| [`usePlacement()`](#useplacement) | This hook provides access to the popover's rendered placement                                    |
+| [`useIsOpen()`](#useisopen)       | This hook provides access to the popover's `isOpen` value                                        |
 
 ### `<Popover>`
 
@@ -198,7 +205,7 @@ This component wraps any React element and turns it into a popover trigger.
 
 ### `usePopover()`
 
-This hook provides the value of the popover's [PopoverContextValue object](#popovercontext)
+This hook provides the value of the popover's [PopoverContextValue object](#popovercontextvalue)
 
 #### Example
 
@@ -254,7 +261,7 @@ const Component = () => {
   const placement = usePlacement()
   return (
     <PopoverBox placement="top">
-      <div className='my-popover'>
+      <div className="my-popover">
         <span className={`arrow--${placement}`} />
       </div>
     </PopoverBox>
@@ -273,11 +280,11 @@ const Component = () => {
   const {open, close, toggle} = useControls()
   return (
     <PopoverBox>
-      <div className='my-popover'>
+      <div className="my-popover">
         <button onClick={close}>Close me</button>
       </div>
     </PopoverBox>
-  ) 
+  )
 }
 ```
 
@@ -292,11 +299,9 @@ const Component = () => {
   const isOpen = useIsOpen()
   return (
     <PopoverBox>
-      <div className='my-popover'>
-        Am I open? {isOpen ? 'Yes' : 'No'}
-      </div>
+      <div className="my-popover">Am I open? {isOpen ? 'Yes' : 'No'}</div>
     </PopoverBox>
-  ) 
+  )
 }
 ```
 
