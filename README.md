@@ -70,6 +70,16 @@ const Component = () => (
 
 ## API
 
+### Jump to
+
+- [`<Popover>`](#popover)
+- [`<PopoverBox>`](#popoverbox)
+- [`<PopoverMe>`](#popoverme)
+- [`usePopover`](#usepopover)
+- [`useControls`](#usecontrols)
+- [`usePlacement`](#useplacement)
+- [`useIsOpen`](#useisopen)
+
 ### `<Popover>`
 
 This component creates the context for your popover box and trigger and contains some
@@ -88,12 +98,12 @@ configuration options.
 
 #### `ContainPolicy`
 
-| Policy     | Description                                                                                                                                                                                                                                                                                                                                                                                    |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `"flip"`   | This will attempt to flip its position on both the `x` and `y` axis to attempt to remain within the bounds of the window.                                                                                                                                                                                                                                                                      |
-| `"flipX"`  | This will attempt to flip its position on only the `x` axis to attempt to remain within the bounds of the window.                                                                                                                                                                                                                                                                              |
-| `"flipY"`  | This will attempt to flip its position on only the `y` axis to attempt to remain within the bounds of the window.                                                                                                                                                                                                                                                                              |
-| `function` | You can decide what to do with the popover on your own by providing a callback with the signature <pre>(placement: string, triggerRect: ClientRect, popoverRect: ClientRect) => Placement &#124; PlacementResult</pre> where [`Placement`](#placement) is a string returning an alternative placement and `PlacementResult` is an object shaped `{placement: Placement, style: CSSProperties}` |
+| Policy     | Description                                                                                                                                                                                                                                                                                                                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `"flip"`   | This will attempt to flip its position on both the `x` and `y` axis to attempt to remain within the bounds of the window.                                                                                                                                                                                                                                                                        |
+| `"flipX"`  | This will attempt to flip its position on only the `x` axis to attempt to remain within the bounds of the window.                                                                                                                                                                                                                                                                                |
+| `"flipY"`  | This will attempt to flip its position on only the `y` axis to attempt to remain within the bounds of the window.                                                                                                                                                                                                                                                                                |
+| `function` | You can decide what to do with the popover on your own by providing a callback with the signature <code>(placement: string, triggerRect: ClientRect, popoverRect: ClientRect) => Placement &#124; PlacementResult</code> where [`Placement`](#placement) is a string returning an alternative placement and `PlacementResult` is an object shaped `{placement: Placement, style: CSSProperties}` |
 
 ### `<PopoverBox>`
 
@@ -188,19 +198,107 @@ This component wraps any React element and turns it into a popover trigger.
 
 ### `usePopover()`
 
-This hook provides access to the popover's context object
+This hook provides the value of the popover's [PopoverContextValue object](#popovercontext)
+
+#### Example
+
+```jsx harmony
+const Component = () => {
+  const {open, close, toggle, isOpen} = usePopover()
+  return <button onClick={toggle}>Toggle the popover</button>
+}
+```
+
+### `PopoverContextValue`
+
+```typescript
+interface PopoverContextValue {
+  // `true` when the popover is open and visible
+  // `false` when closed
+  isOpen: boolean
+  // opens the popover
+  open: () => void
+  // closes the popover
+  close: () => void
+  // toggles the popover between open/closed states
+  toggle: () => void
+  // calling this forces the popover to reposition
+  // itself to the specified placement
+  reposition: (nextPlacement: Placement) => void
+  // the ID of the popover box
+  id: string
+  // the style applied to the popover box
+  style: React.CSSProperties
+  // the rendered placement of the popover
+  placement: Placement
+  // sets the ref for the popover box
+  ref: React.MutableRefObject<HTMLElement | null>
+  // sets the ref for the triggering element
+  triggerRef: React.MutableRefObject<HTMLElement | null>
+  // this describes the events that cause the popover
+  // to open
+  triggeredBy: string | null
+  // sets the `triggeredBy` variable above
+  setTriggeredBy: (trigger: string) => void
+}
+```
 
 ### `usePlacement()`
 
 This hook provides access to the popover's rendered placement
 
+#### Example
+
+```jsx harmony
+const Component = () => {
+  const placement = usePlacement()
+  return (
+    <PopoverBox placement="top">
+      <div className='my-popover'>
+        <span className={`arrow--${placement}`} />
+      </div>
+    </PopoverBox>
+  )
+}
+```
+
 ### `useControls()`
 
 This hook provides access to the popover's `open`, `close`, and `toggle` functions
 
+#### Example
+
+```jsx harmony
+const Component = () => {
+  const {open, close, toggle} = useControls()
+  return (
+    <PopoverBox>
+      <div className='my-popover'>
+        <button onClick={close}>Close me</button>
+      </div>
+    </PopoverBox>
+  ) 
+}
+```
+
 ### `useIsOpen()`
 
 This hook provides access to the popover's `isOpen` value
+
+#### Example
+
+```jsx harmony
+const Component = () => {
+  const isOpen = useIsOpen()
+  return (
+    <PopoverBox>
+      <div className='my-popover'>
+        Am I open? {isOpen ? 'Yes' : 'No'}
+      </div>
+    </PopoverBox>
+  ) 
+}
+```
 
 ## LICENSE
 
