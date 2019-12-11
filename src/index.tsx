@@ -440,21 +440,8 @@ export interface PopoverContextValue {
   setTriggeredBy: (trigger: string) => void
 }
 
-const noop = () => {}
-export const PopoverContext = React.createContext<PopoverContextValue>({
-    isOpen: false,
-    open: noop,
-    close: noop,
-    toggle: noop,
-    id: '',
-    style: {},
-    ref: {current: null},
-    triggerRef: {current: null},
-    placement: 'bottom',
-    reposition: noop,
-    triggeredBy: null,
-    setTriggeredBy: noop,
-  }),
+// @ts-ignore
+export const PopoverContext = React.createContext<PopoverContextValue>({}),
   {Consumer: PopoverConsumer} = PopoverContext,
   usePopover = () => useContext<PopoverContextValue>(PopoverContext),
   usePlacement = () => usePopover().placement,
