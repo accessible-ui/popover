@@ -476,7 +476,7 @@ export interface PopoverBoxProps {
   openClassName?: string
   closedStyle?: React.CSSProperties
   openStyle?: React.CSSProperties
-  children: JSX.Element
+  children: JSX.Element | React.ReactElement
 }
 
 let isServer
