@@ -80,12 +80,12 @@ const Component = () => (
 
 ### Hooks
 
-| Hook                              | Description                                                                                      |
-| --------------------------------- | ------------------------------------------------------------------------------------------------ |
-| [`usePopover()`](#usepopover)     | This hook provides the value of the popover's [PopoverContextValue object](#popovercontextvalue) |
-| [`useControls()`](#usecontrols)   | This hook provides access to the popover's `open`, `close`, and `toggle` functions               |
-| [`usePlacement()`](#useplacement) | This hook provides access to the popover's rendered placement                                    |
-| [`useIsOpen()`](#useisopen)       | This hook provides access to the popover's `isOpen` value                                        |
+| Hook                              | Description                                                                                       |
+| --------------------------------- | ------------------------------------------------------------------------------------------------- |
+| [`usePopover()`](#usepopover)     | This hook provides the value of the popover's [PopoverContextValue object](#popovercontextvalue). |
+| [`useControls()`](#usecontrols)   | This hook provides access to the popover's `open`, `close`, and `toggle` functions.               |
+| [`usePlacement()`](#useplacement) | This hook provides access to the popover's rendered placement.                                    |
+| [`useIsOpen()`](#useisopen)       | This hook provides access to the popover's `isOpen` value.                                        |
 
 ### `<Popover>`
 
