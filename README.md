@@ -51,19 +51,19 @@ An accessible, "batteries included", popover component for React.
 [Check out the example on CodeSandbox](https://codesandbox.io/s/accessiblepopover-example-6l3u0)
 
 ```jsx harmony
-import {Popover, PopoverBox, PopoverMe} from '@accessible/popover'
+import {Popover, Dialog, Trigger} from '@accessible/popover'
 
 const Component = () => (
   <Popover repositionOnScroll repositionOnResize>
-    <PopoverBox placement="bottomLeft">
+    <Dialog placement="bottomLeft">
       <div className="my-popover">Hello world</div>
-    </PopoverBox>
+    </Dialog>
 
-    <PopoverMe on="hover">
+    <Trigger on="hover">
       <a href="/profile/me">
         <img src="avatar.jpg" />
       </a>
-    </PopoverMe>
+    </Trigger>
   </Popover>
 )
 ```
@@ -72,11 +72,11 @@ const Component = () => (
 
 ### Components
 
-| Component                     | Description                                                                                                  |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`<Popover>`](#popover)       | This component creates the context for your popover box and trigger and contains some configuration options. |
-| [`<PopoverBox>`](#popoverbox) | This component wraps any React element and turns it into a popover box.                                      |
-| [`<PopoverMe>`](#popoverme)   | This component wraps any React element and turns it into a popover trigger.                                  |
+| Component                 | Description                                                                                                  |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| [`<Popover>`](#popover)   | This component creates the context for your popover box and trigger and contains some configuration options. |
+| [`<Dialog>`](#popoverbox) | This component wraps any React element and turns it into a popover box.                                      |
+| [`<Trigger>`](#popoverme) | This component wraps any React element and turns it into a popover trigger.                                  |
 
 ### Hooks
 
@@ -112,7 +112,7 @@ configuration options.
 | `"flipY"`  | This will attempt to flip its position on only the `y` axis to attempt to remain within the bounds of the window.                                                                                                                                                                                                                                                                                |
 | `function` | You can decide what to do with the popover on your own by providing a callback with the signature <code>(placement: string, triggerRect: ClientRect, popoverRect: ClientRect) => Placement &#124; PlacementResult</code> where [`Placement`](#placement) is a string returning an alternative placement and `PlacementResult` is an object shaped `{placement: Placement, style: CSSProperties}` |
 
-### `<PopoverBox>`
+### `<Dialog>`
 
 This component wraps any React element and turns it into a popover box.
 
@@ -160,9 +160,9 @@ These are the default placements allowed by the popover relative to its triggeri
 #### Example
 
 ```jsx harmony
-<PopoverBox placement="innerTopLeft">
+<Dialog placement="innerTopLeft">
   <div className="menu">Menu</div>
-</PopoverBox>
+</Dialog>
 
 // <div
 //   class="menu"
@@ -176,23 +176,27 @@ These are the default placements allowed by the popover relative to its triggeri
 // </div>
 ```
 
-### `<PopoverMe>`
+### `<Trigger>`
 
 This component wraps any React element and turns it into a popover trigger.
 
 #### Props
 
-| Prop     | Type                                                | Default     | Required? | Description                                                                                                                                                                                                                                                     |
-| -------- | --------------------------------------------------- | ----------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| on       | <code>"hover" &#124; "click" &#124; "focus" </code> | `undefined` | Yes       | `"hover"` causes the popover to open on `mouseenter` and close on `mouseleave`. `"click"` causes the popover to toggle its visibility each `click` event. `"focus"` causes the popover to open when the child element is focused while nothing happens on blur. |
-| children | `React.ReactElement`                                | `undefined` | Yes       | The child is cloned by this component and has aria attributes injected into its props as well as the events defined above.                                                                                                                                      |
+| Prop            | Type                                                | Default     | Required? | Description                                                                                                                                                                                                                                                     |
+| --------------- | --------------------------------------------------- | ----------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| on              | <code>"hover" &#124; "click" &#124; "focus" </code> | `undefined` | Yes       | `"hover"` causes the popover to open on `mouseenter` and close on `mouseleave`. `"click"` causes the popover to toggle its visibility each `click` event. `"focus"` causes the popover to open when the child element is focused while nothing happens on blur. |
+| closedClassName | `string`                                            | `undefined` | No        | This class name will be applied to the child element when the popover is `closed`.                                                                                                                                                                              |
+| openClassName   | `string`                                            | `undefined` | No        | This class name will be applied to the child element when the popover is `open`.                                                                                                                                                                                |
+| closedStyle     | `React.CSSProperties`                               | `undefined` | No        | These styles will be applied to the child element when the popover is `closed`.                                                                                                                                                                                 |
+| openStyle       | `React.CSSProperties`                               | `undefined` | No        | These styles name will be applied to the child element when the popover is `open`.                                                                                                                                                                              |
+| children        | `React.ReactElement`                                | `undefined` | Yes       | The child is cloned by this component and has aria attributes injected into its props as well as the events defined above.                                                                                                                                      |
 
 #### Example
 
 ```jsx harmony
-<PopoverMe on="click">
+<Trigger on="click">
   <button className="my-button">Popover me!</button>
-</PopoverMe>
+</Trigger>
 
 // <button
 //   class="my-button"
@@ -240,7 +244,7 @@ interface PopoverContextValue {
   // the rendered placement of the popover
   placement: Placement
   // sets the ref for the popover box
-  ref: React.MutableRefObject<HTMLElement | null>
+  dialogRef: React.MutableRefObject<HTMLElement | null>
   // sets the ref for the triggering element
   triggerRef: React.MutableRefObject<HTMLElement | null>
   // this describes the events that cause the popover
@@ -261,18 +265,18 @@ This hook provides access to the popover's rendered placement
 const Component = () => {
   const placement = usePlacement()
   return (
-    <PopoverBox placement="top">
+    <Dialog placement="top">
       <div className="my-popover">
         <span className={`arrow--${placement}`} />
       </div>
-    </PopoverBox>
+    </Dialog>
   )
 }
 ```
 
 ### `useControls()`
 
-This hook provides access to the popover's `open`, `close`, and `toggle` functions
+This hook provides access to the popover's `open`, `close`, `toggle`, and `reposition` functions
 
 #### Example
 
@@ -280,11 +284,11 @@ This hook provides access to the popover's `open`, `close`, and `toggle` functio
 const Component = () => {
   const {open, close, toggle} = useControls()
   return (
-    <PopoverBox>
+    <Dialog>
       <div className="my-popover">
         <button onClick={close}>Close me</button>
       </div>
-    </PopoverBox>
+    </Dialog>
   )
 }
 ```
@@ -299,9 +303,9 @@ This hook provides access to the popover's `isOpen` value
 const Component = () => {
   const isOpen = useIsOpen()
   return (
-    <PopoverBox>
+    <Dialog>
       <div className="my-popover">Am I open? {isOpen ? 'Yes' : 'No'}</div>
-    </PopoverBox>
+    </Dialog>
   )
 }
 ```

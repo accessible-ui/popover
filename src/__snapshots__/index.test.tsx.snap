@@ -1,5 +1,1170 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Dialog> open on Trigger focus: closed initially 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    id="popover--7"
+    role="tooltip"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--7"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> open on Trigger focus: open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    class="popover--open"
+    id="popover--7"
+    role="tooltip"
+    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--7"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should act like a controlled component when 'open' prop is specified: closed 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    id="popover--24"
+    role="dialog"
+    style="position: fixed; visibility: hidden; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--24"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should act like a controlled component when 'open' prop is specified: initially open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="popover--open"
+    id="popover--24"
+    role="dialog"
+    style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--24"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should act like a controlled component when 'open' prop is specified: still closed 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    id="popover--24"
+    role="dialog"
+    style="position: fixed; visibility: hidden; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--24"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should act like a controlled component when 'open' prop is specified: still open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="popover--open"
+    id="popover--24"
+    role="dialog"
+    style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--24"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should apply custom classname when opened or closed 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    class="custom"
+    id="popover--16"
+    role="dialog"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--16"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should apply custom classname when opened or closed: open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="custom popover--open"
+    id="popover--16"
+    role="dialog"
+    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--16"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should apply user defined openClassName and closedClassName 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    class="closed"
+    id="popover--18"
+    role="dialog"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--18"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should apply user defined openClassName and closedClassName: open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="open"
+    id="popover--18"
+    role="dialog"
+    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--18"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should apply user defined openStyle and closedStyle 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    id="popover--20"
+    role="dialog"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px; display: none;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--20"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should apply user defined openStyle and closedStyle: open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="popover--open"
+    id="popover--20"
+    role="dialog"
+    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px; display: block;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--20"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should assign to custom styles when opened or closed 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    id="popover--14"
+    role="dialog"
+    style="position: fixed; visibility: hidden; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--14"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should assign to custom styles when opened or closed: open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="popover--open"
+    id="popover--14"
+    role="dialog"
+    style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--14"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should be initially open when defined as such: closed 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    id="popover--22"
+    role="dialog"
+    style="position: fixed; visibility: hidden; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--22"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should be initially open when defined as such: initially open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="popover--open"
+    id="popover--22"
+    role="dialog"
+    style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--22"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should close on escape key: closed 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    id="popover--9"
+    role="dialog"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--9"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should close on escape key: closed initially 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    id="popover--9"
+    role="dialog"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--9"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should close on escape key: open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="popover--open"
+    id="popover--9"
+    role="dialog"
+    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--9"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should have a tooltip role w/ focus trigger 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    id="popover--6"
+    role="tooltip"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--6"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should have a tooltip role w/ hover trigger 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    id="popover--5"
+    role="tooltip"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--5"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should open and close on Trigger click: closed 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    id="popover--2"
+    role="dialog"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--2"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should open and close on Trigger click: closed initially 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    id="popover--2"
+    role="dialog"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--2"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should open and close on Trigger click: open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="popover--open"
+    id="popover--2"
+    role="dialog"
+    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--2"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> should render into a portal by custom selector 1`] = `
+<body>
+  <div
+    class="portals"
+  >
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--32"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+    >
+      Hello world
+    </div>
+  </div>
+  <div>
+    <button
+      aria-controls="popover--32"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render into a portal by custom selector object 1`] = `
+<body>
+  <div
+    class="portals"
+  >
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--30"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+    >
+      Hello world
+    </div>
+  </div>
+  <div>
+    <button
+      aria-controls="popover--30"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render into a portal by default ID 1`] = `
+<body>
+  <div
+    id="portals"
+  >
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--28"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+    >
+      Hello world
+    </div>
+  </div>
+  <div>
+    <button
+      aria-controls="popover--28"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: bottom 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--46"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--46"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: bottomLeft 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--48"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 0px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--48"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: bottomRight 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--50"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--50"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: center 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--74"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--74"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: innerBottom 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--66"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--66"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: innerBottomLeft 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--68"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--68"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: innerBottomRight 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--70"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--70"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: innerLeft 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--72"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--72"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: innerRight 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--64"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--64"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: innerTop 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--58"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--58"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: innerTopLeft 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--60"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 0px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--60"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: innerTopRight 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--62"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--62"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: left 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--52"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--52"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: leftBottom 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--56"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--56"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: leftTop 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--54"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--54"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: right 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--40"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--40"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: rightBottom 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--44"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--44"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: rightTop 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--42"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 0px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--42"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: top 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--34"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--34"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: topLeft 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--36"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--36"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> should render to different placements: topRight 1`] = `
+<body>
+  <div>
+    <div
+      aria-hidden="false"
+      aria-modal="false"
+      class="popover--open"
+      id="popover--38"
+      role="dialog"
+      style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
+    >
+      Hello world
+    </div>
+    <button
+      aria-controls="popover--38"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+    >
+      popover me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`<Dialog> shouldn't close on escape key if prop is false: closed initially 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    id="popover--12"
+    role="dialog"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--12"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> shouldn't close on escape key if prop is false: open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="popover--open"
+    id="popover--12"
+    role="dialog"
+    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--12"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Dialog> shouldn't close on escape key if prop is false: still open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="popover--open"
+    id="popover--12"
+    role="dialog"
+    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--12"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
 exports[`<Popover> should have a custom id 1`] = `
 <DocumentFragment>
   <div
@@ -21,1167 +1186,144 @@ exports[`<Popover> should have a custom id 1`] = `
 </DocumentFragment>
 `;
 
-exports[`<PopoverBox> open on PopoverMe focus: closed initially 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    id="popover--6"
-    role="tooltip"
-    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--6"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
+exports[`<Popover> should provide context to function child 1`] = `
+Object {
+  "close": [Function],
+  "dialogRef": Object {
+    "current": null,
+  },
+  "id": "popover--1",
+  "isOpen": false,
+  "open": [Function],
+  "placement": "bottom",
+  "reposition": [Function],
+  "setTriggeredBy": [Function],
+  "style": Object {
+    "bottom": 0,
+    "left": 0,
+    "right": 0,
+    "top": 0,
+  },
+  "toggle": [Function],
+  "triggerRef": Object {
+    "current": null,
+  },
+  "triggeredBy": null,
+}
 `;
 
-exports[`<PopoverBox> open on PopoverMe focus: open 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="false"
-    class="popover--open"
-    id="popover--6"
-    role="tooltip"
-    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--6"
-    aria-expanded="true"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should act like a controlled component when 'open' prop is specified: closed 1`] = `
+exports[`<Trigger> should have openClassName and closedClassName 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--23"
-    role="dialog"
-    style="font-size: 2rem; position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--23"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should act like a controlled component when 'open' prop is specified: initially open 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="false"
-    aria-modal="false"
-    class="popover--open"
-    id="popover--23"
-    role="dialog"
-    style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--23"
-    aria-expanded="true"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should act like a controlled component when 'open' prop is specified: still closed 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    aria-modal="false"
-    id="popover--23"
-    role="dialog"
-    style="font-size: 2rem; position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--23"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should act like a controlled component when 'open' prop is specified: still open 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="false"
-    aria-modal="false"
-    class="popover--open"
-    id="popover--23"
-    role="dialog"
-    style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--23"
-    aria-expanded="true"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should apply custom classname when opened or closed 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    aria-modal="false"
-    class="custom"
-    id="popover--15"
+    id="popover--77"
     role="dialog"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--15"
+    aria-controls="popover--77"
     aria-expanded="false"
     aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should apply custom classname when opened or closed: open 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="false"
-    aria-modal="false"
-    class="custom popover--open"
-    id="popover--15"
-    role="dialog"
-    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--15"
-    aria-expanded="true"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should apply user defined openClassName and closedClassName 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    aria-modal="false"
     class="closed"
-    id="popover--17"
-    role="dialog"
-    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--17"
-    aria-expanded="false"
-    aria-haspopup="dialog"
   >
     popover me
   </button>
 </DocumentFragment>
 `;
 
-exports[`<PopoverBox> should apply user defined openClassName and closedClassName: open 1`] = `
+exports[`<Trigger> should have openClassName and closedClassName: open 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="false"
     aria-modal="false"
+    class="popover--open"
+    id="popover--77"
+    role="dialog"
+    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--77"
+    aria-expanded="true"
+    aria-haspopup="dialog"
     class="open"
-    id="popover--17"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Trigger> should have openStyle and closedStyle 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    id="popover--79"
+    role="dialog"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--79"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    style="display: none;"
+  >
+    popover me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Trigger> should have openStyle and closedStyle: open 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="popover--open"
+    id="popover--79"
     role="dialog"
     style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--17"
+    aria-controls="popover--79"
     aria-expanded="true"
     aria-haspopup="dialog"
+    style="display: block;"
   >
     popover me
   </button>
 </DocumentFragment>
 `;
 
-exports[`<PopoverBox> should apply user defined openStyle and closedStyle 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    aria-modal="false"
-    id="popover--19"
-    role="dialog"
-    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px; display: none;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--19"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should apply user defined openStyle and closedStyle: open 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="false"
-    aria-modal="false"
-    class="popover--open"
-    id="popover--19"
-    role="dialog"
-    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px; display: block;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--19"
-    aria-expanded="true"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should assign to custom styles when opened or closed 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    aria-modal="false"
-    id="popover--13"
-    role="dialog"
-    style="font-size: 2rem; position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--13"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should assign to custom styles when opened or closed: open 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="false"
-    aria-modal="false"
-    class="popover--open"
-    id="popover--13"
-    role="dialog"
-    style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--13"
-    aria-expanded="true"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should be initially open when defined as such: closed 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    aria-modal="false"
-    id="popover--21"
-    role="dialog"
-    style="font-size: 2rem; position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--21"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should be initially open when defined as such: initially open 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="false"
-    aria-modal="false"
-    class="popover--open"
-    id="popover--21"
-    role="dialog"
-    style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--21"
-    aria-expanded="true"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should close on escape key: closed 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    aria-modal="false"
-    id="popover--8"
-    role="dialog"
-    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--8"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should close on escape key: closed initially 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    aria-modal="false"
-    id="popover--8"
-    role="dialog"
-    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--8"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should close on escape key: open 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="false"
-    aria-modal="false"
-    class="popover--open"
-    id="popover--8"
-    role="dialog"
-    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--8"
-    aria-expanded="true"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should have a tooltip role w/ focus trigger 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    id="popover--5"
-    role="tooltip"
-    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--5"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should have a tooltip role w/ hover trigger 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    id="popover--4"
-    role="tooltip"
-    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--4"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should open and close on PopoverMe click: closed 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    aria-modal="false"
-    id="popover--1"
-    role="dialog"
-    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--1"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should open and close on PopoverMe click: closed initially 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    aria-modal="false"
-    id="popover--1"
-    role="dialog"
-    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--1"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should open and close on PopoverMe click: open 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="false"
-    aria-modal="false"
-    class="popover--open"
-    id="popover--1"
-    role="dialog"
-    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--1"
-    aria-expanded="true"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> should render into a portal by custom selector 1`] = `
-<body>
-  <div
-    class="portals"
-  >
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--31"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-    >
-      Hello world
-    </div>
-  </div>
-  <div>
-    <button
-      aria-controls="popover--31"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render into a portal by custom selector object 1`] = `
-<body>
-  <div
-    class="portals"
-  >
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--29"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-    >
-      Hello world
-    </div>
-  </div>
-  <div>
-    <button
-      aria-controls="popover--29"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render into a portal by default ID 1`] = `
-<body>
-  <div
-    id="portals"
-  >
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--27"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-    >
-      Hello world
-    </div>
-  </div>
-  <div>
-    <button
-      aria-controls="popover--27"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: bottom 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--45"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--45"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: bottomLeft 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--47"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 0px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--47"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: bottomRight 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--49"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--49"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: center 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--73"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--73"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: innerBottom 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--65"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--65"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: innerBottomLeft 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--67"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--67"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: innerBottomRight 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--69"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--69"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: innerLeft 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--71"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--71"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: innerRight 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--63"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--63"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: innerTop 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--57"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--57"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: innerTopLeft 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--59"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 0px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--59"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: innerTopRight 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--61"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--61"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: left 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--51"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--51"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: leftBottom 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--55"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--55"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: leftTop 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--53"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--53"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: right 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--39"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--39"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: rightBottom 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--43"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--43"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: rightTop 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--41"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 0px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--41"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: top 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--33"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--33"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: topLeft 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--35"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 0px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--35"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> should render to different placements: topRight 1`] = `
-<body>
-  <div>
-    <div
-      aria-hidden="false"
-      aria-modal="false"
-      class="popover--open"
-      id="popover--37"
-      role="dialog"
-      style="font-size: 2rem; position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
-    >
-      Hello world
-    </div>
-    <button
-      aria-controls="popover--37"
-      aria-expanded="true"
-      aria-haspopup="dialog"
-    >
-      popover me
-    </button>
-  </div>
-</body>
-`;
-
-exports[`<PopoverBox> shouldn't close on escape key if prop is false: closed initially 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="true"
-    aria-modal="false"
-    id="popover--11"
-    role="dialog"
-    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--11"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> shouldn't close on escape key if prop is false: open 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="false"
-    aria-modal="false"
-    class="popover--open"
-    id="popover--11"
-    role="dialog"
-    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--11"
-    aria-expanded="true"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
-`;
-
-exports[`<PopoverBox> shouldn't close on escape key if prop is false: still open 1`] = `
-<DocumentFragment>
-  <div
-    aria-hidden="false"
-    aria-modal="false"
-    class="popover--open"
-    id="popover--11"
-    role="dialog"
-    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
-  >
-    Hello world
-  </div>
-  <button
-    aria-controls="popover--11"
-    aria-expanded="true"
-    aria-haspopup="dialog"
-  >
-    popover me
-  </button>
-</DocumentFragment>
+exports[`usePopover() should return context 1`] = `
+Object {
+  "close": [Function],
+  "dialogRef": Object {
+    "current": null,
+  },
+  "id": "popover--83",
+  "isOpen": false,
+  "open": [Function],
+  "placement": "bottom",
+  "reposition": [Function],
+  "setTriggeredBy": [Function],
+  "style": Object {
+    "bottom": 0,
+    "left": 0,
+    "right": 0,
+    "top": 0,
+  },
+  "toggle": [Function],
+  "triggerRef": Object {
+    "current": null,
+  },
+  "triggeredBy": null,
+}
 `;

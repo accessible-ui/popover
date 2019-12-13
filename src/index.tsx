@@ -432,7 +432,7 @@ export interface PopoverContextValue {
   toggle: () => void
   id: string
   style: React.CSSProperties
-  ref: React.MutableRefObject<HTMLElement | null>
+  dialogRef: React.MutableRefObject<HTMLElement | null>
   triggerRef: React.MutableRefObject<HTMLElement | null>
   placement: Placement
   reposition: (nextPlacement: Placement) => void
@@ -440,13 +440,22 @@ export interface PopoverContextValue {
   setTriggeredBy: (trigger: string) => void
 }
 
+export interface PopoverControls {
+  open: () => void
+  close: () => void
+  toggle: () => void
+  reposition: (nextPlacement: Placement) => void
+}
+
 // @ts-ignore
 export const PopoverContext = React.createContext<PopoverContextValue>({}),
   {Consumer: PopoverConsumer} = PopoverContext,
   usePopover = () => useContext<PopoverContextValue>(PopoverContext),
   usePlacement = () => usePopover().placement,
-  useControls = () =>
-    Object.values(usePopover()).filter(value => typeof value === 'function'),
+  useControls = (): PopoverControls => {
+    const {open, close, toggle, reposition} = usePopover()
+    return {open, close, toggle, reposition}
+  },
   useIsOpen = () => usePopover().isOpen
 
 const isClosedStyles: React.CSSProperties = {
@@ -468,7 +477,7 @@ const portalize = (
   return React.createElement(Portalize, props)
 }
 
-export interface PopoverBoxProps {
+export interface DialogProps {
   placement?: Placement
   portal?: boolean | undefined | null | string | Record<any, any>
   closeOnEscape?: boolean
@@ -481,7 +490,7 @@ export interface PopoverBoxProps {
 
 let isServer
 
-export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
+export const Dialog: React.FC<DialogProps> = React.forwardRef(
   (
     {
       placement = 'bottom',
@@ -493,7 +502,7 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
       openClassName = 'popover--open',
       children,
     },
-    ref: React.MutableRefObject<HTMLElement>
+    ref: any
   ) => {
     const popover = usePopover()
     // handles repositioning the popover
@@ -505,7 +514,7 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
     }, [placement])
     // handles closing the popover when the ESC key is pressed
     useLayoutEffect(() => {
-      const current = popover?.ref?.current
+      const current = popover?.dialogRef?.current
       if (current && popover.isOpen) {
         // Focuses on the first focusable element
         raf(() => {
@@ -523,8 +532,9 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
 
       return
     }, [
-      popover.ref.current,
+      popover.dialogRef.current,
       popover.isOpen,
+      popover.close,
       popover.triggeredBy,
       closeOnEscape,
     ])
@@ -536,7 +546,7 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
     return portalize(
       React.cloneElement(children, {
         key: String(isServer),
-        ref: useMergedRef(popover.ref, ref),
+        ref: useMergedRef(popover.dialogRef, ref),
         id: popover.id,
         role: isClickTrigger ? 'dialog' : 'tooltip',
         'aria-modal': isClickTrigger ? 'false' : void 0,
@@ -548,8 +558,8 @@ export const PopoverBox: React.FC<PopoverBoxProps> = React.forwardRef(
           ) || void 0,
         style: Object.assign(
           {},
-          children.props.style,
           defaultStyles,
+          children.props.style,
           popover.style,
           popover.isOpen ? openStyle : closedStyle
         ),
@@ -595,7 +605,7 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
     children,
   }) => {
     const triggerRef = useRef<HTMLElement | null>(null),
-      popoverRef = useRef<HTMLElement | null>(null),
+      dialogRef = useRef<HTMLElement | null>(null),
       [{style, requestedPlacement, placement}, setState] = useState<
         PlacementState
       >({
@@ -609,7 +619,7 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
             setPlacementStyle(
               nextPlacement,
               triggerRef.current,
-              popoverRef.current,
+              dialogRef.current,
               containPolicy
             )
           )
@@ -630,9 +640,9 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
         toggle,
         id,
         style,
-        ref: popoverRef,
         placement,
         reposition,
+        dialogRef,
         triggerRef,
         triggeredBy,
         setTriggeredBy,
@@ -675,13 +685,24 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
       prev.containPolicy === next.containPolicy)
 )
 
-export interface PopoverMeProps {
+export interface TriggerProps {
   on: string
+  openClassName?: string
+  closedClassName?: string
+  openStyle?: React.CSSProperties
+  closedStyle?: React.CSSProperties
   children: JSX.Element | React.ReactElement
 }
 
-export const PopoverMe: React.FC<PopoverMeProps> = props => {
-  const {children, on} = props
+export const Trigger: React.FC<TriggerProps> = props => {
+  const {
+    children,
+    on,
+    openClassName,
+    closedClassName,
+    openStyle,
+    closedStyle,
+  } = props
   const {isOpen, open, close, toggle, id, setTriggeredBy} = usePopover(),
     elementRef = useRef<HTMLElement>(null),
     ref = useMergedRef(usePopover().triggerRef, elementRef),
@@ -746,6 +767,16 @@ export const PopoverMe: React.FC<PopoverMeProps> = props => {
     'aria-controls': props['aria-controls'] || id,
     'aria-haspopup': 'dialog',
     'aria-expanded': String(isOpen),
+    className:
+      clsx(
+        children.props.className,
+        isOpen ? openClassName : closedClassName
+      ) || void 0,
+    style: Object.assign(
+      {},
+      children.props.style,
+      isOpen ? openStyle : closedStyle
+    ),
     ref,
   })
 }
@@ -830,8 +861,9 @@ export const Popover: React.FC<PopoverProps> = ({
   )
 }
 
+/* istanbul ignore next */
 if (__DEV__) {
   Popover.displayName = 'Popover'
-  PopoverBox.displayName = 'PopoverBox'
-  PopoverMe.displayName = 'PopoverMe'
+  Dialog.displayName = 'Dialog'
+  Trigger.displayName = 'Trigger'
 }
