@@ -1,6 +1,6 @@
 {
   "name": "@accessible/popover",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "homepage": "https://github.com/accessible-ui/popover#readme",
   "repository": "github:accessible-ui/popover",
   "bugs": "https://github.com/accessible-ui/popover/issues",
@@ -87,7 +87,7 @@
   },
   "dependencies": {
     "@reach/auto-id": "^0.6.1",
-    "@react-hook/merged-ref": "^1.0.6",
+    "@react-hook/merged-ref": "^1.0.7",
     "@react-hook/passive-layout-effect": "^1.0.2",
     "@react-hook/switch": "^1.0.4",
     "@react-hook/window-scroll": "^1.0.6",

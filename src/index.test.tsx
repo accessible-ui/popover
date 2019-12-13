@@ -6,6 +6,7 @@ import {
   Popover,
   Trigger,
   Dialog,
+  Close,
   usePopover,
   usePlacement,
   useControls,
@@ -443,6 +444,31 @@ describe('<Trigger>', () => {
     expect(result.asFragment()).toMatchSnapshot()
     fireEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
+  })
+})
+
+describe('<Close>', () => {
+  it('should close the modal', () => {
+    const result = render(
+      <Popover defaultOpen={true}>
+        <Dialog>
+          <div>
+            <Close>
+              <button data-testid="close">Close me</button>
+            </Close>
+            Hello world
+          </div>
+        </Dialog>
+
+        <Trigger on="click">
+          <button>open me</button>
+        </Trigger>
+      </Popover>
+    )
+
+    expect(result.asFragment()).toMatchSnapshot()
+    fireEvent.click(result.getByTestId('close'))
+    expect(result.asFragment()).toMatchSnapshot('closed')
   })
 })
 

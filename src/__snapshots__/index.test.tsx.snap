@@ -1,5 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Close> should close the modal 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    aria-modal="false"
+    class="popover--open"
+    id="popover--81"
+    role="dialog"
+    style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    <button
+      aria-controls="popover--81"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+      aria-label="Close"
+      data-testid="close"
+    >
+      Close me
+    </button>
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--81"
+    aria-expanded="true"
+    aria-haspopup="dialog"
+  >
+    open me
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Close> should close the modal: closed 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="true"
+    aria-modal="false"
+    id="popover--81"
+    role="dialog"
+    style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
+  >
+    <button
+      aria-controls="popover--81"
+      aria-expanded="false"
+      aria-haspopup="dialog"
+      aria-label="Close"
+      data-testid="close"
+    >
+      Close me
+    </button>
+    Hello world
+  </div>
+  <button
+    aria-controls="popover--81"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+  >
+    open me
+  </button>
+</DocumentFragment>
+`;
+
 exports[`<Dialog> open on Trigger focus: closed initially 1`] = `
 <DocumentFragment>
   <div
@@ -1308,7 +1369,7 @@ Object {
   "dialogRef": Object {
     "current": null,
   },
-  "id": "popover--83",
+  "id": "popover--85",
   "isOpen": false,
   "open": [Function],
   "placement": "bottom",

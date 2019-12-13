@@ -72,11 +72,12 @@ const Component = () => (
 
 ### Components
 
-| Component                 | Description                                                                                                  |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`<Popover>`](#popover)   | This component creates the context for your popover box and trigger and contains some configuration options. |
-| [`<Dialog>`](#popoverbox) | This component wraps any React element and turns it into a popover box.                                      |
-| [`<Trigger>`](#popoverme) | This component wraps any React element and turns it into a popover trigger.                                  |
+| Component                 | Description                                                                                                    |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| [`<Popover>`](#popover)   | This component creates the context for your popover box and trigger and contains some configuration options.   |
+| [`<Dialog>`](#popoverbox) | This component wraps any React element and turns it into a popover box.                                        |
+| [`<Trigger>`](#popoverme) | This component wraps any React element and turns it into a popover trigger.                                    |
+| [`<Close>`](#popoverme)   | This is a convenience component that wraps any React element and adds an onClick handler to close the popover. |  |
 
 ### Hooks
 
@@ -205,6 +206,31 @@ This component wraps any React element and turns it into a popover trigger.
 //   aria-expanded="false"
 // >
 //   Popover me!
+// </button>
+```
+
+### `<Close>`
+
+This is a convenience component that wraps any React element and adds an onClick handler to close the popover.
+
+#### Props
+
+| Prop     | Type                 | Default     | Required? | Description                                                                                                                |
+| -------- | -------------------- | ----------- | --------- | -------------------------------------------------------------------------------------------------------------------------- |
+| children | `React.ReactElement` | `undefined` | Yes       | The child is cloned by this component and has aria attributes injected into its props as well as the events defined above. |
+
+```jsx harmony
+<Close>
+  <button className="my-button">Close me</button>
+</Close>
+
+// <button
+//   class="my-button"
+//   aria-controls="popover--12"
+//   aria-haspopup="dialog"
+//   aria-expanded="false"
+// >
+//   Close me
 // </button>
 ```
 

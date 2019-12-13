@@ -502,9 +502,10 @@ export const Dialog: React.FC<DialogProps> = React.forwardRef(
       openClassName = 'popover--open',
       children,
     },
-    ref: any
+    ref
   ) => {
     const popover = usePopover()
+    ref = useMergedRef(popover.dialogRef, ref)
     // handles repositioning the popover
     // Yes this is correct, it's useEffect, not useLayoutEffect
     // Just move on .
@@ -546,7 +547,7 @@ export const Dialog: React.FC<DialogProps> = React.forwardRef(
     return portalize(
       React.cloneElement(children, {
         key: String(isServer),
-        ref: useMergedRef(popover.dialogRef, ref),
+        ref,
         id: popover.id,
         role: isClickTrigger ? 'dialog' : 'tooltip',
         'aria-modal': isClickTrigger ? 'false' : void 0,
@@ -684,6 +685,34 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
       prev.scrollY === next.scrollY &&
       prev.containPolicy === next.containPolicy)
 )
+
+export interface CloseProps {
+  children: JSX.Element | React.ReactElement
+}
+
+export const Close: React.FC<CloseProps> = React.forwardRef<
+  JSX.Element | React.ReactElement,
+  CloseProps
+>(({children}, ref) => {
+  const {close, isOpen, id} = usePopover()
+  ref = useMergedRef(children.props.ref, ref)
+  const onClick = useCallback(
+    e => {
+      close()
+      children.props.onClick?.(e)
+    },
+    [close, children.props.onClick]
+  )
+
+  return React.cloneElement(children, {
+    'aria-controls': id,
+    'aria-haspopup': 'dialog',
+    'aria-expanded': String(isOpen),
+    'aria-label': children.props['aria-label'] || 'Close',
+    onClick,
+    ref,
+  })
+})
 
 export interface TriggerProps {
   on: string
