@@ -690,12 +690,8 @@ export interface CloseProps {
   children: JSX.Element | React.ReactElement
 }
 
-export const Close: React.FC<CloseProps> = React.forwardRef<
-  JSX.Element | React.ReactElement,
-  CloseProps
->(({children}, ref) => {
+export const Close: React.FC<CloseProps> = ({children}, ref) => {
   const {close, isOpen, id} = usePopover()
-  ref = useMergedRef(children.props.ref, ref)
   const onClick = useCallback(
     e => {
       close()
@@ -710,9 +706,8 @@ export const Close: React.FC<CloseProps> = React.forwardRef<
     'aria-expanded': String(isOpen),
     'aria-label': children.props['aria-label'] || 'Close',
     onClick,
-    ref,
   })
-})
+}
 
 export interface TriggerProps {
   on: string
