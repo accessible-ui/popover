@@ -232,7 +232,7 @@ exports[`<Dialog> should apply custom classname when opened or closed: open 1`] 
 </DocumentFragment>
 `;
 
-exports[`<Dialog> should apply user defined openClassName and closedClassName 1`] = `
+exports[`<Dialog> should apply user defined openClass and closedClass 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="true"
@@ -254,7 +254,7 @@ exports[`<Dialog> should apply user defined openClassName and closedClassName 1`
 </DocumentFragment>
 `;
 
-exports[`<Dialog> should apply user defined openClassName and closedClassName: open 1`] = `
+exports[`<Dialog> should apply user defined openClass and closedClass: open 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="false"
@@ -1273,7 +1273,7 @@ Object {
 }
 `;
 
-exports[`<Trigger> should have openClassName and closedClassName 1`] = `
+exports[`<Trigger> should have openClass and closedClass 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="true"
@@ -1295,7 +1295,7 @@ exports[`<Trigger> should have openClassName and closedClassName 1`] = `
 </DocumentFragment>
 `;
 
-exports[`<Trigger> should have openClassName and closedClassName: open 1`] = `
+exports[`<Trigger> should have openClass and closedClass: open 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="false"

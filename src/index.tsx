@@ -481,8 +481,8 @@ export interface DialogProps {
   placement?: Placement
   portal?: boolean | undefined | null | string | Record<any, any>
   closeOnEscape?: boolean
-  closedClassName?: string
-  openClassName?: string
+  closedClass?: string
+  openClass?: string
   closedStyle?: React.CSSProperties
   openStyle?: React.CSSProperties
   children: JSX.Element | React.ReactElement
@@ -497,9 +497,9 @@ export const Dialog: React.FC<DialogProps> = React.forwardRef(
       portal,
       openStyle,
       closedStyle,
-      closedClassName,
+      closedClass,
       closeOnEscape = true,
-      openClassName = 'popover--open',
+      openClass = 'popover--open',
       children,
     },
     ref
@@ -555,7 +555,7 @@ export const Dialog: React.FC<DialogProps> = React.forwardRef(
         className:
           clsx(
             children.props.className,
-            popover.isOpen ? openClassName : closedClassName
+            popover.isOpen ? openClass : closedClass
           ) || void 0,
         style: Object.assign(
           {},
@@ -711,22 +711,15 @@ export const Close: React.FC<CloseProps> = ({children}, ref) => {
 
 export interface TriggerProps {
   on: string
-  openClassName?: string
-  closedClassName?: string
+  openClass?: string
+  closedClass?: string
   openStyle?: React.CSSProperties
   closedStyle?: React.CSSProperties
   children: JSX.Element | React.ReactElement
 }
 
 export const Trigger: React.FC<TriggerProps> = props => {
-  const {
-    children,
-    on,
-    openClassName,
-    closedClassName,
-    openStyle,
-    closedStyle,
-  } = props
+  const {children, on, openClass, closedClass, openStyle, closedStyle} = props
   const {isOpen, open, close, toggle, id, setTriggeredBy} = usePopover(),
     elementRef = useRef<HTMLElement>(null),
     ref = useMergedRef(usePopover().triggerRef, elementRef),
@@ -792,10 +785,8 @@ export const Trigger: React.FC<TriggerProps> = props => {
     'aria-haspopup': 'dialog',
     'aria-expanded': String(isOpen),
     className:
-      clsx(
-        children.props.className,
-        isOpen ? openClassName : closedClassName
-      ) || void 0,
+      clsx(children.props.className, isOpen ? openClass : closedClass) ||
+      void 0,
     style: Object.assign(
       {},
       children.props.style,

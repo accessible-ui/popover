@@ -194,10 +194,10 @@ describe('<Dialog>', () => {
     expect(result.asFragment()).toMatchSnapshot('open')
   })
 
-  it(`should apply user defined openClassName and closedClassName`, () => {
+  it(`should apply user defined openClass and closedClass`, () => {
     const result = render(
       <Popover>
-        <Dialog closedClassName="closed" openClassName="open">
+        <Dialog closedClass="closed" openClass="open">
           <div>Hello world</div>
         </Dialog>
 
@@ -406,14 +406,14 @@ describe('useControls()', () => {
 })
 
 describe('<Trigger>', () => {
-  it('should have openClassName and closedClassName', () => {
+  it('should have openClass and closedClass', () => {
     const result = render(
       <Popover>
         <Dialog>
           <div>Hello world</div>
         </Dialog>
 
-        <Trigger on="click" closedClassName="closed" openClassName="open">
+        <Trigger on="click" closedClass="closed" openClass="open">
           <button>popover me</button>
         </Trigger>
       </Popover>
