@@ -72,19 +72,19 @@ const Component = () => (
 
 ### Components
 
-| Component                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| [`<Popover>`](#popover)   | This component creates the context for your popover box and trigger and contains some configuration options.   |
-| [`<Dialog>`](#popoverbox) | This component wraps any React element and turns it into a popover box.                                        |
-| [`<Trigger>`](#popoverme) | This component wraps any React element and turns it into a popover trigger.                                    |
-| [`<Close>`](#popoverme)   | This is a convenience component that wraps any React element and adds an onClick handler to close the popover. |  |
+| Component               | Description                                                                                                    |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------- |
+| [`<Popover>`](#popover) | This component creates the context for your popover box and trigger and contains some configuration options.   |
+| [`<Dialog>`](#dialog)   | This component wraps any React element and turns it into a popover box.                                        |
+| [`<Trigger>`](#trigger) | This component wraps any React element and turns it into a popover trigger.                                    |
+| [`<Close>`](#close)     | This is a convenience component that wraps any React element and adds an onClick handler to close the popover. |  |
 
 ### Hooks
 
 | Hook                              | Description                                                                                       |
 | --------------------------------- | ------------------------------------------------------------------------------------------------- |
 | [`usePopover()`](#usepopover)     | This hook provides the value of the popover's [PopoverContextValue object](#popovercontextvalue). |
-| [`useControls()`](#usecontrols)   | This hook provides access to the popover's `open`, `close`, and `toggle` functions.               |
+| [`useControls()`](#usecontrols)   | This hook provides access to the popover's `open`, `close`, `toggle`, and `reposition` functions. |
 | [`usePlacement()`](#useplacement) | This hook provides access to the popover's rendered placement.                                    |
 | [`useIsOpen()`](#useisopen)       | This hook provides access to the popover's `isOpen` value.                                        |
 
