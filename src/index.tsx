@@ -491,93 +491,88 @@ export interface DialogProps {
 
 let isServer
 
-export const Dialog: React.FC<DialogProps> = React.forwardRef(
-  (
-    {
-      placement = 'bottom',
-      portal,
-      openStyle,
-      closedStyle,
-      closedClass,
-      closeOnEscape = true,
-      openClass = 'popover--open',
-      children,
-    },
-    ref
-  ) => {
-    const popover = usePopover()
-    ref = useMergedRef(popover.dialogRef, ref)
-    // handles repositioning the popover
-    // Yes this is correct, it's useEffect, not useLayoutEffect
-    // Just move on .
-    useEffect(() => {
-      popover.reposition(placement as Placement)
-      isServer = false
-    }, [placement])
-    // handles closing the popover when the ESC key is pressed
-    useLayoutEffect(() => {
-      const current = popover?.dialogRef?.current
-      if (current && popover.isOpen) {
-        // Focuses on the first focusable element
-        const doFocus = () => {
-          const tabbableEls = tabbable(current)
-          if (tabbableEls.length > 0) tabbableEls[0].focus()
-        }
-
-        raf(doFocus)
-        current.addEventListener('transitionend', doFocus)
-        // Closes the modal when escape is pressed
-        if (closeOnEscape) {
-          const callback = event =>
-            parseInt(event.code) === 27 && popover.close()
-          current.addEventListener('keyup', callback)
-          return () => {
-            current.removeEventListener('keyup', callback)
-            current.removeEventListener('transitionend', doFocus)
-          }
-        } else {
-          return () => current.removeEventListener('transitionend', doFocus)
-        }
+export const Dialog: React.FC<DialogProps> = ({
+  placement = 'bottom',
+  portal,
+  openStyle,
+  closedStyle,
+  closedClass,
+  closeOnEscape = true,
+  openClass = 'popover--open',
+  children,
+}) => {
+  let {
+    id,
+    style,
+    isOpen,
+    close,
+    reposition,
+    triggeredBy,
+    dialogRef,
+  } = usePopover()
+  // @ts-ignore
+  const ref = useMergedRef(children.ref, dialogRef)
+  // handles repositioning the popover
+  // Yes this is correct, it's useEffect, not useLayoutEffect
+  // Just move on .
+  useEffect(() => {
+    reposition(placement as Placement)
+    isServer = false
+  }, [placement])
+  // handles closing the popover when the ESC key is pressed
+  useLayoutEffect(() => {
+    const current = dialogRef?.current
+    if (current && isOpen) {
+      // Focuses on the first focusable element
+      const doFocus = () => {
+        const tabbableEls = tabbable(current)
+        if (tabbableEls.length > 0) tabbableEls[0].focus()
       }
 
-      return
-    }, [
-      popover.dialogRef.current,
-      popover.isOpen,
-      popover.close,
-      popover.triggeredBy,
-      closeOnEscape,
-    ])
+      raf(doFocus)
+      current.addEventListener('transitionend', doFocus)
+      // Closes the modal when escape is pressed
+      if (closeOnEscape) {
+        const callback = event => parseInt(event.code) === 27 && close()
+        current.addEventListener('keyup', callback)
+        return () => {
+          current.removeEventListener('keyup', callback)
+          current.removeEventListener('transitionend', doFocus)
+        }
+      } else {
+        return () => current.removeEventListener('transitionend', doFocus)
+      }
+    }
 
-    const defaultStyles = popover.isOpen ? isOpenStyles : isClosedStyles
-    const triggeredBy = popover.triggeredBy || 'click'
-    const isClickTrigger = triggeredBy.indexOf('click') > -1
+    return
+  }, [dialogRef.current, isOpen, close, triggeredBy, closeOnEscape])
 
-    return portalize(
-      cloneElement(children, {
-        key: String(isServer),
-        ref,
-        id: popover.id,
-        role: isClickTrigger ? 'dialog' : 'tooltip',
-        'aria-modal': isClickTrigger ? 'false' : void 0,
-        'aria-hidden': String(!popover.isOpen),
-        className:
-          clsx(
-            children.props.className,
-            popover.isOpen ? openClass : closedClass
-          ) || void 0,
-        style: Object.assign(
-          {},
-          defaultStyles,
-          children.props.style,
-          popover.style,
-          popover.isOpen ? openStyle : closedStyle
-        ),
-      }),
-      portal
-    )
-  }
-)
+  const defaultStyles = isOpen ? isOpenStyles : isClosedStyles
+  triggeredBy = triggeredBy || 'click'
+  const isClickTrigger = triggeredBy.indexOf('click') > -1
+
+  return portalize(
+    cloneElement(children, {
+      key: String(isServer),
+      id,
+      role: isClickTrigger ? 'dialog' : 'tooltip',
+      'aria-modal': isClickTrigger ? 'false' : void 0,
+      'aria-hidden': String(!isOpen),
+      className:
+        clsx(children.props.className, isOpen ? openClass : closedClass) ||
+        void 0,
+      style: Object.assign(
+        {},
+        defaultStyles,
+        children.props.style,
+        style,
+        isOpen ? openStyle : closedStyle
+      ),
+      ref,
+    }),
+    portal
+  )
+}
 
 interface PopoverContainerProps {
   id: string
@@ -727,11 +722,18 @@ export interface TriggerProps {
   children: JSX.Element | React.ReactElement
 }
 
-export const Trigger: React.FC<TriggerProps> = props => {
-  const {children, on, openClass, closedClass, openStyle, closedStyle} = props
+export const Trigger: React.FC<TriggerProps> = ({
+  children,
+  on,
+  openClass,
+  closedClass,
+  openStyle,
+  closedStyle,
+}) => {
   const {isOpen, open, close, toggle, id, setTriggeredBy} = usePopover(),
     elementRef = useRef<HTMLElement>(null),
-    ref = useMergedRef(usePopover().triggerRef, elementRef),
+    // @ts-ignore
+    ref = useMergedRef(children.ref, usePopover().triggerRef, elementRef),
     seen = useRef<boolean>(false)
 
   useEffect(() => {
@@ -760,24 +762,20 @@ export const Trigger: React.FC<TriggerProps> = props => {
         current.addEventListener(...args)
       }
 
-      for (const match of on.split(' ')) {
-        switch (match) {
-          case 'hover':
-            addListener('mouseenter', open)
-            addListener('mouseleave', close)
-            break
+      if (on.indexOf('hover') > -1) {
+        addListener('mouseenter', open)
+        addListener('mouseleave', close)
+      }
 
-          case 'focus':
-            addListener('focus', open)
-            break
+      if (on.indexOf('focus') > -1) {
+        addListener('focus', open)
+      }
 
-          case 'click':
-            addListener('click', e => {
-              e.stopPropagation()
-              toggle()
-            })
-            break
-        }
+      if (on.indexOf('click') > -1) {
+        addListener('click', e => {
+          e.stopPropagation()
+          toggle()
+        })
       }
 
       return () => {
@@ -790,7 +788,7 @@ export const Trigger: React.FC<TriggerProps> = props => {
   }, [elementRef.current, on, open, close, toggle])
 
   return cloneElement(children, {
-    'aria-controls': props['aria-controls'] || id,
+    'aria-controls': id,
     'aria-haspopup': 'dialog',
     'aria-expanded': String(isOpen),
     className:
