@@ -1,4 +1,5 @@
 import React, {
+  cloneElement,
   useRef,
   useEffect,
   useContext,
@@ -12,8 +13,8 @@ import useSwitch from '@react-hook/switch'
 import useMergedRef from '@react-hook/merged-ref'
 import useWindowScroll from '@react-hook/window-scroll'
 import {useId} from '@reach/auto-id'
+import tabbable from '@accessible/tabbable'
 import Portalize from 'react-portalize'
-import tabbable from 'tabbable'
 import clsx from 'clsx'
 import raf from 'raf'
 
@@ -518,16 +519,24 @@ export const Dialog: React.FC<DialogProps> = React.forwardRef(
       const current = popover?.dialogRef?.current
       if (current && popover.isOpen) {
         // Focuses on the first focusable element
-        raf(() => {
+        const doFocus = () => {
           const tabbableEls = tabbable(current)
           if (tabbableEls.length > 0) tabbableEls[0].focus()
-        })
-        // Closes the popover when escape is pressed
+        }
+
+        raf(doFocus)
+        current.addEventListener('transitionend', doFocus)
+        // Closes the modal when escape is pressed
         if (closeOnEscape) {
           const callback = event =>
             parseInt(event.code) === 27 && popover.close()
           current.addEventListener('keyup', callback)
-          return () => current.removeEventListener('keyup', callback)
+          return () => {
+            current.removeEventListener('keyup', callback)
+            current.removeEventListener('transitionend', doFocus)
+          }
+        } else {
+          return () => current.removeEventListener('transitionend', doFocus)
         }
       }
 
@@ -545,7 +554,7 @@ export const Dialog: React.FC<DialogProps> = React.forwardRef(
     const isClickTrigger = triggeredBy.indexOf('click') > -1
 
     return portalize(
-      React.cloneElement(children, {
+      cloneElement(children, {
         key: String(isServer),
         ref,
         id: popover.id,
@@ -690,7 +699,7 @@ export interface CloseProps {
   children: JSX.Element | React.ReactElement
 }
 
-export const Close: React.FC<CloseProps> = ({children}, ref) => {
+export const Close: React.FC<CloseProps> = ({children}) => {
   const {close, isOpen, id} = usePopover()
   const onClick = useCallback(
     e => {
@@ -700,7 +709,7 @@ export const Close: React.FC<CloseProps> = ({children}, ref) => {
     [close, children.props.onClick]
   )
 
-  return React.cloneElement(children, {
+  return cloneElement(children, {
     'aria-controls': id,
     'aria-haspopup': 'dialog',
     'aria-expanded': String(isOpen),
@@ -780,7 +789,7 @@ export const Trigger: React.FC<TriggerProps> = props => {
     return
   }, [elementRef.current, on, open, close, toggle])
 
-  return React.cloneElement(children, {
+  return cloneElement(children, {
     'aria-controls': props['aria-controls'] || id,
     'aria-haspopup': 'dialog',
     'aria-expanded': String(isOpen),
