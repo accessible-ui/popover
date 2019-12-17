@@ -13,10 +13,10 @@ import useSwitch from '@react-hook/switch'
 import useMergedRef from '@react-hook/merged-ref'
 import useWindowScroll from '@react-hook/window-scroll'
 import {useId} from '@reach/auto-id'
-import tabbable from '@accessible/tabbable'
+import useKeycode from '@accessible/use-keycode'
+import useConditionalFocus from '@accessible/use-conditional-focus'
 import Portalize from 'react-portalize'
 import clsx from 'clsx'
-import raf from 'raf'
 
 const __DEV__ =
   typeof process !== 'undefined' && process.env.NODE_ENV !== 'production'
@@ -510,8 +510,11 @@ export const Dialog: React.FC<DialogProps> = ({
     triggeredBy,
     dialogRef,
   } = usePopover()
+  // Closes the modal when escape is pressed
+  const keycodeRef = useKeycode(27, () => closeOnEscape && close())
+  const focusRef = useConditionalFocus(isOpen)
   // @ts-ignore
-  const ref = useMergedRef(children.ref, dialogRef)
+  const ref = useMergedRef(children.ref, dialogRef, keycodeRef, focusRef)
   // handles repositioning the popover
   // Yes this is correct, it's useEffect, not useLayoutEffect
   // Just move on .
@@ -519,33 +522,6 @@ export const Dialog: React.FC<DialogProps> = ({
     reposition(placement as Placement)
     isServer = false
   }, [placement])
-  // handles closing the popover when the ESC key is pressed
-  useLayoutEffect(() => {
-    const current = dialogRef?.current
-    if (current && isOpen) {
-      // Focuses on the first focusable element
-      const doFocus = () => {
-        const tabbableEls = tabbable(current)
-        if (tabbableEls.length > 0) tabbableEls[0].focus()
-      }
-
-      raf(doFocus)
-      current.addEventListener('transitionend', doFocus)
-      // Closes the modal when escape is pressed
-      if (closeOnEscape) {
-        const callback = event => parseInt(event.code) === 27 && close()
-        current.addEventListener('keyup', callback)
-        return () => {
-          current.removeEventListener('keyup', callback)
-          current.removeEventListener('transitionend', doFocus)
-        }
-      } else {
-        return () => current.removeEventListener('transitionend', doFocus)
-      }
-    }
-
-    return
-  }, [dialogRef.current, isOpen, close, triggeredBy, closeOnEscape])
 
   const defaultStyles = isOpen ? isOpenStyles : isClosedStyles
   triggeredBy = triggeredBy || 'click'
@@ -730,11 +706,22 @@ export const Trigger: React.FC<TriggerProps> = ({
   openStyle,
   closedStyle,
 }) => {
-  const {isOpen, open, close, toggle, id, setTriggeredBy} = usePopover(),
-    elementRef = useRef<HTMLElement>(null),
+  const {
+      isOpen,
+      open,
+      close,
+      toggle,
+      id,
+      triggerRef,
+      setTriggeredBy,
+    } = usePopover(),
+    seen = useRef<boolean>(false),
+    focusRef = useConditionalFocus(
+      seen.current && !isOpen && on.indexOf('click') > -1,
+      true
+    ),
     // @ts-ignore
-    ref = useMergedRef(children.ref, usePopover().triggerRef, elementRef),
-    seen = useRef<boolean>(false)
+    ref = useMergedRef(children.ref, triggerRef, focusRef)
 
   useEffect(() => {
     setTriggeredBy(on)
@@ -742,20 +729,14 @@ export const Trigger: React.FC<TriggerProps> = ({
   // returns the focus to the trigger when the popover box closes if focus is
   // not an event that triggers opening the popover
   useLayoutEffect(() => {
-    if (!isOpen) {
-      if (seen.current) {
-        if (on.indexOf('click') > -1) raf(() => elementRef.current?.focus())
-      }
-
-      seen.current = true
-    }
+    if (!isOpen) seen.current = true
   }, [isOpen])
 
   // handles trigger events
   useLayoutEffect(() => {
-    if (elementRef.current && on) {
+    const {current} = triggerRef
+    if (current && on) {
       const listeners: any[] = []
-      const current = elementRef.current
       const addListener = (...args) => {
         listeners.push(args)
         // @ts-ignore
@@ -785,7 +766,7 @@ export const Trigger: React.FC<TriggerProps> = ({
     }
 
     return
-  }, [elementRef.current, on, open, close, toggle])
+  }, [triggerRef.current, on, open, close, toggle])
 
   return cloneElement(children, {
     'aria-controls': id,
