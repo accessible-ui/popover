@@ -12,7 +12,7 @@ import useLayoutEffect from '@react-hook/passive-layout-effect'
 import useSwitch from '@react-hook/switch'
 import useMergedRef from '@react-hook/merged-ref'
 import useWindowScroll from '@react-hook/window-scroll'
-import {useId} from '@reach/auto-id'
+import useId from '@accessible/use-id'
 import useKeycode from '@accessible/use-keycode'
 import useConditionalFocus from '@accessible/use-conditional-focus'
 import Portalize from 'react-portalize'
@@ -433,7 +433,7 @@ export interface PopoverContextValue {
   toggle: () => void
   id: string
   style: React.CSSProperties
-  dialogRef: React.MutableRefObject<HTMLElement | null>
+  targetRef: React.MutableRefObject<HTMLElement | null>
   triggerRef: React.MutableRefObject<HTMLElement | null>
   placement: Placement
   reposition: (nextPlacement: Placement) => void
@@ -478,7 +478,7 @@ const portalize = (
   return React.createElement(Portalize, props)
 }
 
-export interface DialogProps {
+export interface TargetProps {
   placement?: Placement
   portal?: boolean | undefined | null | string | Record<any, any>
   closeOnEscape?: boolean
@@ -491,7 +491,7 @@ export interface DialogProps {
 
 let isServer
 
-export const Dialog: React.FC<DialogProps> = ({
+export const Target: React.FC<TargetProps> = ({
   placement = 'bottom',
   portal,
   openStyle,
@@ -508,13 +508,13 @@ export const Dialog: React.FC<DialogProps> = ({
     close,
     reposition,
     triggeredBy,
-    dialogRef,
+    targetRef,
   } = usePopover()
   // Closes the modal when escape is pressed
   const keycodeRef = useKeycode(27, () => closeOnEscape && close())
   const focusRef = useConditionalFocus(isOpen)
   // @ts-ignore
-  const ref = useMergedRef(children.ref, dialogRef, keycodeRef, focusRef)
+  const ref = useMergedRef(children.ref, targetRef, keycodeRef, focusRef)
   // handles repositioning the popover
   // Yes this is correct, it's useEffect, not useLayoutEffect
   // Just move on .
@@ -586,7 +586,7 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
     children,
   }) => {
     const triggerRef = useRef<HTMLElement | null>(null),
-      dialogRef = useRef<HTMLElement | null>(null),
+      targetRef = useRef<HTMLElement | null>(null),
       [{style, requestedPlacement, placement}, setState] = useState<
         PlacementState
       >({
@@ -600,7 +600,7 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
             setPlacementStyle(
               nextPlacement,
               triggerRef.current,
-              dialogRef.current,
+              targetRef.current,
               containPolicy
             )
           )
@@ -623,7 +623,7 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
         style,
         placement,
         reposition,
-        dialogRef,
+        targetRef,
         triggerRef,
         triggeredBy,
         setTriggeredBy,
@@ -867,6 +867,6 @@ export const Popover: React.FC<PopoverProps> = ({
 /* istanbul ignore next */
 if (__DEV__) {
   Popover.displayName = 'Popover'
-  Dialog.displayName = 'Dialog'
+  Target.displayName = 'Target'
   Trigger.displayName = 'Trigger'
 }

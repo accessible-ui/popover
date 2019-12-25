@@ -5,7 +5,7 @@ import {render, fireEvent, cleanup} from '@testing-library/react'
 import {
   Popover,
   Trigger,
-  Dialog,
+  Target,
   Close,
   usePopover,
   usePlacement,
@@ -18,9 +18,9 @@ describe('<Popover>', () => {
   it('should have a custom id', () => {
     const result = render(
       <Popover id="foobar">
-        <Dialog>
+        <Target>
           <div>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -47,13 +47,13 @@ describe('<Popover>', () => {
   })
 })
 
-describe('<Dialog>', () => {
+describe('<Target>', () => {
   it('should open and close on Trigger click', () => {
     const result = render(
       <Popover>
-        <Dialog>
+        <Target>
           <div>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -71,9 +71,9 @@ describe('<Dialog>', () => {
   it('should have a tooltip role w/ hover trigger', () => {
     const result = render(
       <Popover>
-        <Dialog>
+        <Target>
           <div>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="hover">
           <button>popover me</button>
@@ -87,9 +87,9 @@ describe('<Dialog>', () => {
   it('should have a tooltip role w/ focus trigger', () => {
     const result = render(
       <Popover>
-        <Dialog>
+        <Target>
           <div>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="focus">
           <button>popover me</button>
@@ -103,9 +103,9 @@ describe('<Dialog>', () => {
   it('open on Trigger focus', () => {
     const result = render(
       <Popover>
-        <Dialog>
+        <Target>
           <div>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="focus">
           <button>popover me</button>
@@ -121,9 +121,9 @@ describe('<Dialog>', () => {
   it('should close on escape key', () => {
     const result = render(
       <Popover>
-        <Dialog>
+        <Target>
           <div>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -134,16 +134,16 @@ describe('<Dialog>', () => {
     expect(result.asFragment()).toMatchSnapshot('closed initially')
     fireEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
-    fireEvent.keyUp(result.getByText('Hello world'), {key: 'Escape', code: 27})
+    fireEvent.keyUp(result.getByText('Hello world'), {key: 'Escape', which: 27})
     expect(result.asFragment()).toMatchSnapshot('closed')
   })
 
   it(`shouldn't close on escape key if prop is false`, () => {
     const result = render(
       <Popover>
-        <Dialog closeOnEscape={false}>
+        <Target closeOnEscape={false}>
           <div>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -154,16 +154,16 @@ describe('<Dialog>', () => {
     expect(result.asFragment()).toMatchSnapshot('closed initially')
     fireEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
-    fireEvent.keyUp(result.getByText('Hello world'), {key: 'Escape', code: 27})
+    fireEvent.keyUp(result.getByText('Hello world'), {key: 'Escape', which: 27})
     expect(result.asFragment()).toMatchSnapshot('still open')
   })
 
   it(`should assign to custom styles when opened or closed`, () => {
     const result = render(
       <Popover>
-        <Dialog>
+        <Target>
           <div style={{fontSize: '2rem'}}>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -179,9 +179,9 @@ describe('<Dialog>', () => {
   it(`should apply custom classname when opened or closed`, () => {
     const result = render(
       <Popover>
-        <Dialog>
+        <Target>
           <div className="custom">Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -197,9 +197,9 @@ describe('<Dialog>', () => {
   it(`should apply user defined openClass and closedClass`, () => {
     const result = render(
       <Popover>
-        <Dialog closedClass="closed" openClass="open">
+        <Target closedClass="closed" openClass="open">
           <div>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -215,9 +215,9 @@ describe('<Dialog>', () => {
   it(`should apply user defined openStyle and closedStyle`, () => {
     const result = render(
       <Popover>
-        <Dialog closedStyle={{display: 'none'}} openStyle={{display: 'block'}}>
+        <Target closedStyle={{display: 'none'}} openStyle={{display: 'block'}}>
           <div>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -233,9 +233,9 @@ describe('<Dialog>', () => {
   it(`should be initially open when defined as such`, () => {
     const result = render(
       <Popover defaultOpen>
-        <Dialog>
+        <Target>
           <div style={{fontSize: '2rem'}}>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -251,9 +251,9 @@ describe('<Dialog>', () => {
   it(`should act like a controlled component when 'open' prop is specified`, () => {
     const result = render(
       <Popover open>
-        <Dialog>
+        <Target>
           <div style={{fontSize: '2rem'}}>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -267,9 +267,9 @@ describe('<Dialog>', () => {
 
     result.rerender(
       <Popover open={false}>
-        <Dialog>
+        <Target>
           <div style={{fontSize: '2rem'}}>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -289,9 +289,9 @@ describe('<Dialog>', () => {
 
     const result = render(
       <Popover open>
-        <Dialog portal>
+        <Target portal>
           <div style={{fontSize: '2rem'}}>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -311,9 +311,9 @@ describe('<Dialog>', () => {
 
     const result = render(
       <Popover open>
-        <Dialog portal={{container: '.portals'}}>
+        <Target portal={{container: '.portals'}}>
           <div style={{fontSize: '2rem'}}>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -333,9 +333,9 @@ describe('<Dialog>', () => {
 
     const result = render(
       <Popover open>
-        <Dialog portal=".portals">
+        <Target portal=".portals">
           <div style={{fontSize: '2rem'}}>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>popover me</button>
@@ -376,9 +376,9 @@ describe('<Dialog>', () => {
     for (const placement of placements) {
       const result = render(
         <Popover open>
-          <Dialog placement={placement as Placement}>
+          <Target placement={placement as Placement}>
             <div style={{fontSize: '2rem'}}>Hello world</div>
-          </Dialog>
+          </Target>
 
           <Trigger on="click">
             <button>popover me</button>
@@ -409,9 +409,9 @@ describe('<Trigger>', () => {
   it('should have openClass and closedClass', () => {
     const result = render(
       <Popover>
-        <Dialog>
+        <Target>
           <div>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click" closedClass="closed" openClass="open">
           <button>popover me</button>
@@ -427,9 +427,9 @@ describe('<Trigger>', () => {
   it('should have openStyle and closedStyle', () => {
     const result = render(
       <Popover>
-        <Dialog>
+        <Target>
           <div>Hello world</div>
-        </Dialog>
+        </Target>
 
         <Trigger
           on="click"
@@ -451,14 +451,14 @@ describe('<Close>', () => {
   it('should close the modal', () => {
     const result = render(
       <Popover defaultOpen={true}>
-        <Dialog>
+        <Target>
           <div>
             <Close>
               <button data-testid="close">Close me</button>
             </Close>
             Hello world
           </div>
-        </Dialog>
+        </Target>
 
         <Trigger on="click">
           <button>open me</button>

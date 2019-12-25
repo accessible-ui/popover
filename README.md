@@ -51,13 +51,13 @@ An accessible, "batteries included", popover component for React.
 [Check out the example on CodeSandbox](https://codesandbox.io/s/accessiblepopover-example-6l3u0)
 
 ```jsx harmony
-import {Popover, Dialog, Trigger} from '@accessible/popover'
+import {Popover, Target, Trigger} from '@accessible/popover'
 
 const Component = () => (
   <Popover repositionOnScroll repositionOnResize>
-    <Dialog placement="bottomLeft">
+    <Target placement="bottomLeft">
       <div className="my-popover">Hello world</div>
-    </Dialog>
+    </Target>
 
     <Trigger on="hover">
       <a href="/profile/me">
@@ -72,12 +72,12 @@ const Component = () => (
 
 ### Components
 
-| Component               | Description                                                                                                    |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------- |
-| [`<Popover>`](#popover) | This component creates the context for your popover box and trigger and contains some configuration options.   |
-| [`<Dialog>`](#dialog)   | This component wraps any React element and turns it into a popover box.                                        |
-| [`<Trigger>`](#trigger) | This component wraps any React element and turns it into a popover trigger.                                    |
-| [`<Close>`](#close)     | This is a convenience component that wraps any React element and adds an onClick handler to close the popover. |  |
+| Component               | Description                                                                                                     |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [`<Popover>`](#popover) | This component creates the context for your popover target and trigger and contains some configuration options. |
+| [`<Target>`](#target)   | This component wraps any React element and turns it into a popover target.                                      |
+| [`<Trigger>`](#trigger) | This component wraps any React element and turns it into a popover trigger.                                     |
+| [`<Close>`](#close)     | This is a convenience component that wraps any React element and adds an onClick handler to close the popover.  |  |
 
 ### Hooks
 
@@ -90,7 +90,7 @@ const Component = () => (
 
 ### `<Popover>`
 
-This component creates the context for your popover box and trigger and contains some
+This component creates the context for your popover target and trigger and contains some
 configuration options.
 
 #### Props
@@ -113,21 +113,21 @@ configuration options.
 | `"flipY"`  | This will attempt to flip its position on only the `y` axis to attempt to remain within the bounds of the window.                                                                                                                                                                                                                                                                                |
 | `function` | You can decide what to do with the popover on your own by providing a callback with the signature <code>(placement: string, triggerRect: ClientRect, popoverRect: ClientRect) => Placement &#124; PlacementResult</code> where [`Placement`](#placement) is a string returning an alternative placement and `PlacementResult` is an object shaped `{placement: Placement, style: CSSProperties}` |
 
-### `<Dialog>`
+### `<Target>`
 
-This component wraps any React element and turns it into a popover box.
+This component wraps any React element and turns it into a popover target.
 
 #### Props
 
 | Prop          | Type                                | Default           | Required? | Description                                                                                                                                                                                                      |
 | ------------- | ----------------------------------- | ----------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| placement     | [`Placement`](#placement)           | `"bottom"`        | No        | This tells the box where it should render relative to its triggering element.                                                                                                                                    |
+| placement     | [`Placement`](#placement)           | `"bottom"`        | No        | This tells the target where it should render relative to its triggering element.                                                                                                                                 |
 | portal        | <code>boolean &#124; string </code> | `false`           | No        | When `true` this will render the popover into a React portal with the id `#portals`. You can render it into any portal by providing its query selector here, e.g. `#foobar`, `[data-portal=true]`, or `.foobar`. |
 | closeOnEscape | `boolean`                           | `true`            | No        | By default the popover will close when the `Escape` key is pressed. You can turn this off by providing `false` here.                                                                                             |
 | closedClass   | `string`                            | `undefined`       | No        | This class name will be applied to the child element when the popover is `closed`.                                                                                                                               |
 | openClass     | `string`                            | `"popover--open"` | No        | This class name will be applied to the child element when the popover is `open`.                                                                                                                                 |
-| closedStyle   | `React.CSSProperties`               | `undefined`       | No        | These styles will be applied to the child element when the popover is `closed` in addition to the default styles that set the box's visibility.                                                                  |
-| openStyle     | `React.CSSProperties`               | `undefined`       | No        | These styles name will be applied to the child element when the popover is `open` in addition to the default styles that set the box's visibility.                                                               |
+| closedStyle   | `React.CSSProperties`               | `undefined`       | No        | These styles will be applied to the child element when the popover is `closed` in addition to the default styles that set the target's visibility.                                                               |
+| openStyle     | `React.CSSProperties`               | `undefined`       | No        | These styles name will be applied to the child element when the popover is `open` in addition to the default styles that set the target's visibility.                                                            |
 | children      | `React.ReactElement`                | `undefined`       | Yes       | The child is cloned by this component and has aria attributes injected into its props as well as the events defined above.                                                                                       |
 
 #### Placement
@@ -161,9 +161,9 @@ These are the default placements allowed by the popover relative to its triggeri
 #### Example
 
 ```jsx harmony
-<Dialog placement="innerTopLeft">
+<Target placement="innerTopLeft">
   <div className="menu">Menu</div>
-</Dialog>
+</Target>
 
 // <div
 //   class="menu"
@@ -263,14 +263,14 @@ interface PopoverContextValue {
   // calling this forces the popover to reposition
   // itself to the specified placement
   reposition: (nextPlacement: Placement) => void
-  // the ID of the popover box
+  // the ID of the popover target
   id: string
-  // the style applied to the popover box
+  // the style applied to the popover target
   style: React.CSSProperties
   // the rendered placement of the popover
   placement: Placement
-  // sets the ref for the popover box
-  dialogRef: React.MutableRefObject<HTMLElement | null>
+  // sets the ref for the popover target
+  targetRef: React.MutableRefObject<HTMLElement | null>
   // sets the ref for the triggering element
   triggerRef: React.MutableRefObject<HTMLElement | null>
   // this describes the events that cause the popover
@@ -291,11 +291,11 @@ This hook provides access to the popover's rendered placement
 const Component = () => {
   const placement = usePlacement()
   return (
-    <Dialog placement="top">
+    <Target placement="top">
       <div className="my-popover">
         <span className={`arrow--${placement}`} />
       </div>
-    </Dialog>
+    </Target>
   )
 }
 ```
@@ -310,11 +310,11 @@ This hook provides access to the popover's `open`, `close`, `toggle`, and `repos
 const Component = () => {
   const {open, close, toggle} = useControls()
   return (
-    <Dialog>
+    <Target>
       <div className="my-popover">
         <button onClick={close}>Close me</button>
       </div>
-    </Dialog>
+    </Target>
   )
 }
 ```
@@ -329,9 +329,9 @@ This hook provides access to the popover's `isOpen` value
 const Component = () => {
   const isOpen = useIsOpen()
   return (
-    <Dialog>
+    <Target>
       <div className="my-popover">Am I open? {isOpen ? 'Yes' : 'No'}</div>
-    </Dialog>
+    </Target>
   )
 }
 ```
