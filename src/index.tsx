@@ -717,9 +717,9 @@ export const Trigger: React.FC<TriggerProps> = ({
       triggerRef,
       setTriggeredBy,
     } = usePopover(),
-    seen = useRef<boolean>(false),
+    prevOpen = useRef<boolean>(isOpen),
     focusRef = useConditionalFocus(
-      seen.current && !isOpen && on.indexOf('click') > -1,
+      prevOpen.current && !isOpen && on.indexOf('click') > -1,
       true
     ),
     // @ts-ignore
@@ -729,9 +729,10 @@ export const Trigger: React.FC<TriggerProps> = ({
     setTriggeredBy(on)
   }, [on])
   // returns the focus to the trigger when the popover box closes if focus is
-  // not an event that triggers opening the popover
+  // not an event that triggers opening the popover and prevents the trigger
+  // from capturing the window focus right away
   useLayoutEffect(() => {
-    if (!isOpen) seen.current = true
+    prevOpen.current = isOpen
   }, [isOpen])
 
   // handles trigger events
