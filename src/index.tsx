@@ -449,7 +449,9 @@ export interface PopoverControls {
 }
 
 // @ts-ignore
-export const PopoverContext = React.createContext<PopoverContextValue>({}),
+export const PopoverContext: React.Context<PopoverContextValue> = React.createContext(
+    {}
+  ),
   {Consumer: PopoverConsumer} = PopoverContext,
   usePopover = () => useContext<PopoverContextValue>(PopoverContext),
   usePlacement = () => usePopover().placement,
