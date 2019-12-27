@@ -531,11 +531,11 @@ export const Target: React.FC<TargetProps> = ({
 
   return portalize(
     cloneElement(children, {
+      'aria-modal': isClickTrigger ? 'false' : void 0,
+      'aria-hidden': String(!isOpen),
       key: String(isServer),
       id,
       role: isClickTrigger ? 'dialog' : 'tooltip',
-      'aria-modal': isClickTrigger ? 'false' : void 0,
-      'aria-hidden': String(!isOpen),
       className:
         clsx(children.props.className, isOpen ? openClass : closedClass) ||
         void 0,
