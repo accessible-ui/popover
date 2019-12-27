@@ -16,10 +16,10 @@
     "@react-hook/passive-layout-effect" "^1.0.2"
     raf "^3.4.1"
 
-"@accessible/use-id@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@accessible/use-id/-/use-id-1.0.2.tgz#53e7fd82ee157a4400db5431b6a5f9dc5d666d3f"
-  integrity sha512-Y248Noj3TMaXgDOyhmzrdH45M6WrNxXFMXaneKx23Oq7Ftx9YJEzcq/leIqgU4yBHBV0qwjzlGYfA5iUorAHIQ==
+"@accessible/use-id@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@accessible/use-id/-/use-id-1.0.3.tgz#e2ce99584a3239c49ce6541ac9edec71724d0e87"
+  integrity sha512-a4YsYCZlOXNvQhSb1Zm2MgDdzdSJ+HqHQceF+EntyhjJ5YTv+jlxi7SQL5gZBqzMD6PmyyX4ogb1WT1IgNmfqA==
   dependencies:
     "@react-hook/passive-layout-effect" "^1.0.2"
 

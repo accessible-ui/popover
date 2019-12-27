@@ -431,7 +431,7 @@ export interface PopoverContextValue {
   open: () => void
   close: () => void
   toggle: () => void
-  id: string
+  id?: string
   style: React.CSSProperties
   targetRef: React.MutableRefObject<HTMLElement | null>
   triggerRef: React.MutableRefObject<HTMLElement | null>
@@ -553,7 +553,7 @@ export const Target: React.FC<TargetProps> = ({
 }
 
 interface PopoverContainerProps {
-  id: string
+  id?: string
   open: () => void
   close: () => void
   toggle: () => void
@@ -844,7 +844,7 @@ export const Popover: React.FC<PopoverProps> = ({
   children,
 }) => {
   const [isOpen_, toggle] = useSwitch(defaultOpen)
-  id = `popover--${useId(id)}`
+  id = useId(id)
 
   return React.createElement(
     repositionOnResize

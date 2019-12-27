@@ -6,12 +6,12 @@ exports[`<Close> should close the modal 1`] = `
     aria-hidden="false"
     aria-modal="false"
     class="popover--open"
-    id="popover--40"
+    id="🅰41"
     role="dialog"
     style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     <button
-      aria-controls="popover--40"
+      aria-controls="🅰41"
       aria-expanded="true"
       aria-haspopup="dialog"
       aria-label="Close"
@@ -22,7 +22,7 @@ exports[`<Close> should close the modal 1`] = `
     Hello world
   </div>
   <button
-    aria-controls="popover--40"
+    aria-controls="🅰41"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -36,12 +36,12 @@ exports[`<Close> should close the modal: closed 1`] = `
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--40"
+    id="🅰41"
     role="dialog"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     <button
-      aria-controls="popover--40"
+      aria-controls="🅰41"
       aria-expanded="false"
       aria-haspopup="dialog"
       aria-label="Close"
@@ -52,7 +52,7 @@ exports[`<Close> should close the modal: closed 1`] = `
     Hello world
   </div>
   <button
-    aria-controls="popover--40"
+    aria-controls="🅰41"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -66,14 +66,14 @@ exports[`<Popover> should have a custom id 1`] = `
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--foobar"
+    id="foobar"
     role="dialog"
     style="position: fixed; visibility: hidden; right: 1024px; top: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--foobar"
+    aria-controls="foobar"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -85,7 +85,7 @@ exports[`<Popover> should have a custom id 1`] = `
 exports[`<Popover> should provide context to function child 1`] = `
 Object {
   "close": [Function],
-  "id": "popover--0",
+  "id": "🅰1",
   "isOpen": false,
   "open": [Function],
   "placement": "bottom",
@@ -112,14 +112,14 @@ exports[`<Target> open on Trigger focus: closed initially 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="true"
-    id="popover--4"
+    id="🅰5"
     role="tooltip"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--4"
+    aria-controls="🅰5"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -133,14 +133,14 @@ exports[`<Target> open on Trigger focus: open 1`] = `
   <div
     aria-hidden="false"
     class="popover--open"
-    id="popover--4"
+    id="🅰5"
     role="tooltip"
     style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--4"
+    aria-controls="🅰5"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -154,14 +154,14 @@ exports[`<Target> should act like a controlled component when 'open' prop is spe
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--12"
+    id="🅰13"
     role="dialog"
     style="position: fixed; visibility: hidden; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--12"
+    aria-controls="🅰13"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -176,14 +176,14 @@ exports[`<Target> should act like a controlled component when 'open' prop is spe
     aria-hidden="false"
     aria-modal="false"
     class="popover--open"
-    id="popover--12"
+    id="🅰13"
     role="dialog"
     style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--12"
+    aria-controls="🅰13"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -197,14 +197,14 @@ exports[`<Target> should act like a controlled component when 'open' prop is spe
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--12"
+    id="🅰13"
     role="dialog"
     style="position: fixed; visibility: hidden; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--12"
+    aria-controls="🅰13"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -219,14 +219,14 @@ exports[`<Target> should act like a controlled component when 'open' prop is spe
     aria-hidden="false"
     aria-modal="false"
     class="popover--open"
-    id="popover--12"
+    id="🅰13"
     role="dialog"
     style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--12"
+    aria-controls="🅰13"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -241,14 +241,14 @@ exports[`<Target> should apply custom classname when opened or closed 1`] = `
     aria-hidden="true"
     aria-modal="false"
     class="custom"
-    id="popover--8"
+    id="🅰9"
     role="dialog"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--8"
+    aria-controls="🅰9"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -263,14 +263,14 @@ exports[`<Target> should apply custom classname when opened or closed: open 1`] 
     aria-hidden="false"
     aria-modal="false"
     class="custom popover--open"
-    id="popover--8"
+    id="🅰9"
     role="dialog"
     style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--8"
+    aria-controls="🅰9"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -285,14 +285,14 @@ exports[`<Target> should apply user defined openClass and closedClass 1`] = `
     aria-hidden="true"
     aria-modal="false"
     class="closed"
-    id="popover--9"
+    id="🅰10"
     role="dialog"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--9"
+    aria-controls="🅰10"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -307,14 +307,14 @@ exports[`<Target> should apply user defined openClass and closedClass: open 1`] 
     aria-hidden="false"
     aria-modal="false"
     class="open"
-    id="popover--9"
+    id="🅰10"
     role="dialog"
     style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--9"
+    aria-controls="🅰10"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -328,14 +328,14 @@ exports[`<Target> should apply user defined openStyle and closedStyle 1`] = `
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--10"
+    id="🅰11"
     role="dialog"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px; display: none;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--10"
+    aria-controls="🅰11"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -350,14 +350,14 @@ exports[`<Target> should apply user defined openStyle and closedStyle: open 1`] 
     aria-hidden="false"
     aria-modal="false"
     class="popover--open"
-    id="popover--10"
+    id="🅰11"
     role="dialog"
     style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px; display: block;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--10"
+    aria-controls="🅰11"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -371,14 +371,14 @@ exports[`<Target> should assign to custom styles when opened or closed 1`] = `
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--7"
+    id="🅰8"
     role="dialog"
     style="position: fixed; visibility: hidden; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--7"
+    aria-controls="🅰8"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -393,14 +393,14 @@ exports[`<Target> should assign to custom styles when opened or closed: open 1`]
     aria-hidden="false"
     aria-modal="false"
     class="popover--open"
-    id="popover--7"
+    id="🅰8"
     role="dialog"
     style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--7"
+    aria-controls="🅰8"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -414,14 +414,14 @@ exports[`<Target> should be initially open when defined as such: closed 1`] = `
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--11"
+    id="🅰12"
     role="dialog"
     style="position: fixed; visibility: hidden; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--11"
+    aria-controls="🅰12"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -436,14 +436,14 @@ exports[`<Target> should be initially open when defined as such: initially open 
     aria-hidden="false"
     aria-modal="false"
     class="popover--open"
-    id="popover--11"
+    id="🅰12"
     role="dialog"
     style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--11"
+    aria-controls="🅰12"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -457,14 +457,14 @@ exports[`<Target> should close on escape key: closed 1`] = `
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--5"
+    id="🅰6"
     role="dialog"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--5"
+    aria-controls="🅰6"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -478,14 +478,14 @@ exports[`<Target> should close on escape key: closed initially 1`] = `
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--5"
+    id="🅰6"
     role="dialog"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--5"
+    aria-controls="🅰6"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -500,14 +500,14 @@ exports[`<Target> should close on escape key: open 1`] = `
     aria-hidden="false"
     aria-modal="false"
     class="popover--open"
-    id="popover--5"
+    id="🅰6"
     role="dialog"
     style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--5"
+    aria-controls="🅰6"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -520,14 +520,14 @@ exports[`<Target> should have a tooltip role w/ focus trigger 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="true"
-    id="popover--3"
+    id="🅰4"
     role="tooltip"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--3"
+    aria-controls="🅰4"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -540,14 +540,14 @@ exports[`<Target> should have a tooltip role w/ hover trigger 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="true"
-    id="popover--2"
+    id="🅰3"
     role="tooltip"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--2"
+    aria-controls="🅰3"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -561,14 +561,14 @@ exports[`<Target> should open and close on Trigger click: closed 1`] = `
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--1"
+    id="🅰2"
     role="dialog"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--1"
+    aria-controls="🅰2"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -582,14 +582,14 @@ exports[`<Target> should open and close on Trigger click: closed initially 1`] =
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--1"
+    id="🅰2"
     role="dialog"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--1"
+    aria-controls="🅰2"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -604,14 +604,14 @@ exports[`<Target> should open and close on Trigger click: open 1`] = `
     aria-hidden="false"
     aria-modal="false"
     class="popover--open"
-    id="popover--1"
+    id="🅰2"
     role="dialog"
     style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--1"
+    aria-controls="🅰2"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -629,7 +629,7 @@ exports[`<Target> should render into a portal by custom selector 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--15"
+      id="🅰16"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
     >
@@ -638,7 +638,7 @@ exports[`<Target> should render into a portal by custom selector 1`] = `
   </div>
   <div>
     <button
-      aria-controls="popover--15"
+      aria-controls="🅰16"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -657,7 +657,7 @@ exports[`<Target> should render into a portal by custom selector object 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--14"
+      id="🅰15"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
     >
@@ -666,7 +666,7 @@ exports[`<Target> should render into a portal by custom selector object 1`] = `
   </div>
   <div>
     <button
-      aria-controls="popover--14"
+      aria-controls="🅰15"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -685,7 +685,7 @@ exports[`<Target> should render into a portal by default ID 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--13"
+      id="🅰14"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
     >
@@ -694,7 +694,7 @@ exports[`<Target> should render into a portal by default ID 1`] = `
   </div>
   <div>
     <button
-      aria-controls="popover--13"
+      aria-controls="🅰14"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -711,14 +711,14 @@ exports[`<Target> should render to different placements: bottom 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--22"
+      id="🅰23"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--22"
+      aria-controls="🅰23"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -735,14 +735,14 @@ exports[`<Target> should render to different placements: bottomLeft 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--23"
+      id="🅰24"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 0px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--23"
+      aria-controls="🅰24"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -759,14 +759,14 @@ exports[`<Target> should render to different placements: bottomRight 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--24"
+      id="🅰25"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--24"
+      aria-controls="🅰25"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -783,14 +783,14 @@ exports[`<Target> should render to different placements: center 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--36"
+      id="🅰37"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--36"
+      aria-controls="🅰37"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -807,14 +807,14 @@ exports[`<Target> should render to different placements: innerBottom 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--32"
+      id="🅰33"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--32"
+      aria-controls="🅰33"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -831,14 +831,14 @@ exports[`<Target> should render to different placements: innerBottomLeft 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--33"
+      id="🅰34"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--33"
+      aria-controls="🅰34"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -855,14 +855,14 @@ exports[`<Target> should render to different placements: innerBottomRight 1`] = 
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--34"
+      id="🅰35"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--34"
+      aria-controls="🅰35"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -879,14 +879,14 @@ exports[`<Target> should render to different placements: innerLeft 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--35"
+      id="🅰36"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--35"
+      aria-controls="🅰36"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -903,14 +903,14 @@ exports[`<Target> should render to different placements: innerRight 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--31"
+      id="🅰32"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--31"
+      aria-controls="🅰32"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -927,14 +927,14 @@ exports[`<Target> should render to different placements: innerTop 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--28"
+      id="🅰29"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--28"
+      aria-controls="🅰29"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -951,14 +951,14 @@ exports[`<Target> should render to different placements: innerTopLeft 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--29"
+      id="🅰30"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 0px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--29"
+      aria-controls="🅰30"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -975,14 +975,14 @@ exports[`<Target> should render to different placements: innerTopRight 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--30"
+      id="🅰31"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--30"
+      aria-controls="🅰31"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -999,14 +999,14 @@ exports[`<Target> should render to different placements: left 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--25"
+      id="🅰26"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--25"
+      aria-controls="🅰26"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -1023,14 +1023,14 @@ exports[`<Target> should render to different placements: leftBottom 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--27"
+      id="🅰28"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--27"
+      aria-controls="🅰28"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -1047,14 +1047,14 @@ exports[`<Target> should render to different placements: leftTop 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--26"
+      id="🅰27"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--26"
+      aria-controls="🅰27"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -1071,14 +1071,14 @@ exports[`<Target> should render to different placements: right 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--19"
+      id="🅰20"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--19"
+      aria-controls="🅰20"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -1095,14 +1095,14 @@ exports[`<Target> should render to different placements: rightBottom 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--21"
+      id="🅰22"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--21"
+      aria-controls="🅰22"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -1119,14 +1119,14 @@ exports[`<Target> should render to different placements: rightTop 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--20"
+      id="🅰21"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 0px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--20"
+      aria-controls="🅰21"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -1143,14 +1143,14 @@ exports[`<Target> should render to different placements: top 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--16"
+      id="🅰17"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--16"
+      aria-controls="🅰17"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -1167,14 +1167,14 @@ exports[`<Target> should render to different placements: topLeft 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--17"
+      id="🅰18"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 0px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--17"
+      aria-controls="🅰18"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -1191,14 +1191,14 @@ exports[`<Target> should render to different placements: topRight 1`] = `
       aria-hidden="false"
       aria-modal="false"
       class="popover--open"
-      id="popover--18"
+      id="🅰19"
       role="dialog"
       style="position: fixed; visibility: visible; font-size: 2rem; top: 0px; right: 1024px; bottom: 768px; left: 0px;"
     >
       Hello world
     </div>
     <button
-      aria-controls="popover--18"
+      aria-controls="🅰19"
       aria-expanded="true"
       aria-haspopup="dialog"
     >
@@ -1213,14 +1213,14 @@ exports[`<Target> shouldn't close on escape key if prop is false: closed initial
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--6"
+    id="🅰7"
     role="dialog"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--6"
+    aria-controls="🅰7"
     aria-expanded="false"
     aria-haspopup="dialog"
   >
@@ -1235,14 +1235,14 @@ exports[`<Target> shouldn't close on escape key if prop is false: open 1`] = `
     aria-hidden="false"
     aria-modal="false"
     class="popover--open"
-    id="popover--6"
+    id="🅰7"
     role="dialog"
     style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--6"
+    aria-controls="🅰7"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -1257,14 +1257,14 @@ exports[`<Target> shouldn't close on escape key if prop is false: still open 1`]
     aria-hidden="false"
     aria-modal="false"
     class="popover--open"
-    id="popover--6"
+    id="🅰7"
     role="dialog"
     style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--6"
+    aria-controls="🅰7"
     aria-expanded="true"
     aria-haspopup="dialog"
   >
@@ -1278,14 +1278,14 @@ exports[`<Trigger> should have openClass and closedClass 1`] = `
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--38"
+    id="🅰39"
     role="dialog"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--38"
+    aria-controls="🅰39"
     aria-expanded="false"
     aria-haspopup="dialog"
     class="closed"
@@ -1301,14 +1301,14 @@ exports[`<Trigger> should have openClass and closedClass: open 1`] = `
     aria-hidden="false"
     aria-modal="false"
     class="popover--open"
-    id="popover--38"
+    id="🅰39"
     role="dialog"
     style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--38"
+    aria-controls="🅰39"
     aria-expanded="true"
     aria-haspopup="dialog"
     class="open"
@@ -1323,14 +1323,14 @@ exports[`<Trigger> should have openStyle and closedStyle 1`] = `
   <div
     aria-hidden="true"
     aria-modal="false"
-    id="popover--39"
+    id="🅰40"
     role="dialog"
     style="position: fixed; visibility: hidden; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--39"
+    aria-controls="🅰40"
     aria-expanded="false"
     aria-haspopup="dialog"
     style="display: none;"
@@ -1346,14 +1346,14 @@ exports[`<Trigger> should have openStyle and closedStyle: open 1`] = `
     aria-hidden="false"
     aria-modal="false"
     class="popover--open"
-    id="popover--39"
+    id="🅰40"
     role="dialog"
     style="position: fixed; visibility: visible; top: 0px; right: 1024px; bottom: 0px; left: 0px;"
   >
     Hello world
   </div>
   <button
-    aria-controls="popover--39"
+    aria-controls="🅰40"
     aria-expanded="true"
     aria-haspopup="dialog"
     style="display: block;"
@@ -1366,7 +1366,7 @@ exports[`<Trigger> should have openStyle and closedStyle: open 1`] = `
 exports[`usePopover() should return context 1`] = `
 Object {
   "close": [Function],
-  "id": "popover--43",
+  "id": "🅰44",
   "isOpen": false,
   "open": [Function],
   "placement": "bottom",
