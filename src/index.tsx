@@ -674,20 +674,16 @@ export interface CloseProps {
 
 export const Close: React.FC<CloseProps> = ({children}) => {
   const {close, isOpen, id} = usePopover()
-  const onClick = useCallback(
-    e => {
-      close()
-      children.props.onClick?.(e)
-    },
-    [close, children.props.onClick]
-  )
 
   return cloneElement(children, {
     'aria-controls': id,
     'aria-haspopup': 'dialog',
     'aria-expanded': String(isOpen),
     'aria-label': children.props['aria-label'] || 'Close',
-    onClick,
+    onClick: e => {
+      close()
+      children.props.onClick?.(e)
+    },
   })
 }
 
