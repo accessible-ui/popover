@@ -1,6 +1,6 @@
 {
   "name": "@accessible/popover",
-  "version": "3.1.4",
+  "version": "3.1.5",
   "homepage": "https://github.com/accessible-ui/popover#readme",
   "repository": "github:accessible-ui/popover",
   "bugs": "https://github.com/accessible-ui/popover/issues",
@@ -89,7 +89,7 @@
     "@accessible/button": "^1.0.2",
     "@accessible/use-conditional-focus": "^1.0.1",
     "@accessible/use-id": "^1.0.4",
-    "@accessible/use-keycode": "^2.0.0",
+    "@accessible/use-keycode": "^3.0.1",
     "@react-hook/merged-ref": "^1.0.8",
     "@react-hook/passive-layout-effect": "^1.0.2",
     "@react-hook/switch": "^1.0.4",

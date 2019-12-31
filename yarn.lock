@@ -38,6 +38,13 @@
   dependencies:
     "@react-hook/passive-layout-effect" "^1.0.2"
 
+"@accessible/use-keycode@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@accessible/use-keycode/-/use-keycode-3.0.1.tgz#0325eb1dd548fc0201de70c3a8fd2c748f826c51"
+  integrity sha512-JKrEj+reEP++2pszXUI8O3KoEQdUQKFiTNi7NbvdUjasEJVK+8tLGNo0De7URc3wzHgYdaMSxhml9tMGakx2sQ==
+  dependencies:
+    "@react-hook/passive-layout-effect" "^1.0.2"
+
 "@babel/cli@latest":
   version "7.7.5"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.7.5.tgz#25702cc65418efc06989af3727897b9f4c8690b6"
