@@ -687,11 +687,14 @@ export const Close: React.FC<CloseProps> = ({children}) => {
         'aria-haspopup': 'dialog',
         'aria-expanded': String(isOpen),
         'aria-label': children.props['aria-label'] || 'Close',
-        onClick: e => {
-          e.stopPropagation()
-          close()
-          children.props.onClick?.(e)
-        },
+        onClick: useCallback(
+          e => {
+            e.stopPropagation()
+            close()
+            children.props.onClick?.(e)
+          },
+          [close, children.props.onClick]
+        ),
       })}
     </Button>
   )
@@ -758,11 +761,14 @@ export const Trigger: React.FC<TriggerProps> = ({
       clsx(props.className, isOpen ? openClass : closedClass) || void 0,
     onClick: !isClickable
       ? props.onClick
-      : e => {
-          e.stopPropagation()
-          toggle()
-          props.onClick?.(e)
-        },
+      : useCallback(
+          e => {
+            e.stopPropagation()
+            toggle()
+            props.onClick?.(e)
+          },
+          [toggle, props.onClick]
+        ),
     onFocus: !isFocusable
       ? props.onFocus
       : e => {
