@@ -732,12 +732,15 @@ export const Trigger: React.FC<TriggerProps> = ({
       setTriggeredBy,
     } = usePopover(),
     prevOpen = useRef<boolean>(isOpen),
-    focusRef = useConditionalFocus(
-      prevOpen.current && !isOpen && on.indexOf('click') > -1,
-      true
-    ),
-    // @ts-ignore
-    ref = useMergedRef(children.ref, triggerRef, focusRef)
+    ref = useMergedRef(
+      // @ts-ignore
+      children.ref,
+      triggerRef,
+      useConditionalFocus(
+        prevOpen.current && !isOpen && on.indexOf('click') > -1,
+        true
+      )
+    )
 
   useEffect(() => {
     setTriggeredBy(on)
@@ -749,58 +752,47 @@ export const Trigger: React.FC<TriggerProps> = ({
     prevOpen.current = isOpen
   }, [isOpen])
 
-  // handles trigger events
-  useLayoutEffect(() => {
-    const {current} = triggerRef
-    if (current && on) {
-      const listeners: any[] = []
-      const addListener = (...args) => {
-        listeners.push(args)
-        // @ts-ignore
-        current.addEventListener(...args)
-      }
-
-      if (on.indexOf('hover') > -1) {
-        addListener('mouseenter', open)
-        addListener('mouseleave', close)
-      }
-
-      if (on.indexOf('focus') > -1) {
-        addListener('focus', open)
-      }
-
-      if (on.indexOf('click') > -1) {
-        addListener('click', e => {
-          e.stopPropagation()
-          toggle()
-        })
-      }
-
-      return () => {
-        // @ts-ignore
-        listeners.forEach(args => current.removeEventListener(...args))
-      }
-    }
-
-    return
-  }, [triggerRef.current, on, open, close, toggle])
-
+  const isClickable = on.indexOf('click') > -1
+  const isFocusable = on.indexOf('focus') > -1
+  const isHoverable = on.indexOf('hover') > -1
+  const props = children.props
   const child = cloneElement(children, {
     'aria-controls': id,
-    'aria-haspopup': 'dialog',
+    'aria-haspopup': props.hasOwnProperty('aria-haspopup')
+      ? props['aria-haspopup']
+      : 'dialog',
     'aria-expanded': String(isOpen),
     className:
-      clsx(children.props.className, isOpen ? openClass : closedClass) ||
-      void 0,
-    style: Object.assign(
-      {},
-      children.props.style,
-      isOpen ? openStyle : closedStyle
-    ),
+      clsx(props.className, isOpen ? openClass : closedClass) || void 0,
+    onClick: !isClickable
+      ? props.onClick
+      : e => {
+          props.onClick?.(e)
+          toggle()
+        },
+    onFocus: !isFocusable
+      ? props.onFocus
+      : e => {
+          props.onFocus?.(e)
+          open()
+        },
+    onMouseEnter: !isHoverable
+      ? props.onMouseEnter
+      : e => {
+          props.onMouseEnter?.(e)
+          open()
+        },
+    onMouseLeave: !isHoverable
+      ? props.onMouseLeave
+      : e => {
+          props.onMouseLeave?.(e)
+          close()
+        },
+    style: Object.assign({}, props.style, isOpen ? openStyle : closedStyle),
     ref,
   })
 
-  return on.indexOf('click') > -1 ? <Button>{child}</Button> : child
+  return isClickable ? <Button>{child}</Button> : child
 }
 
 const ScrollPositioner: React.FC<PopoverContainerProps> = props =>
