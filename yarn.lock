@@ -15,26 +15,19 @@
   resolved "https://registry.yarnpkg.com/@accessible/tabbable/-/tabbable-1.0.4.tgz#23ffe8264b9c25c5b30c799e2893ca6d7cb60c24"
   integrity sha512-tujs+H5E0K7XoHE5dmNZut9RwdQTt4gmxd3KgXtM5tosKFQvNtAagYCQF8JsWJ9vtgugjk7uPrjZyWiYYaW1JA==
 
-"@accessible/use-conditional-focus@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@accessible/use-conditional-focus/-/use-conditional-focus-1.0.0.tgz#8b1d4eed2e1232664782bafcd312f2b6b07c7cf6"
-  integrity sha512-VSHGPiTWKvpkSJkUSwefBfog8cX5Qt5yQ9T0i/i/94V0d5Y6ns0SePE1FAEMySRbVrl1P1flEmy6ozKvqjJ8ow==
+"@accessible/use-conditional-focus@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@accessible/use-conditional-focus/-/use-conditional-focus-1.0.1.tgz#8d4f18d57b3c7c76434b6767148e710f46554409"
+  integrity sha512-XniSYQhRDUt//cVlWDXBM/q2tat6PU+BcoT1eoliKaPo5fo7U+ZgNK4PddsYloCik0hq8xmEF/t6J7b3aHNlpQ==
   dependencies:
     "@accessible/tabbable" "^1.0.4"
     "@react-hook/passive-layout-effect" "^1.0.2"
     raf "^3.4.1"
 
-"@accessible/use-id@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@accessible/use-id/-/use-id-1.0.3.tgz#e2ce99584a3239c49ce6541ac9edec71724d0e87"
-  integrity sha512-a4YsYCZlOXNvQhSb1Zm2MgDdzdSJ+HqHQceF+EntyhjJ5YTv+jlxi7SQL5gZBqzMD6PmyyX4ogb1WT1IgNmfqA==
-  dependencies:
-    "@react-hook/passive-layout-effect" "^1.0.2"
-
-"@accessible/use-keycode@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@accessible/use-keycode/-/use-keycode-1.0.2.tgz#48c33e70d015fe2e3c8753a0433750b9e4ef6a26"
-  integrity sha512-lduCksS4x4AWZsG3XCcaAuEs9IkbJoWjDhA4wpzKXhnl2hMNdZnstdxHYnyu+nnq8V/dpuC9yopZ9uXaLoBUVQ==
+"@accessible/use-id@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@accessible/use-id/-/use-id-1.0.4.tgz#f15caa64319c72145d6cdceab46a4fb9389c9d95"
+  integrity sha512-QRyDKuK2GiIOM3fMdn5MfPBo/zALnHVZ901rh5s6Wi83XiGwQyGP06pmq0FBZBTb3ny5B/QOc0vIE8dyRsnjrg==
   dependencies:
     "@react-hook/passive-layout-effect" "^1.0.2"
 

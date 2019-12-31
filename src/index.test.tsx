@@ -140,7 +140,10 @@ describe('<Target>', () => {
     expect(result.asFragment()).toMatchSnapshot('closed initially')
     fireEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
-    fireEvent.keyUp(result.getByText('Hello world'), {key: 'Escape', which: 27})
+    fireEvent.keyDown(result.getByText('Hello world'), {
+      key: 'Escape',
+      which: 27,
+    })
     expect(result.asFragment()).toMatchSnapshot('closed')
   })
 
@@ -160,7 +163,10 @@ describe('<Target>', () => {
     expect(result.asFragment()).toMatchSnapshot('closed initially')
     fireEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
-    fireEvent.keyUp(result.getByText('Hello world'), {key: 'Escape', which: 27})
+    fireEvent.keyDown(result.getByText('Hello world'), {
+      key: 'Escape',
+      which: 27,
+    })
     expect(result.asFragment()).toMatchSnapshot('still open')
   })
 

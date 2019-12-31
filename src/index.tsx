@@ -13,7 +13,7 @@ import useSwitch from '@react-hook/switch'
 import useMergedRef from '@react-hook/merged-ref'
 import useWindowScroll from '@react-hook/window-scroll'
 import useId from '@accessible/use-id'
-import useKeycode from '@accessible/use-keycode'
+import {useKeycodes} from '@accessible/use-keycode'
 import useConditionalFocus from '@accessible/use-conditional-focus'
 import Button from '@accessible/button'
 import Portalize from 'react-portalize'
@@ -513,11 +513,20 @@ export const Target: React.FC<TargetProps> = ({
     triggeredBy,
     targetRef,
   } = usePopover()
-  // Closes the modal when escape is pressed
-  const keycodeRef = useKeycode(27, () => closeOnEscape && close())
-  const focusRef = useConditionalFocus(isOpen)
-  // @ts-ignore
-  const ref = useMergedRef(children.ref, targetRef, keycodeRef, focusRef)
+
+  const ref = useMergedRef(
+    // @ts-ignore
+    children.ref,
+    targetRef,
+    // Closes the modal when escape is pressed
+    useKeycodes(
+      useMemo(() => ({27: () => closeOnEscape && close()}), [
+        close,
+        closeOnEscape,
+      ])
+    ),
+    useConditionalFocus(isOpen)
+  )
   // handles repositioning the popover
   // Yes this is correct, it's useEffect, not useLayoutEffect
   // Just move on .
@@ -684,10 +693,13 @@ export const Close: React.FC<CloseProps> = ({children}) => {
         'aria-haspopup': 'dialog',
         'aria-expanded': String(isOpen),
         'aria-label': children.props['aria-label'] || 'Close',
-        onClick: e => {
-          close()
-          onClick?.(e)
-        },
+        onClick: useCallback(
+          e => {
+            close()
+            onClick?.(e)
+          },
+          [onClick, close]
+        ),
       })}
     </Button>
   )
