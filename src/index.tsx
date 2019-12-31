@@ -767,26 +767,27 @@ export const Trigger: React.FC<TriggerProps> = ({
     onClick: !isClickable
       ? props.onClick
       : e => {
-          props.onClick?.(e)
+          e.stopPropagation()
           toggle()
+          props.onClick?.(e)
         },
     onFocus: !isFocusable
       ? props.onFocus
       : e => {
-          props.onFocus?.(e)
           open()
+          props.onFocus?.(e)
         },
     onMouseEnter: !isHoverable
       ? props.onMouseEnter
       : e => {
-          props.onMouseEnter?.(e)
           open()
+          props.onMouseEnter?.(e)
         },
     onMouseLeave: !isHoverable
       ? props.onMouseLeave
       : e => {
-          props.onMouseLeave?.(e)
           close()
+          props.onMouseLeave?.(e)
         },
     style: Object.assign({}, props.style, isOpen ? openStyle : closedStyle),
     ref,
