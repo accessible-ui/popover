@@ -15,6 +15,7 @@ import useWindowScroll from '@react-hook/window-scroll'
 import useId from '@accessible/use-id'
 import useKeycode from '@accessible/use-keycode'
 import useConditionalFocus from '@accessible/use-conditional-focus'
+import Button from '@accessible/button'
 import Portalize from 'react-portalize'
 import clsx from 'clsx'
 
@@ -674,17 +675,22 @@ export interface CloseProps {
 
 export const Close: React.FC<CloseProps> = ({children}) => {
   const {close, isOpen, id} = usePopover()
+  const onClick = children.props.onClick
 
-  return cloneElement(children, {
-    'aria-controls': id,
-    'aria-haspopup': 'dialog',
-    'aria-expanded': String(isOpen),
-    'aria-label': children.props['aria-label'] || 'Close',
-    onClick: e => {
-      close()
-      children.props.onClick?.(e)
-    },
-  })
+  return (
+    <Button>
+      {cloneElement(children, {
+        'aria-controls': id,
+        'aria-haspopup': 'dialog',
+        'aria-expanded': String(isOpen),
+        'aria-label': children.props['aria-label'] || 'Close',
+        onClick: e => {
+          close()
+          onClick?.(e)
+        },
+      })}
+    </Button>
+  )
 }
 
 export interface TriggerProps {
@@ -767,7 +773,7 @@ export const Trigger: React.FC<TriggerProps> = ({
     return
   }, [triggerRef.current, on, open, close, toggle])
 
-  return cloneElement(children, {
+  const child = cloneElement(children, {
     'aria-controls': id,
     'aria-haspopup': 'dialog',
     'aria-expanded': String(isOpen),
@@ -781,6 +787,8 @@ export const Trigger: React.FC<TriggerProps> = ({
     ),
     ref,
   })
+
+  return on.indexOf('click') > -1 ? <Button>{child}</Button> : child
 }
 
 const ScrollPositioner: React.FC<PopoverContainerProps> = props =>

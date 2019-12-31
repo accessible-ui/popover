@@ -14,6 +14,12 @@ import {
   Placement,
 } from './index'
 
+const click_ = fireEvent.click
+fireEvent.click = (...args) => {
+  fireEvent.mouseDown(...args)
+  return click_(...args)
+}
+
 describe('<Popover>', () => {
   it('should have a custom id', () => {
     const result = render(

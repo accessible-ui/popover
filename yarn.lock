@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+"@accessible/button@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@accessible/button/-/button-1.0.2.tgz#92067ab0343bbd9d57bec4bbae65df7d71729a98"
+  integrity sha512-H2j5WeOhcUl5TixG/S36X+YWFYAlLgI6+0I0lEYSqF0wSPBhb6y6brPDw4avQAwv1QAvCyWpRyLYmZ1+sjDMpA==
+  dependencies:
+    "@accessible/use-keycode" "^2.0.0"
+    "@react-hook/merged-ref" "^1.0.8"
+
 "@accessible/tabbable@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@accessible/tabbable/-/tabbable-1.0.4.tgz#23ffe8264b9c25c5b30c799e2893ca6d7cb60c24"
@@ -27,6 +35,13 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@accessible/use-keycode/-/use-keycode-1.0.2.tgz#48c33e70d015fe2e3c8753a0433750b9e4ef6a26"
   integrity sha512-lduCksS4x4AWZsG3XCcaAuEs9IkbJoWjDhA4wpzKXhnl2hMNdZnstdxHYnyu+nnq8V/dpuC9yopZ9uXaLoBUVQ==
+  dependencies:
+    "@react-hook/passive-layout-effect" "^1.0.2"
+
+"@accessible/use-keycode@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@accessible/use-keycode/-/use-keycode-2.0.0.tgz#9fbaf02a9b345ffd86a62f231c30789c3860e237"
+  integrity sha512-pvcrkiMlRaCmh1luRlfSxdDKjElQiPNvaBmY1cibRopgBYXN94cqJXAequOn3cFWxsbhLVxfbdq+x/ocp5+q3w==
   dependencies:
     "@react-hook/passive-layout-effect" "^1.0.2"
 
