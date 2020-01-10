@@ -520,7 +520,7 @@ export const Target: React.FC<TargetProps> = ({
     targetRef,
     // Closes the modal when escape is pressed
     useKeycodes({27: () => closeOnEscape && close()}, [close, closeOnEscape]),
-    useConditionalFocus(isOpen)
+    useConditionalFocus(isOpen, true)
   )
   // handles repositioning the popover
   // Yes this is correct, it's useEffect, not useLayoutEffect
