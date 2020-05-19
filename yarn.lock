@@ -925,14 +925,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@essentials/request-timeout@^1.0.1":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@essentials/request-timeout/-/request-timeout-1.0.2.tgz#0fcb7d7ec186fcfc5f32685968407a2d51d6443d"
-  integrity sha512-P4pM8z1J9Ifj9SanjHyIuzV+AF/Ry6Coxm6foyza3aiDsweHME3t5sRrKv0ohpsmQLrmgt8XLlwFLPoAYLpq2Q==
-  dependencies:
-    performance-now "^2.1.0"
-    raf "^3.4.1"
-
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-24.9.0.tgz#79b1bc06fb74a8cfb01cbdedf945584b1b9707f0"
@@ -1126,12 +1118,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@react-hook/debounce@^1.0.6":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@react-hook/debounce/-/debounce-1.0.8.tgz#74727a13136062d62f87092b59e5fc0b1fe5a94a"
-  integrity sha512-WZ6NdUyUrJoLw+tx340pBAbU5x7tnHC6YL5NObqPY3+l5y4wx0SxlrFqrZ5UqEYtsIBPKiU75MDDTQMV8ePmTA==
-  dependencies:
-    "@essentials/request-timeout" "^1.0.1"
+"@react-hook/debounce@^2.0.3":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@react-hook/debounce/-/debounce-2.0.4.tgz#080c730ddecd3a479659ed8bfff30d9d9dd55cff"
+  integrity sha512-DZsB/0X+Q4WdB3M52j13v+BG40nxIKH8dl4W/spafvENIwMOl5BB2ShwEOCqtwYs2IflhiMi3m0PfPqk4ZANGg==
 
 "@react-hook/merged-ref@^1.0.8":
   version "1.0.8"
@@ -1148,27 +1138,25 @@
   resolved "https://registry.yarnpkg.com/@react-hook/switch/-/switch-1.0.4.tgz#b9a0340f0236ff0a728b0a1ec464e27ee35e9336"
   integrity sha512-dT9SHgxzh/mTkircH1c1JRBeJXLEfOBRbFWnndHYvOHMl1/hFzDiTpp72C8GRpZapqYLVtWuoAbiJdmWSv+a5A==
 
-"@react-hook/throttle@^1.0.7":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@react-hook/throttle/-/throttle-1.0.9.tgz#6cdd0cac14b5218e69b29b931eed220dfed09908"
-  integrity sha512-b9QCMP7gT3rubulW9bUyOyj4iI40MswAJ+Bps8wSkIanhwhvIWypL7fm0HgyQtsGIekY2E6kl0+lm9paPhBDKQ==
-  dependencies:
-    "@essentials/request-timeout" "^1.0.1"
+"@react-hook/throttle@^2.1.2", "@react-hook/throttle@^2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@react-hook/throttle/-/throttle-2.1.3.tgz#a55d22f13691657ad40115176382ff495ff35053"
+  integrity sha512-iDMSu6awo6oU9exUq74+1qDn9EnMr7S/tMzqp92VNqDc+C8NpW4a4pVaxBCIQLD8LkF8I0DiTD22waazREk6KQ==
 
-"@react-hook/window-scroll@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@react-hook/window-scroll/-/window-scroll-1.0.7.tgz#8a2d0ab5203f4d2ab7db38f4ae1925c520d1cbdb"
-  integrity sha512-sJwuFaaJHkaQ9CNg+4+EiPJaYlhDCGNoSsSrrsLxG7ZG2F1gi0pkHRojtXVvN28k6gEjMFTflmpi3R7kpkjqzQ==
+"@react-hook/window-scroll@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@react-hook/window-scroll/-/window-scroll-1.1.5.tgz#2f6ccf46e08149cb0425f19d66359a6f62895adf"
+  integrity sha512-quqkVeHOaecDuqkEo4poHC11MQ+yoIMV5/IsgY4N0kX+pDeUIEuS4I7ZCthYk+Lu8fMp2e8E5PLgnbj0OHkC5g==
   dependencies:
-    "@react-hook/throttle" "^1.0.7"
+    "@react-hook/throttle" "^2.1.2"
 
-"@react-hook/window-size@^1.0.12":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@react-hook/window-size/-/window-size-1.0.12.tgz#feffac908e1c0a7aa32fe5db7be262dd0dadefb4"
-  integrity sha512-Z2IlQmbCQ7fsLCvn6GnIFFE5Evz+nz1CjC0d+ZDjFnX3pfCJCLc0TlzwSDDOrjYLvqkTC29FUF6wDT6lfbyxzg==
+"@react-hook/window-size@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@react-hook/window-size/-/window-size-2.0.5.tgz#d9a37991589d4ce1276e33867b54bf6e1e6d147f"
+  integrity sha512-IyLAsYm/OpF5Syq5A3fMPVcFDY9ar7QqCUtaTk3h6dI/RqOFjVDShhKxA4Yl71mX9Y6z6Yw4QTPewIBhkGKRfQ==
   dependencies:
-    "@react-hook/debounce" "^1.0.6"
-    "@react-hook/throttle" "^1.0.7"
+    "@react-hook/debounce" "^2.0.3"
+    "@react-hook/throttle" "^2.1.2"
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"

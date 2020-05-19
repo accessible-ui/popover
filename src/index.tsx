@@ -35,16 +35,18 @@ interface StyleRect {
   left: number | 'auto'
 }
 
+const auto = 'auto'
+
 const centerXPos = (triggerRect, popoverRect) => ({
-  left: 'auto',
   right:
     windowWidth() -
     triggerRect.right -
     (popoverRect.width - triggerRect.width) / 2,
+  left: auto,
 })
 
 const centerYPos = (triggerRect, popoverRect) => ({
-  top: 'auto',
+  top: auto,
   bottom:
     windowHeight() -
     triggerRect.bottom -
@@ -52,43 +54,43 @@ const centerYPos = (triggerRect, popoverRect) => ({
 })
 
 const startXInnerPos = triggerRect => ({
+  right: auto,
   left: triggerRect.left,
-  right: 'auto',
 })
 
 const startXOuterPos = triggerRect => ({
-  left: 'auto',
   right: windowWidth() - triggerRect.left,
+  left: auto,
 })
 
 const endXOuterPos = triggerRect => ({
+  right: auto,
   left: triggerRect.right,
-  right: 'auto',
 })
 
 const endXInnerPos = triggerRect => ({
-  left: 'auto',
   right: windowWidth() - triggerRect.right,
+  left: auto,
 })
 
 const startYInnerPos = triggerRect => ({
   top: triggerRect.top,
-  bottom: 'auto',
+  bottom: auto,
 })
 
 const startYOuterPos = triggerRect => ({
-  top: 'auto',
+  top: auto,
   bottom: windowHeight() - triggerRect.top,
 })
 
 const endYInnerPos = triggerRect => ({
-  top: 'auto',
+  top: auto,
   bottom: windowHeight() - triggerRect.bottom,
 })
 
 const endYOuterPos = triggerRect => ({
   top: triggerRect.bottom,
-  bottom: 'auto',
+  bottom: auto,
 })
 
 const centerXRect = (triggerRect, popoverRect) => {
@@ -106,22 +108,22 @@ const startXOuterRect = (triggerRect, popoverRect) => ({
 })
 
 const endXOuterRect = (triggerRect, popoverRect) => ({
-  left: triggerRect.right,
   right: triggerRect.right + popoverRect.width,
+  left: triggerRect.right,
 })
 
 const centerYRect = (triggerRect, popoverRect) => {
   const bottom =
     popoverRect.height / 2 - triggerRect.height / 2 + triggerRect.bottom
   return {
-    bottom,
     top: bottom - popoverRect.height,
+    bottom,
   }
 }
 
 const startYOuterRect = (triggerRect, popoverRect) => ({
-  bottom: triggerRect.top,
   top: triggerRect.top - popoverRect.height,
+  bottom: triggerRect.top,
 })
 
 const endYOuterRect = (triggerRect, popoverRect) => ({
@@ -130,8 +132,8 @@ const endYOuterRect = (triggerRect, popoverRect) => ({
 })
 
 const startXInnerRect = (triggerRect, popoverRect) => ({
-  left: triggerRect.left,
   right: triggerRect.left + popoverRect.width,
+  left: triggerRect.left,
 })
 
 const endXInnerRect = (triggerRect, popoverRect) => ({
@@ -145,8 +147,8 @@ const startYInnerRect = (triggerRect, popoverRect) => ({
 })
 
 const endYInnerRect = (triggerRect, popoverRect) => ({
-  bottom: triggerRect.bottom,
   top: triggerRect.bottom - popoverRect.height,
+  bottom: triggerRect.bottom,
 })
 
 const assignY = (a, b) => {
@@ -165,26 +167,36 @@ const idealRects: Record<
   string,
   (triggerRect: ClientRect, popoverRect: ClientRect) => StyleRect
 > = {}
-idealFn('top', centerXRect, startYOuterRect)
-idealFn('topLeft', startXInnerRect, startYOuterRect)
-idealFn('topRight', endXInnerRect, startYOuterRect)
-idealFn('right', endXOuterRect, centerYRect)
-idealFn('rightTop', endXOuterRect, startYInnerRect)
-idealFn('rightBottom', endXOuterRect, endYInnerRect)
-idealFn('bottom', centerXRect, endYOuterRect)
-idealFn('bottomLeft', startXInnerRect, endYOuterRect)
-idealFn('bottomRight', endXInnerRect, endYOuterRect)
-idealFn('left', startXOuterRect, centerYRect)
-idealFn('leftTop', startXOuterRect, startYInnerRect)
-idealFn('leftBottom', startXOuterRect, endYInnerRect)
-idealFn('innerLeft', startXInnerRect, centerYRect)
-idealFn('innerRight', endXInnerRect, centerYRect)
-idealFn('innerTop', centerXRect, startYInnerRect)
-idealFn('innerTopLeft', startXInnerRect, startYInnerRect)
-idealFn('innerTopRight', endXInnerRect, startYInnerRect)
-idealFn('innerBottom', centerXRect, endYInnerRect)
-idealFn('innerBottomLeft', startXInnerRect, endYInnerRect)
-idealFn('innerBottomRight', endXInnerRect, endYInnerRect)
+
+const inner = 'inner'
+const top = 'top'
+const right = 'right'
+const bottom = 'bottom'
+const left = 'left'
+const Top = 'Top'
+const Right = 'Right'
+const Bottom = 'Bottom'
+const Left = 'Left'
+idealFn(top, centerXRect, startYOuterRect)
+idealFn(top + Left, startXInnerRect, startYOuterRect)
+idealFn(top + Right, endXInnerRect, startYOuterRect)
+idealFn(right, endXOuterRect, centerYRect)
+idealFn(right + Top, endXOuterRect, startYInnerRect)
+idealFn(right + Bottom, endXOuterRect, endYInnerRect)
+idealFn(bottom, centerXRect, endYOuterRect)
+idealFn(bottom + Left, startXInnerRect, endYOuterRect)
+idealFn(bottom + Right, endXInnerRect, endYOuterRect)
+idealFn(left, startXOuterRect, centerYRect)
+idealFn(left + Top, startXOuterRect, startYInnerRect)
+idealFn(left + Bottom, startXOuterRect, endYInnerRect)
+idealFn(inner + Left, startXInnerRect, centerYRect)
+idealFn(inner + Right, endXInnerRect, centerYRect)
+idealFn(inner + Top, centerXRect, startYInnerRect)
+idealFn(inner + Top + Left, startXInnerRect, startYInnerRect)
+idealFn(inner + Top + Right, endXInnerRect, startYInnerRect)
+idealFn(inner + Bottom, centerXRect, endYInnerRect)
+idealFn(inner + Bottom + Left, startXInnerRect, endYInnerRect)
+idealFn(inner + Bottom + Right, endXInnerRect, endYInnerRect)
 idealFn('center', centerXRect, centerYRect)
 
 const contain = (placement: string) => (
@@ -811,7 +823,9 @@ const ScrollPositioner: React.FC<PopoverContainerProps> = props =>
 
 const ResizePositioner: React.FC<PopoverContainerProps> = props => {
   props = Object.assign({}, props)
-  props.windowSize = useWindowSize(1280, 720, {
+  props.windowSize = useWindowSize({
+    initialWidth: 1280,
+    initialHeight: 720,
     fps:
       props.repositionOnResize === true
         ? 60
