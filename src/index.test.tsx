@@ -2,6 +2,7 @@
 import React from 'react'
 import {renderHook} from '@testing-library/react-hooks'
 import {render, fireEvent, cleanup} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import {
   Popover,
   Trigger,
@@ -13,12 +14,6 @@ import {
   useIsOpen,
   Placement,
 } from './index'
-
-const click_ = fireEvent.click
-fireEvent.click = (...args) => {
-  fireEvent.mouseDown(...args)
-  return click_(...args)
-}
 
 describe('<Popover>', () => {
   it('should have a custom id', () => {
@@ -42,7 +37,7 @@ describe('<Popover>', () => {
 
     render(
       <Popover>
-        {context => {
+        {(context) => {
           cxt = context
           return <div />
         }}
@@ -68,9 +63,9 @@ describe('<Target>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot('closed initially')
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('closed')
   })
 
@@ -138,7 +133,7 @@ describe('<Target>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot('closed initially')
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
     fireEvent.keyDown(result.getByText('Hello world'), {
       key: 'Escape',
@@ -161,7 +156,7 @@ describe('<Target>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot('closed initially')
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
     fireEvent.keyDown(result.getByText('Hello world'), {
       key: 'Escape',
@@ -184,7 +179,7 @@ describe('<Target>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot()
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
   })
 
@@ -202,7 +197,7 @@ describe('<Target>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot()
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
   })
 
@@ -220,7 +215,7 @@ describe('<Target>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot()
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
   })
 
@@ -238,7 +233,7 @@ describe('<Target>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot()
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
   })
 
@@ -256,7 +251,7 @@ describe('<Target>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot('initially open')
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('closed')
   })
 
@@ -274,7 +269,7 @@ describe('<Target>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot('initially open')
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('still open')
 
     result.rerender(
@@ -290,7 +285,7 @@ describe('<Target>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot('closed')
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('still closed')
   })
 
@@ -311,7 +306,7 @@ describe('<Target>', () => {
       </Popover>
     )
 
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.baseElement).toMatchSnapshot()
     document.body.removeChild(portalRoot)
   })
@@ -333,7 +328,7 @@ describe('<Target>', () => {
       </Popover>
     )
 
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.baseElement).toMatchSnapshot()
     document.body.removeChild(portalRoot)
   })
@@ -355,7 +350,7 @@ describe('<Target>', () => {
       </Popover>
     )
 
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.baseElement).toMatchSnapshot()
     document.body.removeChild(portalRoot)
   })
@@ -385,7 +380,7 @@ describe('<Target>', () => {
       'center',
     ]
 
-    for (const placement of placements) {
+    placements.forEach((placement) => {
       const result = render(
         <Popover open>
           <Target placement={placement as Placement}>
@@ -393,15 +388,15 @@ describe('<Target>', () => {
           </Target>
 
           <Trigger on="click">
-            <button>popover me</button>
+            <button data-testid="popover">popover me</button>
           </Trigger>
         </Popover>
       )
 
-      fireEvent.click(result.getByText('popover me'))
+      userEvent.click(result.getByTestId('popover'))
       expect(result.baseElement).toMatchSnapshot(placement)
       cleanup()
-    }
+    })
   })
 })
 
@@ -432,7 +427,7 @@ describe('<Trigger>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot()
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
   })
 
@@ -454,7 +449,7 @@ describe('<Trigger>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot()
-    fireEvent.click(result.getByText('popover me'))
+    userEvent.click(result.getByText('popover me'))
     expect(result.asFragment()).toMatchSnapshot('open')
   })
 })
@@ -479,7 +474,7 @@ describe('<Close>', () => {
     )
 
     expect(result.asFragment()).toMatchSnapshot()
-    fireEvent.click(result.getByTestId('close'))
+    userEvent.click(result.getByTestId('close'))
     expect(result.asFragment()).toMatchSnapshot('closed')
   })
 })

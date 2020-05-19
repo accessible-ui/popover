@@ -53,42 +53,42 @@ const centerYPos = (triggerRect, popoverRect) => ({
     (popoverRect.height - triggerRect.height) / 2,
 })
 
-const startXInnerPos = triggerRect => ({
+const startXInnerPos = (triggerRect) => ({
   right: auto,
   left: triggerRect.left,
 })
 
-const startXOuterPos = triggerRect => ({
+const startXOuterPos = (triggerRect) => ({
   right: windowWidth() - triggerRect.left,
   left: auto,
 })
 
-const endXOuterPos = triggerRect => ({
+const endXOuterPos = (triggerRect) => ({
   right: auto,
   left: triggerRect.right,
 })
 
-const endXInnerPos = triggerRect => ({
+const endXInnerPos = (triggerRect) => ({
   right: windowWidth() - triggerRect.right,
   left: auto,
 })
 
-const startYInnerPos = triggerRect => ({
+const startYInnerPos = (triggerRect) => ({
   top: triggerRect.top,
   bottom: auto,
 })
 
-const startYOuterPos = triggerRect => ({
+const startYOuterPos = (triggerRect) => ({
   top: auto,
   bottom: windowHeight() - triggerRect.top,
 })
 
-const endYInnerPos = triggerRect => ({
+const endYInnerPos = (triggerRect) => ({
   top: auto,
   bottom: windowHeight() - triggerRect.bottom,
 })
 
-const endYOuterPos = triggerRect => ({
+const endYOuterPos = (triggerRect) => ({
   top: triggerRect.bottom,
   bottom: auto,
 })
@@ -398,7 +398,7 @@ const setPlacementStyle = (
   popover,
   containPolicy
 ): PlacementState | ((prev: PlacementState) => PlacementState) => {
-  if (!trigger || !popover) return prev => prev
+  if (!trigger || !popover) return (prev) => prev
 
   let result = {},
     placement = requestedPlacement
@@ -614,7 +614,7 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
         requestedPlacement: 'bottom',
       }),
       reposition = useCallback(
-        nextPlacement => {
+        (nextPlacement) => {
           setState(
             setPlacementStyle(
               nextPlacement,
@@ -700,7 +700,7 @@ export const Close: React.FC<CloseProps> = ({children}) => {
         'aria-expanded': String(isOpen),
         'aria-label': children.props['aria-label'] || 'Close',
         onClick: useCallback(
-          e => {
+          (e) => {
             e.stopPropagation()
             close()
             children.props.onClick?.(e)
@@ -774,7 +774,7 @@ export const Trigger: React.FC<TriggerProps> = ({
     onClick: !isClickable
       ? props.onClick
       : useCallback(
-          e => {
+          (e) => {
             e.stopPropagation()
             toggle()
             props.onClick?.(e)
@@ -783,19 +783,19 @@ export const Trigger: React.FC<TriggerProps> = ({
         ),
     onFocus: !isFocusable
       ? props.onFocus
-      : e => {
+      : (e) => {
           open()
           props.onFocus?.(e)
         },
     onMouseEnter: !isHoverable
       ? props.onMouseEnter
-      : e => {
+      : (e) => {
           open()
           props.onMouseEnter?.(e)
         },
     onMouseLeave: !isHoverable
       ? props.onMouseLeave
-      : e => {
+      : (e) => {
           close()
           props.onMouseLeave?.(e)
         },
@@ -806,7 +806,7 @@ export const Trigger: React.FC<TriggerProps> = ({
   return isClickable ? <Button>{child}</Button> : child
 }
 
-const ScrollPositioner: React.FC<PopoverContainerProps> = props =>
+const ScrollPositioner: React.FC<PopoverContainerProps> = (props) =>
   React.createElement(
     PopoverContainer,
     Object.assign(
@@ -821,7 +821,7 @@ const ScrollPositioner: React.FC<PopoverContainerProps> = props =>
     )
   )
 
-const ResizePositioner: React.FC<PopoverContainerProps> = props => {
+const ResizePositioner: React.FC<PopoverContainerProps> = (props) => {
   props = Object.assign({}, props)
   props.windowSize = useWindowSize({
     initialWidth: 1280,
