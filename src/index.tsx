@@ -847,6 +847,7 @@ export interface PopoverProps {
   repositionOnResize?: boolean
   repositionOnScroll?: boolean
   containPolicy?: ContainPolicy
+  onChange?: (isOpen: boolean) => void
   children:
     | React.ReactChild
     | React.ReactChild[]
@@ -862,10 +863,17 @@ export const Popover: React.FC<PopoverProps> = ({
   repositionOnResize = false,
   repositionOnScroll = false,
   containPolicy = 'flip',
+  onChange,
   children,
 }) => {
   const [isOpen_, toggle] = useSwitch(defaultOpen)
+  const didMount = useRef<undefined | boolean>()
   id = useId(id)
+
+  useLayoutEffect(() => {
+    onChange?.(isOpen_)
+    didMount.current = true
+  }, [isOpen_])
 
   return React.createElement(
     repositionOnResize
