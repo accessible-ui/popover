@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@accessible/button@^1.0.2":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@accessible/button/-/button-1.0.3.tgz#1164b640073b48200aa272251cb90cbbbf44219b"
-  integrity sha512-jUhHyFKhqWenFMU4az/Ve9+Qm9S7DKel5AYoGnhQ24Rq0tkeyOZC88DX4UFQ5Rupjs3KK9xpe9MGC5QRrd9m/w==
+"@accessible/button@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@accessible/button/-/button-1.0.4.tgz#f9acdf4ba4385bd5109d2b10466c0eaef507c91e"
+  integrity sha512-VpPVxzSXhhhihqmYYWIes+4enoIXxWqIBSWPDrjgYmP6D2jS2em+hy7aOnM+0a3+E3PmhVnCvTFui5RGqZ4UtA==
   dependencies:
-    "@accessible/use-keycode" "^3.0.1"
+    "@accessible/use-keycode" "^4.0.0"
     "@react-hook/merged-ref" "^1.0.8"
 
 "@accessible/tabbable@^1.0.4":
@@ -31,10 +31,10 @@
   dependencies:
     "@react-hook/passive-layout-effect" "^1.0.2"
 
-"@accessible/use-keycode@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@accessible/use-keycode/-/use-keycode-3.0.1.tgz#0325eb1dd548fc0201de70c3a8fd2c748f826c51"
-  integrity sha512-JKrEj+reEP++2pszXUI8O3KoEQdUQKFiTNi7NbvdUjasEJVK+8tLGNo0De7URc3wzHgYdaMSxhml9tMGakx2sQ==
+"@accessible/use-keycode@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@accessible/use-keycode/-/use-keycode-4.0.0.tgz#748fd434fabd5d2f2ff25ce88c8f37c0b4b8fcd5"
+  integrity sha512-Afv2fUNw80rz0KkJngD1yKbuTkNlFGXhbVPrpocugzqgNIcE+K667g1U7bj4KDaTjRNWqrQOOPgWkBPrnyp7rg==
   dependencies:
     "@react-hook/passive-layout-effect" "^1.0.2"
 
@@ -1265,10 +1265,15 @@
   resolved "https://registry.yarnpkg.com/@react-hook/switch/-/switch-1.0.4.tgz#b9a0340f0236ff0a728b0a1ec464e27ee35e9336"
   integrity sha512-dT9SHgxzh/mTkircH1c1JRBeJXLEfOBRbFWnndHYvOHMl1/hFzDiTpp72C8GRpZapqYLVtWuoAbiJdmWSv+a5A==
 
-"@react-hook/throttle@^2.1.2", "@react-hook/throttle@^2.1.3":
+"@react-hook/throttle@^2.1.2":
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/@react-hook/throttle/-/throttle-2.1.3.tgz#a55d22f13691657ad40115176382ff495ff35053"
   integrity sha512-iDMSu6awo6oU9exUq74+1qDn9EnMr7S/tMzqp92VNqDc+C8NpW4a4pVaxBCIQLD8LkF8I0DiTD22waazREk6KQ==
+
+"@react-hook/throttle@^2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@react-hook/throttle/-/throttle-2.1.4.tgz#72e715f696e9a13fe2de8c762ba9e8c512716db6"
+  integrity sha512-ePn7Agti1hVUHYjONrK2thTfCMXmuzkZaJN6dBMrYb3zPbT83CaLB4gHJSAoWcffimgPyLhR/xLomvZrXCRedA==
 
 "@react-hook/window-scroll@^1.1.5":
   version "1.1.5"

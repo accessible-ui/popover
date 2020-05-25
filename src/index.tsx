@@ -531,7 +531,7 @@ export const Target: React.FC<TargetProps> = ({
     children.ref,
     targetRef,
     // Closes the modal when escape is pressed
-    useKeycodes({27: () => closeOnEscape && close()}, [close, closeOnEscape]),
+    useKeycodes({27: () => closeOnEscape && close()}),
     useConditionalFocus(isOpen, true)
   )
   // handles repositioning the popover
