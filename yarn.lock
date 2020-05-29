@@ -15,14 +15,14 @@
   resolved "https://registry.yarnpkg.com/@accessible/tabbable/-/tabbable-1.0.4.tgz#23ffe8264b9c25c5b30c799e2893ca6d7cb60c24"
   integrity sha512-tujs+H5E0K7XoHE5dmNZut9RwdQTt4gmxd3KgXtM5tosKFQvNtAagYCQF8JsWJ9vtgugjk7uPrjZyWiYYaW1JA==
 
-"@accessible/use-conditional-focus@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@accessible/use-conditional-focus/-/use-conditional-focus-1.0.1.tgz#8d4f18d57b3c7c76434b6767148e710f46554409"
-  integrity sha512-XniSYQhRDUt//cVlWDXBM/q2tat6PU+BcoT1eoliKaPo5fo7U+ZgNK4PddsYloCik0hq8xmEF/t6J7b3aHNlpQ==
+"@accessible/use-conditional-focus@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@accessible/use-conditional-focus/-/use-conditional-focus-2.1.1.tgz#f681568d1cfe6b616f0d1fe045bd64c286d8d009"
+  integrity sha512-8LGm+VvM4iLh5/m6U0umWhw2HGYPi8Yq/+I1G7o4As74KDLmHhlnjrt0ibsJHSmq1M+MKUBvza+lPoHWXzdmHA==
   dependencies:
     "@accessible/tabbable" "^1.0.4"
+    "@essentials/raf" "^1.1.3"
     "@react-hook/passive-layout-effect" "^1.0.2"
-    raf "^3.4.1"
 
 "@accessible/use-id@^1.0.4":
   version "1.0.4"
@@ -37,6 +37,13 @@
   integrity sha512-Afv2fUNw80rz0KkJngD1yKbuTkNlFGXhbVPrpocugzqgNIcE+K667g1U7bj4KDaTjRNWqrQOOPgWkBPrnyp7rg==
   dependencies:
     "@react-hook/passive-layout-effect" "^1.0.2"
+
+"@accessible/use-keycode@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@accessible/use-keycode/-/use-keycode-4.0.1.tgz#1768a4a5615c2e8260d348327fd8e1a54edae927"
+  integrity sha512-QmaiGzfdB4eTDvUzKK1OZAfBlEyjY4tNuE27eysyWf5eLHQXulNOdkv3M6kVMjWUtPjZEI0c2XQLTl9yWJs5pQ==
+  dependencies:
+    "@react-hook/event" "^1.0.3"
 
 "@babel/cli@latest":
   version "7.8.4"
@@ -1021,6 +1028,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@essentials/raf@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@essentials/raf/-/raf-1.1.3.tgz#0ed3d95ce7c59ffb7a4c2bd77e9e3301466b42fc"
+  integrity sha512-2pnbJu6M2agYKPhnD2lqRxLGG4GOfMFxIePw0WoIDmuTmnfrCoIJp9RlgDhVhbOGHXiQHARdrvGeiHgC3B5YnA==
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.0.0.tgz#10602de5570baea82f8afbfa2630b24e7a8cfe5b"
@@ -1250,12 +1262,19 @@
   resolved "https://registry.yarnpkg.com/@react-hook/debounce/-/debounce-2.0.4.tgz#080c730ddecd3a479659ed8bfff30d9d9dd55cff"
   integrity sha512-DZsB/0X+Q4WdB3M52j13v+BG40nxIKH8dl4W/spafvENIwMOl5BB2ShwEOCqtwYs2IflhiMi3m0PfPqk4ZANGg==
 
-"@react-hook/merged-ref@^1.0.8":
+"@react-hook/event@^1.0.3", "@react-hook/event@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@react-hook/event/-/event-1.1.0.tgz#c25034160ded4652d679b3994c96118057dc8d0b"
+  integrity sha512-jaVePoJXqQtQE4umQifLz+Uom4yC5GYTd5K/LrUVRnu0iMXtoIU5qiN4WIVwE6304P9VcBJTcMKtB/5iCC7brg==
+  dependencies:
+    "@react-hook/passive-layout-effect" "^1.0.3"
+
+"@react-hook/merged-ref@^1.0.8", "@react-hook/merged-ref@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@react-hook/merged-ref/-/merged-ref-1.1.1.tgz#8632979c27f355e1124d824370d360be50eeb135"
   integrity sha512-7NL2ufs37s3uPFMOSgTNjkSDXtz1HLvHeDYLmNLItbmFDrCZyu97B7lL+oNPfg4c/Rgi0YqqShvDj5mmpJeJAw==
 
-"@react-hook/passive-layout-effect@^1.0.2":
+"@react-hook/passive-layout-effect@^1.0.2", "@react-hook/passive-layout-effect@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@react-hook/passive-layout-effect/-/passive-layout-effect-1.0.3.tgz#55faac3bce2ad2b4a12eb0c6a52903da32fdc006"
   integrity sha512-VFUvBBSYWRigI/YhMRp28tncMWYVgzsUdmdIdZyJ3CpKgj5sLmm4RmJdIoKIfWO/WRX5XQ+83GW2E6VmqTHZ3g==
@@ -1275,19 +1294,21 @@
   resolved "https://registry.yarnpkg.com/@react-hook/throttle/-/throttle-2.1.4.tgz#72e715f696e9a13fe2de8c762ba9e8c512716db6"
   integrity sha512-ePn7Agti1hVUHYjONrK2thTfCMXmuzkZaJN6dBMrYb3zPbT83CaLB4gHJSAoWcffimgPyLhR/xLomvZrXCRedA==
 
-"@react-hook/window-scroll@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@react-hook/window-scroll/-/window-scroll-1.1.5.tgz#2f6ccf46e08149cb0425f19d66359a6f62895adf"
-  integrity sha512-quqkVeHOaecDuqkEo4poHC11MQ+yoIMV5/IsgY4N0kX+pDeUIEuS4I7ZCthYk+Lu8fMp2e8E5PLgnbj0OHkC5g==
+"@react-hook/window-scroll@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@react-hook/window-scroll/-/window-scroll-1.2.3.tgz#0e418c1497aa403704d148f7dd556b55ca637fe3"
+  integrity sha512-KTjPkD5KRKTGPfk/gLYQJ575sPWN9+NFicAqjAiXDsXlRGHManppAlc+x5ohOc1jCjIsoco8rsByIIGPIXYS7A==
   dependencies:
+    "@react-hook/event" "^1.1.0"
     "@react-hook/throttle" "^2.1.2"
 
-"@react-hook/window-size@^2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@react-hook/window-size/-/window-size-2.0.5.tgz#d9a37991589d4ce1276e33867b54bf6e1e6d147f"
-  integrity sha512-IyLAsYm/OpF5Syq5A3fMPVcFDY9ar7QqCUtaTk3h6dI/RqOFjVDShhKxA4Yl71mX9Y6z6Yw4QTPewIBhkGKRfQ==
+"@react-hook/window-size@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@react-hook/window-size/-/window-size-2.1.1.tgz#4254b804facaa002aae9b01bb04eabd931ffd2f4"
+  integrity sha512-W9qr9kUt5pJU82XWUBxcGc2P2kFJPB3xSqmwanFKhiih26y7PmRUa01ZnaARyHZwrmfP/MQGEXBTliCgXc7Gfg==
   dependencies:
     "@react-hook/debounce" "^2.0.3"
+    "@react-hook/event" "^1.1.0"
     "@react-hook/throttle" "^2.1.2"
 
 "@samverschueren/stream-to-observable@^0.3.0":
@@ -1859,15 +1880,6 @@ babel-plugin-optimize-react@^0.0.4:
   resolved "https://registry.yarnpkg.com/babel-plugin-optimize-react/-/babel-plugin-optimize-react-0.0.4.tgz#6326ac8f0f77e3fa3e8195b4d998287d47877c65"
   integrity sha512-I3o7GW66dIpXraND0ZAYXEDQ/wOiuefUQqn1PZZcub2flREANb2NXejL52iTMUWtKM++lu5OasVtZewn+WvkNg==
 
-babel-plugin-typescript-to-proptypes@^1.1.0:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/babel-plugin-typescript-to-proptypes/-/babel-plugin-typescript-to-proptypes-1.3.2.tgz#e57e88286be0e50a7596161fcfed62c04b6bc270"
-  integrity sha512-aoeJaO1OChCME0ZoLHc5k63RGwf1wBe7cfZ8zmRqbA/BX3nUbEnXLk5qWmrTQpdQxNa1v1BkF0395EJGCDb0yQ==
-  dependencies:
-    "@babel/helper-module-imports" "^7.8.3"
-    "@babel/helper-plugin-utils" "^7.8.3"
-    "@babel/plugin-syntax-typescript" "^7.8.3"
-
 babel-preset-current-node-syntax@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/babel-preset-current-node-syntax/-/babel-preset-current-node-syntax-0.1.2.tgz#fb4a4c51fe38ca60fede1dc74ab35eb843cb41d6"
@@ -2166,7 +2178,7 @@ clone@^1.0.2:
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
 
-clsx@^1.0.4:
+clsx@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.0.tgz#62937c6adfea771247c34b54d320fb99624f5702"
   integrity sha512-3avwM37fSK5oP6M5rQ9CNe99lwxhXDOeSWVPAOYF6OazUTgZCMb0yWlJpmdD74REy1gkEaFiub2ULv4fq9GUhA==
@@ -4995,13 +5007,6 @@ qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
-
-raf@^3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
-  integrity sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==
-  dependencies:
-    performance-now "^2.1.0"
 
 react-dom@^16.13.1:
   version "16.13.1"

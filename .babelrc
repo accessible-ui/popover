@@ -13,7 +13,7 @@
       }
     ]
   ],
-  "plugins": ["typescript-to-proptypes", "optimize-react"],
+  "plugins": ["optimize-react"],
   "env": {
     "es": {
       "presets": [
