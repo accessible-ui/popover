@@ -396,6 +396,7 @@ describe('<Target>', () => {
       userEvent.click(result.getByTestId('popover'))
       expect(result.baseElement).toMatchSnapshot(placement)
       cleanup()
+      document.getElementsByTagName('html')[0].innerHTML = ''
     })
   })
 })

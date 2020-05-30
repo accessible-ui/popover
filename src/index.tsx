@@ -1,12 +1,4 @@
-import React, {
-  cloneElement,
-  useRef,
-  useEffect,
-  useContext,
-  useState,
-  useCallback,
-  useMemo,
-} from 'react'
+import * as React from 'react'
 import useWindowSize from '@react-hook/window-size/throttled'
 import useLayoutEffect from '@react-hook/passive-layout-effect'
 import useSwitch from '@react-hook/switch'
@@ -28,16 +20,24 @@ const windowWidth = (): number =>
 const windowHeight = (): number =>
   window.innerHeight || document.documentElement.clientHeight
 
-interface StyleRect {
-  top: number | 'auto'
+interface StyleRectX {
   right: number | 'auto'
-  bottom: number | 'auto'
   left: number | 'auto'
 }
 
+interface StyleRectY {
+  top: number | 'auto'
+  bottom: number | 'auto'
+}
+
+interface StyleRect extends StyleRectX, StyleRectY {}
+
 const auto = 'auto'
 
-const centerXPos = (triggerRect, popoverRect) => ({
+const centerXPos = (
+  triggerRect: ClientRect,
+  popoverRect: ClientRect
+): StyleRectX => ({
   right:
     windowWidth() -
     triggerRect.right -
@@ -45,7 +45,10 @@ const centerXPos = (triggerRect, popoverRect) => ({
   left: auto,
 })
 
-const centerYPos = (triggerRect, popoverRect) => ({
+const centerYPos = (
+  triggerRect: ClientRect,
+  popoverRect: ClientRect
+): StyleRectY => ({
   top: auto,
   bottom:
     windowHeight() -
@@ -53,47 +56,50 @@ const centerYPos = (triggerRect, popoverRect) => ({
     (popoverRect.height - triggerRect.height) / 2,
 })
 
-const startXInnerPos = (triggerRect) => ({
+const startXInnerPos = (triggerRect: ClientRect): StyleRectX => ({
   right: auto,
   left: triggerRect.left,
 })
 
-const startXOuterPos = (triggerRect) => ({
+const startXOuterPos = (triggerRect: ClientRect): StyleRectX => ({
   right: windowWidth() - triggerRect.left,
   left: auto,
 })
 
-const endXOuterPos = (triggerRect) => ({
+const endXOuterPos = (triggerRect: ClientRect): StyleRectX => ({
   right: auto,
   left: triggerRect.right,
 })
 
-const endXInnerPos = (triggerRect) => ({
+const endXInnerPos = (triggerRect: ClientRect): StyleRectX => ({
   right: windowWidth() - triggerRect.right,
   left: auto,
 })
 
-const startYInnerPos = (triggerRect) => ({
+const startYInnerPos = (triggerRect: ClientRect): StyleRectY => ({
   top: triggerRect.top,
   bottom: auto,
 })
 
-const startYOuterPos = (triggerRect) => ({
+const startYOuterPos = (triggerRect: ClientRect): StyleRectY => ({
   top: auto,
   bottom: windowHeight() - triggerRect.top,
 })
 
-const endYInnerPos = (triggerRect) => ({
+const endYInnerPos = (triggerRect: ClientRect): StyleRectY => ({
   top: auto,
   bottom: windowHeight() - triggerRect.bottom,
 })
 
-const endYOuterPos = (triggerRect) => ({
+const endYOuterPos = (triggerRect: ClientRect): StyleRectY => ({
   top: triggerRect.bottom,
   bottom: auto,
 })
 
-const centerXRect = (triggerRect, popoverRect) => {
+const centerXRect = (
+  triggerRect: ClientRect,
+  popoverRect: ClientRect
+): StyleRectX => {
   const right =
     popoverRect.width / 2 - triggerRect.width / 2 + triggerRect.right
   return {
@@ -102,17 +108,26 @@ const centerXRect = (triggerRect, popoverRect) => {
   }
 }
 
-const startXOuterRect = (triggerRect, popoverRect) => ({
+const startXOuterRect = (
+  triggerRect: ClientRect,
+  popoverRect: ClientRect
+): StyleRectX => ({
   right: triggerRect.left,
   left: triggerRect.left - popoverRect.width,
 })
 
-const endXOuterRect = (triggerRect, popoverRect) => ({
+const endXOuterRect = (
+  triggerRect: ClientRect,
+  popoverRect: ClientRect
+): StyleRectX => ({
   right: triggerRect.right + popoverRect.width,
   left: triggerRect.right,
 })
 
-const centerYRect = (triggerRect, popoverRect) => {
+const centerYRect = (
+  triggerRect: ClientRect,
+  popoverRect: ClientRect
+): StyleRectY => {
   const bottom =
     popoverRect.height / 2 - triggerRect.height / 2 + triggerRect.bottom
   return {
@@ -121,43 +136,61 @@ const centerYRect = (triggerRect, popoverRect) => {
   }
 }
 
-const startYOuterRect = (triggerRect, popoverRect) => ({
+const startYOuterRect = (
+  triggerRect: ClientRect,
+  popoverRect: ClientRect
+): StyleRectY => ({
   top: triggerRect.top - popoverRect.height,
   bottom: triggerRect.top,
 })
 
-const endYOuterRect = (triggerRect, popoverRect) => ({
+const endYOuterRect = (
+  triggerRect: ClientRect,
+  popoverRect: ClientRect
+): StyleRectY => ({
   top: triggerRect.bottom,
   bottom: triggerRect.bottom + popoverRect.height,
 })
 
-const startXInnerRect = (triggerRect, popoverRect) => ({
+const startXInnerRect = (
+  triggerRect: ClientRect,
+  popoverRect: ClientRect
+): StyleRectX => ({
   right: triggerRect.left + popoverRect.width,
   left: triggerRect.left,
 })
 
-const endXInnerRect = (triggerRect, popoverRect) => ({
+const endXInnerRect = (
+  triggerRect: ClientRect,
+  popoverRect: ClientRect
+): StyleRectX => ({
   right: triggerRect.right,
   left: triggerRect.right - popoverRect.width,
 })
 
-const startYInnerRect = (triggerRect, popoverRect) => ({
+const startYInnerRect = (
+  triggerRect: ClientRect,
+  popoverRect: ClientRect
+): StyleRectY => ({
   top: triggerRect.top,
   bottom: triggerRect.top + popoverRect.height,
 })
 
-const endYInnerRect = (triggerRect, popoverRect) => ({
+const endYInnerRect = (
+  triggerRect: ClientRect,
+  popoverRect: ClientRect
+): StyleRectY => ({
   top: triggerRect.bottom - popoverRect.height,
   bottom: triggerRect.bottom,
 })
 
-const assignY = (a, b) => {
-  a.top = b.top
-  a.bottom = b.bottom
-  return a
-}
+const assignY = (x: StyleRectX, y: StyleRectY): StyleRect => Object.assign(x, y)
 
-const idealFn = (placement, xFn, yFn) => {
+const idealFn = (
+  placement: string,
+  xFn: typeof centerXRect,
+  yFn: typeof centerYRect
+) => {
   idealRects[placement.toLowerCase()] = (
     triggerRect: ClientRect,
     popoverRect: ClientRect
@@ -202,8 +235,9 @@ idealFn('center', centerXRect, centerYRect)
 const contain = (placement: string) => (
   triggerRect: ClientRect,
   popoverRect: ClientRect,
-  containPolicy
+  containPolicy: ContainPolicy
 ): PlacementResult => {
+  let nextPlacement: string | PlacementResult = placement
   const flip = containPolicy === 'flip',
     flipX = containPolicy === 'flipX',
     flipY = containPolicy === 'flipY'
@@ -215,34 +249,34 @@ const contain = (placement: string) => (
     )
 
     // center checks
-    if (!placement) {
+    if (!nextPlacement) {
       if (flip || flipY) {
         if (idealRect.bottom > windowHeight()) {
-          placement = 'top'
+          nextPlacement = 'top'
         } else if (idealRect.top < 0) {
-          placement = 'bottom'
+          nextPlacement = 'bottom'
         }
       }
 
-      if (!placement && (flip || flipX)) {
+      if (!nextPlacement && (flip || flipX)) {
         if (idealRect.left < 0) {
-          placement = 'right'
+          nextPlacement = 'right'
         } else if (idealRect.right > windowWidth()) {
-          placement = 'left'
+          nextPlacement = 'left'
         }
       }
     }
     // order of these indexes matters... must be before placement === top check
-    const leftIdx = placement.indexOf('left'),
-      topIdx = placement.indexOf('top')
+    const leftIdx = nextPlacement.indexOf('left'),
+      topIdx = nextPlacement.indexOf('top')
 
-    if (placement === 'top' || placement === 'bottom') {
+    if (nextPlacement === 'top' || nextPlacement === 'bottom') {
       if (flip || flipX) {
         // handles center X-axis case
         if (idealRect.left < 0) {
-          placement += 'left'
+          nextPlacement += 'left'
         } else if (idealRect.right > windowWidth()) {
-          placement += 'right'
+          nextPlacement += 'right'
         }
       }
     }
@@ -253,32 +287,35 @@ const contain = (placement: string) => (
         (leftIdx === 0 && idealRect.left < 0) ||
         (leftIdx > 0 && idealRect.right > windowWidth())
       ) {
-        placement = placement.replace('left', 'right')
+        nextPlacement = nextPlacement.replace('left', 'right')
       } else {
-        const rightIdx = placement.indexOf('right')
+        const rightIdx = nextPlacement.indexOf('right')
         // right checks
         if (
           (rightIdx === 0 && idealRect.right > windowWidth()) ||
           (rightIdx > 0 && idealRect.left < 0)
         ) {
-          placement = placement.replace('right', 'left')
+          nextPlacement = nextPlacement.replace('right', 'left')
         }
       }
     }
 
     // handles center Y-axis case
     if (flip || flipY) {
-      if (placement === 'left' || placement === 'right') {
+      if (nextPlacement === 'left' || nextPlacement === 'right') {
         if (idealRect.top < 0) {
-          placement += 'top'
+          nextPlacement += 'top'
         } else if (idealRect.bottom > windowHeight()) {
-          placement += 'bottom'
+          nextPlacement += 'bottom'
         }
-      } else if (placement === 'innerleft' || placement === 'innerright') {
+      } else if (
+        nextPlacement === 'innerleft' ||
+        nextPlacement === 'innerright'
+      ) {
         if (idealRect.top < 0) {
-          placement = placement.replace('inner', 'innertop')
+          nextPlacement = nextPlacement.replace('inner', 'innertop')
         } else if (idealRect.bottom > windowHeight()) {
-          placement = placement.replace('inner', 'innerbottom')
+          nextPlacement = nextPlacement.replace('inner', 'innerbottom')
         }
       }
     }
@@ -289,24 +326,27 @@ const contain = (placement: string) => (
         (topIdx === 0 && idealRect.top < 0) ||
         (topIdx > 0 && idealRect.bottom > windowHeight())
       ) {
-        placement = placement.replace('top', 'bottom')
+        nextPlacement = nextPlacement.replace('top', 'bottom')
       } else {
-        const bottomIdx = placement.indexOf('bottom')
+        const bottomIdx = nextPlacement.indexOf('bottom')
         // bottom checks
         if (
           (bottomIdx === 0 && idealRect.bottom > windowHeight()) ||
           (bottomIdx > 0 && idealRect.top < 0)
         ) {
-          placement = placement.replace('bottom', 'top')
+          nextPlacement = nextPlacement.replace('bottom', 'top')
         }
       }
     }
   } else if (typeof containPolicy === 'function') {
-    placement = containPolicy(placement, triggerRect, popoverRect)
-    if (typeof placement !== 'string') return placement
+    nextPlacement = containPolicy(nextPlacement, triggerRect, popoverRect)
+    if (typeof nextPlacement !== 'string') return nextPlacement
   }
 
-  return (placements[placement] || placements.center)(triggerRect, popoverRect)
+  return (placements[nextPlacement] || placements.center)(
+    triggerRect,
+    popoverRect
+  )
 }
 
 export type Placement =
@@ -334,19 +374,24 @@ export type Placement =
 
 interface PlacementResult {
   placement: Placement
-  style: StyleRect
+  style: Partial<StyleRect>
 }
 
 const placements: Record<
   string,
   (triggerRect: ClientRect, popoverRect: ClientRect) => PlacementResult
 > = {}
-const placementFn = (placement, xFn, yFn) => {
+
+const placementFn = (
+  placement: string,
+  xFn: typeof centerXRect,
+  yFn: typeof centerYRect
+) => {
   placements[placement.toLowerCase()] = (
     triggerRect: ClientRect,
     popoverRect: ClientRect
   ): PlacementResult => ({
-    placement,
+    placement: placement as Placement,
     style: assignY(
       xFn(triggerRect, popoverRect),
       yFn(triggerRect, popoverRect)
@@ -394,9 +439,9 @@ const setPlacementStyle = (
         popoverRect: ClientRect,
         containPolicy: ContainPolicy
       ) => string),
-  trigger,
-  popover,
-  containPolicy
+  trigger: HTMLElement,
+  popover: HTMLElement,
+  containPolicy: ContainPolicy
 ): PlacementState | ((prev: PlacementState) => PlacementState) => {
   if (!trigger || !popover) return (prev) => prev
 
@@ -466,7 +511,7 @@ export const PopoverContext: React.Context<PopoverContextValue> = React.createCo
     {}
   ),
   {Consumer: PopoverConsumer} = PopoverContext,
-  usePopover = () => useContext<PopoverContextValue>(PopoverContext),
+  usePopover = () => React.useContext<PopoverContextValue>(PopoverContext),
   usePlacement = () => usePopover().placement,
   useControls = (): PopoverControls => {
     const {open, close, toggle, reposition} = usePopover()
@@ -483,7 +528,7 @@ const isOpenStyles: React.CSSProperties = Object.assign({}, isClosedStyles, {
 })
 
 const portalize = (
-  Component,
+  Component: React.ReactElement,
   portal: boolean | undefined | null | string | Record<any, any>
 ) => {
   if (portal === false || portal === void 0 || portal === null) return Component
@@ -504,7 +549,7 @@ export interface TargetProps {
   children: JSX.Element | React.ReactElement
 }
 
-let isServer
+let isServer: boolean
 
 export const Target: React.FC<TargetProps> = ({
   placement = 'bottom',
@@ -532,22 +577,22 @@ export const Target: React.FC<TargetProps> = ({
     targetRef,
     // Closes the modal when escape is pressed
     useKeycodes({27: () => closeOnEscape && close()}),
-    useConditionalFocus(isOpen, true)
+    useConditionalFocus(isOpen, {includeRoot: true})
   )
   // handles repositioning the popover
-  // Yes this is correct, it's useEffect, not useLayoutEffect
+  // Yes this is correct, it's React.useEffect, not useLayoutEffect
   // Just move on .
-  useEffect(() => {
+  React.useEffect(() => {
     reposition(placement as Placement)
     isServer = false
-  }, [placement])
+  }, [placement, reposition])
 
   const defaultStyles = isOpen ? isOpenStyles : isClosedStyles
   triggeredBy = triggeredBy || 'click'
   const isClickTrigger = triggeredBy.indexOf('click') > -1
 
   return portalize(
-    cloneElement(children, {
+    React.cloneElement(children, {
       'aria-modal': isClickTrigger ? 'false' : void 0,
       'aria-hidden': String(!isOpen),
       key: String(isServer),
@@ -604,17 +649,18 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
     scrollY,
     children,
   }) => {
-    const triggerRef = useRef<HTMLElement | null>(null),
-      targetRef = useRef<HTMLElement | null>(null),
-      [{style, requestedPlacement, placement}, setState] = useState<
+    const triggerRef = React.useRef<HTMLElement | null>(null),
+      targetRef = React.useRef<HTMLElement | null>(null),
+      [{style, requestedPlacement, placement}, setState] = React.useState<
         PlacementState
       >({
         style: {top: 0, right: 0, bottom: 0, left: 0},
         placement: 'bottom',
         requestedPlacement: 'bottom',
       }),
-      reposition = useCallback(
+      reposition = React.useCallback(
         (nextPlacement) => {
+          if (!triggerRef.current || !targetRef.current) return
           setState(
             setPlacementStyle(
               nextPlacement,
@@ -626,13 +672,14 @@ const PopoverContainer: React.FC<PopoverContainerProps> = React.memo(
         },
         [containPolicy]
       ),
-      [triggeredBy, setTriggeredBy] = useState<string | null>(null)
+      [triggeredBy, setTriggeredBy] = React.useState<string | null>(null)
 
     useLayoutEffect(() => {
       isOpen && reposition(requestedPlacement)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen, reposition, scrollY, windowSize[0], windowSize[1]])
 
-    const childContext = useMemo(
+    const childContext = React.useMemo(
       () => ({
         isOpen,
         open,
@@ -694,12 +741,12 @@ export const Close: React.FC<CloseProps> = ({children}) => {
 
   return (
     <Button>
-      {cloneElement(children, {
+      {React.cloneElement(children, {
         'aria-controls': id,
         'aria-haspopup': 'dialog',
         'aria-expanded': String(isOpen),
         'aria-label': children.props['aria-label'] || 'Close',
-        onClick: useCallback(
+        onClick: React.useCallback(
           (e) => {
             e.stopPropagation()
             close()
@@ -738,19 +785,20 @@ export const Trigger: React.FC<TriggerProps> = ({
       triggerRef,
       setTriggeredBy,
     } = usePopover(),
-    prevOpen = useRef<boolean>(isOpen),
+    prevOpen = React.useRef<boolean>(isOpen),
     ref = useMergedRef(
       // @ts-ignore
       children.ref,
       triggerRef,
       useConditionalFocus(
         prevOpen.current && !isOpen && on.indexOf('click') > -1,
-        true
+        {includeRoot: true}
       )
     )
 
-  useEffect(() => {
+  React.useEffect(() => {
     setTriggeredBy(on)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [on])
   // returns the focus to the trigger when the popover box closes if focus is
   // not an event that triggers opening the popover and prevents the trigger
@@ -763,7 +811,7 @@ export const Trigger: React.FC<TriggerProps> = ({
   const isFocusable = on.indexOf('focus') > -1
   const isHoverable = on.indexOf('hover') > -1
   const props = children.props
-  const child = cloneElement(children, {
+  const child = React.cloneElement(children, {
     'aria-controls': id,
     'aria-haspopup': props.hasOwnProperty('aria-haspopup')
       ? props['aria-haspopup']
@@ -773,29 +821,26 @@ export const Trigger: React.FC<TriggerProps> = ({
       clsx(props.className, isOpen ? openClass : closedClass) || void 0,
     onClick: !isClickable
       ? props.onClick
-      : useCallback(
-          (e) => {
-            e.stopPropagation()
-            toggle()
-            props.onClick?.(e)
-          },
-          [toggle, props.onClick]
-        ),
+      : (e: React.MouseEvent<HTMLElement>) => {
+          e.stopPropagation()
+          toggle()
+          props.onClick?.(e)
+        },
     onFocus: !isFocusable
       ? props.onFocus
-      : (e) => {
+      : (e: React.MouseEvent<HTMLElement>) => {
           open()
           props.onFocus?.(e)
         },
     onMouseEnter: !isHoverable
       ? props.onMouseEnter
-      : (e) => {
+      : (e: React.MouseEvent<HTMLElement>) => {
           open()
           props.onMouseEnter?.(e)
         },
     onMouseLeave: !isHoverable
       ? props.onMouseLeave
-      : (e) => {
+      : (e: React.MouseEvent<HTMLElement>) => {
           close()
           props.onMouseLeave?.(e)
         },
@@ -813,7 +858,7 @@ const ScrollPositioner: React.FC<PopoverContainerProps> = (props) =>
       {
         scrollY: useWindowScroll(
           props.repositionOnScroll === true
-            ? 60
+            ? Infinity
             : (props.repositionOnScroll as number)
         ),
       },
@@ -828,7 +873,7 @@ const ResizePositioner: React.FC<PopoverContainerProps> = (props) => {
     initialHeight: 720,
     fps:
       props.repositionOnResize === true
-        ? 60
+        ? Infinity
         : (props.repositionOnResize as number),
   })
 
@@ -867,11 +912,13 @@ export const Popover: React.FC<PopoverProps> = ({
   children,
 }) => {
   const [isOpen_, toggle] = useSwitch(defaultOpen)
-  const didMount = useRef<undefined | boolean>()
+  const didMount = React.useRef<undefined | boolean>()
+  const storedOnChange = React.useRef(onChange)
+  storedOnChange.current = onChange
   id = useId(id)
 
   useLayoutEffect(() => {
-    onChange?.(isOpen_)
+    didMount.current && storedOnChange.current?.(isOpen_)
     didMount.current = true
   }, [isOpen_])
 

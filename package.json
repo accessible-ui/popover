@@ -1,6 +1,6 @@
 {
   "name": "@accessible/popover",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "homepage": "https://github.com/accessible-ui/popover#readme",
   "repository": "github:accessible-ui/popover",
   "bugs": "https://github.com/accessible-ui/popover/issues",
@@ -23,19 +23,37 @@
     "a11y tooltip",
     "accessible tooltip"
   ],
-  "main": "dist/cjs/index.js",
-  "module": "dist/es/index.js",
+  "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
+  "source": "src/index.tsx",
+  "types": "types/index.d.ts",
   "files": [
-    "/dist"
+    "/dist",
+    "/src",
+    "/types"
   ],
+  "exports": {
+    ".": {
+      "browser": "./dist/module/index.js",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/main/index.js",
+      "source": "./src/index.tsx",
+      "types": "./types/index.d.ts",
+      "default": "./dist/main/index.js"
+    },
+    "./package.json": "./package.json",
+    "./": "./"
+  },
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build:cjs && npm run build:es && npm run build:types",
-    "build:cjs": "babel src -d dist/cjs -x .ts,.tsx --ignore \"**/*.test.ts\",\"**/test.ts\",\"**/*.test.tsx\",\"**/test.tsx\" --delete-dir-on-start",
-    "build:es": "cross-env BABEL_ENV=es babel src -d dist/es -x .ts,.tsx --ignore \"**/*.test.ts\",\"**/test.ts\",\"**/*.test.tsx\",\"**/test.tsx\" --delete-dir-on-start",
-    "build:types": "tsc -p tsconfig.json -d --outDir dist/es --emitDeclarationOnly && mkdir -p dist/cjs && cp -R dist/es/**.d.ts dist/cjs && rimraf dist/**/*.test.d.ts",
+    "build": "npm run build-esm && npm run build-main && npm run build-module && npm run build-types",
+    "build-esm": "npm run compile -- -d dist/esm --env-name esm --out-file-extension .mjs",
+    "build-main": "npm run compile -- -d dist/main --env-name main",
+    "build-module": "npm run compile -- -d dist/module --env-name module",
+    "build-types": "tsc -p tsconfig.json -d --outDir types --emitDeclarationOnly",
     "check-types": "tsc --noEmit -p tsconfig.json",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,yml,json,babelrc,eslintrc,prettierrc}\"",
+    "compile": "babel src -x .ts,.tsx --ignore \"**/*.test.ts\",\"**/*.test.tsx\" --delete-dir-on-start",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,yml,json,eslintrc,prettierrc}\"",
     "lint": "eslint . --ext .ts,.tsx",
     "prepublishOnly": "npm run lint && npm run test && npm run build && npm run format",
     "test": "jest",
@@ -43,7 +61,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run build:types"
+      "pre-commit": "npm run build-types && git add types && lint-staged"
     }
   },
   "lint-staged": {
@@ -51,41 +69,38 @@
       "eslint",
       "prettier --write"
     ],
-    "**/*.{md,yml,json,babelrc,eslintrc,prettierrc}": [
+    "**/*.{md,yml,json,eslintrc,prettierrc}": [
       "prettier --write"
     ]
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-react": "latest",
     "@lunde/babel-preset-es": "latest",
-    "@testing-library/dom": "^6",
-    "@testing-library/jest-dom": "^4",
-    "@testing-library/react": "^9",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
     "@testing-library/react-hooks": "latest",
-    "@testing-library/user-event": "^10.3.1",
-    "@types/jest": "^25.2.3",
-    "@types/react": "^16.9.35",
-    "@types/react-dom": "^16.9.8",
-    "@typescript-eslint/eslint-plugin": "^2.34.0",
-    "@typescript-eslint/parser": "^2.34.0",
-    "babel-plugin-optimize-react": "^0.0.4",
-    "cross-env": "^7.0.2",
-    "eslint": "^7.0.0",
+    "@testing-library/user-event": "^10.4.0",
+    "@types/jest": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "babel-plugin-annotate-pure-calls": "latest",
+    "babel-plugin-optimize-react": "latest",
+    "eslint": "latest",
     "eslint-import-resolver-jest": "latest",
-    "eslint-plugin-jest": "^23.13.1",
-    "eslint-plugin-react": "^7.20.0",
-    "eslint-plugin-react-hooks": "^4.0.2",
-    "husky": "^4.2.5",
-    "jest": "^26.0.1",
-    "lint-staged": "^10.2.4",
-    "prettier": "^2.0.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-test-renderer": "^16.13.1",
-    "rimraf": "^2.6.3",
-    "ts-jest": "^26.0.0",
-    "typescript": "^3.9.2",
-    "user-event": "^4.0.0"
+    "eslint-plugin-jest": "latest",
+    "eslint-plugin-react": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "husky": "latest",
+    "jest": "latest",
+    "lint-staged": "latest",
+    "prettier": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-test-renderer": "latest",
+    "ts-jest": "latest",
+    "typescript": "latest"
   },
   "dependencies": {
     "@accessible/button": "^1.0.4",
@@ -102,7 +117,6 @@
     "react-portalize": "^2.0.2"
   },
   "peerDependencies": {
-    "prop-types": ">=15.7.2",
     "react": ">=16.8",
     "react-dom": ">=16.8"
   }
