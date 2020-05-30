@@ -803,7 +803,7 @@ export const Trigger: React.FC<TriggerProps> = ({
   // returns the focus to the trigger when the popover box closes if focus is
   // not an event that triggers opening the popover and prevents the trigger
   // from capturing the window focus right away
-  useLayoutEffect(() => {
+  React.useEffect(() => {
     prevOpen.current = isOpen
   }, [isOpen])
 
@@ -917,7 +917,7 @@ export const Popover: React.FC<PopoverProps> = ({
   storedOnChange.current = onChange
   id = useId(id)
 
-  useLayoutEffect(() => {
+  React.useEffect(() => {
     didMount.current && storedOnChange.current?.(isOpen_)
     didMount.current = true
   }, [isOpen_])
