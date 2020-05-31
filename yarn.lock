@@ -1416,6 +1416,13 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/cheerio@^0.22.18":
+  version "0.22.18"
+  resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.18.tgz#19018dceae691509901e339d63edf1e935978fe6"
+  integrity sha512-Fq7R3fINAPSdUEhOyjG4iVxgHrOnqDJbY0/BUuiN0pvD/rfmZWekVZnv+vcs8TtpA2XF50uv50LaE4EnpEL/Hw==
+  dependencies:
+    "@types/node" "*"
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -5009,11 +5016,12 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-portalize@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/react-portalize/-/react-portalize-2.0.2.tgz#8e9884d6075c81ea0caedc71e3b83690baf127e6"
-  integrity sha512-iUWBeFPcpMkfVrIg0Hlr39JZKr/REDWAxpD/WOxc9/KtCJcPLau6MFqtNfSkD+XVs8lVy0Z67LiccqnhAtbrDA==
+react-portalize@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-portalize/-/react-portalize-2.1.0.tgz#47693e69c692cf788a8b44cdaa05d3c8f566502a"
+  integrity sha512-yLVPtGdIyizsUlArYJFgEpTjX4cIpqt1H0Pz4sdyVXrKL/Fve56SOOTRczh5PkpKhOowgfV1wNaibdFnlr8/Nw==
   dependencies:
+    "@types/cheerio" "^0.22.18"
     cheerio "^1.0.0-rc.3"
 
 react-test-renderer@latest:
