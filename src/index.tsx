@@ -1,14 +1,15 @@
 import * as React from 'react'
-import useWindowSize from '@react-hook/window-size/throttled'
+import {useWindowSize} from '@react-hook/window-size/throttled'
 import useLayoutEffect from '@react-hook/passive-layout-effect'
 import useSwitch from '@react-hook/switch'
 import useMergedRef from '@react-hook/merged-ref'
 import useWindowScroll from '@react-hook/window-scroll'
 import useId from '@accessible/use-id'
-import {useKeycodes} from '@accessible/use-keycode'
+import {useKey} from '@accessible/use-key'
 import useConditionalFocus from '@accessible/use-conditional-focus'
-import Button from '@accessible/button'
-import Portalize, {PortalizeProps} from 'react-portalize'
+import {Button} from '@accessible/button'
+import Portalize from 'react-portalize'
+import type {PortalizeProps} from 'react-portalize'
 import clsx from 'clsx'
 
 const __DEV__ =
@@ -574,11 +575,11 @@ export const Target: React.FC<TargetProps> = ({
   const ref = useMergedRef(
     // @ts-ignore
     children.ref,
-    targetRef,
-    // Closes the modal when escape is pressed
-    useKeycodes({27: () => closeOnEscape && close()}),
-    useConditionalFocus(isOpen, {includeRoot: true})
+    targetRef
   )
+  // Closes the modal when escape is pressed
+  useKey(targetRef, {Escape: () => closeOnEscape && close()})
+  useConditionalFocus(targetRef, isOpen, {includeRoot: true})
   // handles repositioning the popover
   // Yes this is correct, it's React.useEffect, not useLayoutEffect
   // Just move on .
@@ -789,13 +790,13 @@ export const Trigger: React.FC<TriggerProps> = ({
     ref = useMergedRef(
       // @ts-ignore
       children.ref,
-      triggerRef,
-      useConditionalFocus(
-        prevOpen.current && !isOpen && on.indexOf('click') > -1,
-        {includeRoot: true}
-      )
+      triggerRef
     )
-
+  useConditionalFocus(
+    triggerRef,
+    prevOpen.current && !isOpen && on.indexOf('click') > -1,
+    {includeRoot: true}
+  )
   React.useEffect(() => {
     setTriggeredBy(on)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -866,16 +867,20 @@ const ScrollPositioner: React.FC<PopoverContainerProps> = (props) =>
     )
   )
 
-const ResizePositioner: React.FC<PopoverContainerProps> = (props) => {
-  props = Object.assign({}, props)
-  props.windowSize = useWindowSize({
-    initialWidth: 1280,
-    initialHeight: 720,
-    fps:
-      props.repositionOnResize === true
-        ? Infinity
-        : (props.repositionOnResize as number),
-  })
+const ResizePositioner: React.FC<PopoverContainerProps> = (prevProps) => {
+  const props = Object.assign(
+    {
+      windowSize: useWindowSize({
+        initialWidth: 1280,
+        initialHeight: 720,
+        fps:
+          prevProps.repositionOnResize === true
+            ? Infinity
+            : (prevProps.repositionOnResize as number),
+      }),
+    },
+    prevProps
+  )
 
   return React.createElement(
     props.repositionOnScroll ? ScrollPositioner : PopoverContainer,
